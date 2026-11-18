@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Inscription | Moonlight Services</title>
+
+<style>
+:root {
+  --bg: #080808;
+  --panel: #141414;
+  --gold: #d4af37;
+  --muted: #aaa;
+  --line: #292929;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  border-bottom: 1px solid var(--line);
+  padding: 16px;
+}
+
+.top {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  color: var(--gold);
+  font-size: 19px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.brand small {
+  display: block;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 4px;
+}
+
+.back {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+main {
+  max-width: 950px;
+  margin: 55px auto;
+  padding: 0 18px 50px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro span {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+h1 {
+  font-size: 34px;
+  margin: 15px 0;
+}
+
+.intro p {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: auto;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 25px;
+  text-align: center;
+  transition: .3s;
+}
+
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+  min-height: 70px;
+}
+
+.btn {
+  display: block;
+  background: var(--gold);
+  color: black;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 22px;
+}
+
+.login {
+  text-align: center;
+  margin-top: 35px;
+  color: var(--muted);
+}
+
+.login a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  color: #777;
+  border-top: 1px solid var(--line);
+  padding: 25px;
+  font-size: 12px;
+}
+
+@media(max-width:650px) {
+  .choices {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 27px;
+  }
+
+  main {
+    margin-top: 35px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+    <a href="index.html" class="brand">
+      MOONLIGHT DIGITAL
+      <small>MOONLIGHT SERVICES</small>
+    </a>
+
+    <a href="services.html" class="back">Retour aux services</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="intro">
+    <span>BIENVENUE SUR MOONLIGHT SERVICES</span>
+
+    <h1>Rejoignez notre plateforme</h1>
+
+    <p>
+      Créez votre compte et profitez d'un espace adapté
+      à vos besoins. Que vous souhaitiez commander un service
+      ou proposer vos compétences, Moonlight Services vous accompagne.
+    </p>
+  </section>
+
+  <section class="choices">
+
+    <article class="card">
+      <div class="icon">🛍️</div>
+
+      <h2>Je suis client</h2>
+
+      <p>
+        Vous recherchez un professionnel ?
+        Créez votre compte pour commander des services,
+        suivre vos commandes et retrouver votre historique.
+      </p>
+
+      <a href="inscription-client.html" class="btn">
+        Créer un compte client
+      </a>
+    </article>
+
+    <article class="card">
+      <div class="icon">💼</div>
+
+      <h2>Je suis prestataire</h2>
+
+      <p>
+        Vous proposez des services professionnels ?
+        Rejoignez notre réseau, présentez vos compétences
+        et développez votre activité.
+      </p>
+
+      <a href="inscription-prestataire.html" class="btn">
+        Devenir prestataire
+      </a>
+    </article>
+
+  </section>
+
+  <div class="login">
+    Vous avez déjà un compte ?
+    <a href="connexion.html">Connectez-vous</a>
+  </div>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Moonlight Digital — Tous droits réservés.
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
