@@ -187,6 +187,20 @@ footer {
   font-size: 12px;
   border-top: 1px solid var(--line);
 }
+
+@media(max-width:480px) {
+  .form-box {
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+}
 </style>
 </head>
 
@@ -198,6 +212,7 @@ footer {
       MOONLIGHT DIGITAL
       <small>MOONLIGHT SERVICES</small>
     </a>
+
     <a href="services.html" class="back">Retour aux services</a>
   </div>
 </header>
@@ -218,32 +233,61 @@ footer {
   <form id="registerForm">
 
     <label for="name">Nom professionnel ou nom complet</label>
-    <input id="name" type="text" required
-    placeholder="Ex : Studio Créatif">
+    <input
+      id="name"
+      type="text"
+      required
+      placeholder="Ex : Studio Créatif"
+    >
 
     <label for="email">Adresse e-mail</label>
-    <input id="email" type="email" required
-    placeholder="exemple@email.com">
+    <input
+      id="email"
+      type="email"
+      required
+      placeholder="exemple@email.com"
+    >
 
     <label for="phone">Numéro de téléphone</label>
-    <input id="phone" type="tel" required
-    placeholder="+243...">
+    <input
+      id="phone"
+      type="tel"
+      required
+      placeholder="+243..."
+    >
 
     <label for="city">Ville</label>
-    <input id="city" type="text" required
-    placeholder="Ex : Kinshasa">
+    <input
+      id="city"
+      type="text"
+      required
+      placeholder="Ex : Kinshasa"
+    >
 
     <label for="bio">Présentez votre activité</label>
-    <textarea id="bio" required
-    placeholder="Décrivez vos compétences et votre expérience..."></textarea>
+    <textarea
+      id="bio"
+      required
+      placeholder="Décrivez vos compétences et votre expérience..."
+    ></textarea>
 
     <label for="password">Mot de passe</label>
-    <input id="password" type="password" required
-    minlength="8" placeholder="Minimum 8 caractères">
+    <input
+      id="password"
+      type="password"
+      required
+      minlength="8"
+      placeholder="Minimum 8 caractères"
+    >
 
     <label for="confirmPassword">Confirmer le mot de passe</label>
-    <input id="confirmPassword" type="password" required
-    minlength="8" placeholder="Confirmez votre mot de passe">
+    <input
+      id="confirmPassword"
+      type="password"
+      required
+      minlength="8"
+      placeholder="Confirmez votre mot de passe"
+    >
 
     <button id="registerButton" type="submit">
       Créer mon compte prestataire
@@ -265,13 +309,17 @@ footer {
   <h2>Connexion prestataire</h2>
 
   <form id="loginForm">
+
     <label for="loginEmail">Adresse e-mail</label>
     <input id="loginEmail" type="email" required>
 
     <label for="loginPassword">Mot de passe</label>
     <input id="loginPassword" type="password" required>
 
-    <button type="submit" id="loginButton">Se connecter</button>
+    <button type="submit" id="loginButton">
+      Se connecter
+    </button>
+
   </form>
 
   <div id="loginMessage" class="message"></div>
@@ -286,6 +334,7 @@ footer {
 
 <script>
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
+
 const SUPABASE_ANON_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
 
 const db = window.supabase.createClient(
@@ -300,6 +349,8 @@ const form = document.getElementById("registerForm");
 const message = document.getElementById("message");
 const button = document.getElementById("registerButton");
 
+const loginBox = document.getElementById("loginBox");
+
 function showMessage(element, text, type) {
   element.className = "message " + type;
   element.textContent = text;
@@ -308,37 +359,66 @@ function showMessage(element, text, type) {
 function getProfileData() {
   return {
     display_name: document.getElementById("name").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
     city: document.getElementById("city").value.trim(),
     bio: document.getElementById("bio").value.trim()
   };
 }
 
+/*
+  Enregistrement du profil dans la table service_providers.
+  Le téléphone reste dans les métadonnées Auth,
+  car la table service_providers ne possède pas de colonne phone.
+*/
+
 async function saveProvider(user, profile) {
+
+  const databaseProfile = {
+    display_name: profile.display_name,
+    city: profile.city,
+    bio: profile.bio
+  };
+
+  // Vérifier si le prestataire possède déjà un profil.
+
   const { data: existing, error: searchError } = await db
     .from("service_providers")
     .select("id")
     .eq("user_id", user.id)
     .maybeSingle();
 
-  if (searchError) throw searchError;
+  if (searchError) {
+    throw searchError;
+  }
 
   if (existing) {
+
+    // Mettre à jour le profil existant sans modifier son statut.
+
     const { error } = await db
       .from("service_providers")
-      .update(profile)
+      .update(databaseProfile)
       .eq("user_id", user.id);
 
-    if (error) throw error;
+    if (error) {
+      throw error;
+    }
+
   } else {
+
+    // Créer un nouveau profil en attente de validation.
+
     const { error } = await db
       .from("service_providers")
       .insert({
         user_id: user.id,
-        ...profile,
+        ...databaseProfile,
         status: "pending"
       });
 
-    if (error) throw error;
+    if (error) {
+      throw error;
+    }
   }
 
   localStorage.removeItem("moonlight_pending_provider");
@@ -350,10 +430,16 @@ async function saveProvider(user, profile) {
   );
 }
 
+/*
+  INSCRIPTION
+*/
+
 form.addEventListener("submit", async function(e) {
+
   e.preventDefault();
 
   message.className = "message";
+
   button.disabled = true;
   button.textContent = "Création du compte...";
 
@@ -362,35 +448,57 @@ form.addEventListener("submit", async function(e) {
   const confirmPassword = document.getElementById("confirmPassword").value;
 
   if (password !== confirmPassword) {
-    showMessage(message, "Les mots de passe ne correspondent pas.", "error");
+
+    showMessage(
+      message,
+      "Les mots de passe ne correspondent pas.",
+      "error"
+    );
+
     button.disabled = false;
     button.textContent = "Créer mon compte prestataire";
+
     return;
   }
 
   const profile = getProfileData();
 
   try {
+
     const { data, error } = await db.auth.signUp({
-      email,
-      password,
+
+      email: email,
+
+      password: password,
+
       options: {
         data: {
           display_name: profile.display_name,
+          phone: profile.phone,
+          city: profile.city,
           account_type: "provider"
         }
       }
+
     });
 
-    if (error) throw error;
+    if (error) {
+      throw error;
+    }
 
     if (!data.user) {
       throw new Error("Impossible de créer le compte.");
     }
 
     if (data.session) {
+
       await saveProvider(data.user, profile);
+
     } else {
+
+      // Conserver les informations du prestataire
+      // jusqu'à la confirmation de son adresse e-mail.
+
       localStorage.setItem(
         "moonlight_pending_provider",
         JSON.stringify(profile)
@@ -398,31 +506,62 @@ form.addEventListener("submit", async function(e) {
 
       showMessage(
         message,
-        "Votre compte a été créé. Consultez votre boîte e-mail pour confirmer votre adresse, puis connectez-vous ci-dessous afin de terminer la création de votre profil.",
+        "Votre compte a été créé. Consultez votre boîte e-mail pour confirmer votre adresse. Ensuite, revenez sur cette page et connectez-vous ci-dessous pour terminer la création de votre profil.",
         "info"
       );
 
-      document.getElementById("loginBox").style.display = "block";
+      loginBox.style.display = "block";
+
       document.getElementById("loginEmail").value = email;
-      document.getElementById("loginBox").scrollIntoView({behavior:"smooth"});
+
+      loginBox.scrollIntoView({
+        behavior: "smooth"
+      });
+
     }
 
   } catch(error) {
+
     console.error("Erreur inscription :", error);
-    showMessage(message, error.message || "Une erreur est survenue.", "error");
+
+    showMessage(
+      message,
+      error.message || "Une erreur est survenue.",
+      "error"
+    );
+
   } finally {
+
     button.disabled = false;
+
     button.textContent = "Créer mon compte prestataire";
+
   }
+
 });
+
+/*
+  AFFICHER LE FORMULAIRE DE CONNEXION
+*/
 
 document.getElementById("showLogin").addEventListener("click", function(e) {
+
   e.preventDefault();
-  document.getElementById("loginBox").style.display = "block";
-  document.getElementById("loginBox").scrollIntoView({behavior:"smooth"});
+
+  loginBox.style.display = "block";
+
+  loginBox.scrollIntoView({
+    behavior: "smooth"
+  });
+
 });
 
+/*
+  CONNEXION ET FINALISATION DU PROFIL
+*/
+
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
+
   e.preventDefault();
 
   const loginButton = document.getElementById("loginButton");
@@ -431,33 +570,75 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   loginButton.disabled = true;
   loginButton.textContent = "Connexion...";
 
+  loginMessage.className = "message";
+
   try {
+
     const { data, error } = await db.auth.signInWithPassword({
+
       email: document.getElementById("loginEmail").value.trim(),
+
       password: document.getElementById("loginPassword").value
+
     });
 
-    if (error) throw error;
+    if (error) {
+      throw error;
+    }
 
-    const pending = localStorage.getItem("moonlight_pending_provider");
+    const pending = localStorage.getItem(
+      "moonlight_pending_provider"
+    );
 
     if (pending) {
-      await saveProvider(data.user, JSON.parse(pending));
+
+      const profile = JSON.parse(pending);
+
+      // Compléter les métadonnées si nécessaire.
+
+      const { error: metadataError } = await db.auth.updateUser({
+        data: {
+          display_name: profile.display_name,
+          phone: profile.phone,
+          city: profile.city,
+          account_type: "provider"
+        }
+      });
+
+      if (metadataError) {
+        throw metadataError;
+      }
+
+      await saveProvider(data.user, profile);
+
     } else {
+
       showMessage(
         loginMessage,
         "Connexion réussie. Votre compte est connecté.",
         "success"
       );
+
     }
 
   } catch(error) {
+
     console.error("Erreur connexion :", error);
-    showMessage(loginMessage, error.message, "error");
+
+    showMessage(
+      loginMessage,
+      error.message || "Une erreur est survenue lors de la connexion.",
+      "error"
+    );
+
   } finally {
+
     loginButton.disabled = false;
+
     loginButton.textContent = "Se connecter";
+
   }
+
 });
 </script>
 
