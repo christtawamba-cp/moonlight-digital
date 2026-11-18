@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Devenir prestataire | Moonlight Services</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+  --bg: #080808;
+  --panel: #141414;
+  --gold: #d4af37;
+  --muted: #aaa;
+  --line: #292929;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 17px;
+  border-bottom: 1px solid var(--line);
+  background: #090909;
+}
+
+.top {
+  max-width: 850px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  color: var(--gold);
+  font-size: 19px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.brand small {
+  display: block;
+  color: #ddd;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 4px;
+}
+
+.back {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+main {
+  max-width: 600px;
+  margin: 35px auto;
+  padding: 0 16px 50px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.intro span {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 29px;
+  margin: 12px 0;
+}
+
+.intro p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.form-box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 24px;
+}
+
+label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #383838;
+  background: #090909;
+  color: white;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--gold);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 8px;
+  background: var(--gold);
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 18px;
+  padding: 13px;
+  border-radius: 8px;
+  display: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.success {
+  display: block;
+  background: #12351f;
+  color: #9df0b1;
+}
+
+.error {
+  display: block;
+  background: #421919;
+  color: #ffb2b2;
+}
+
+.info {
+  display: block;
+  background: #25210f;
+  color: #f1d77b;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.switch a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+  font-size: 12px;
+  border-top: 1px solid var(--line);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+    <a href="index.html" class="brand">
+      MOONLIGHT DIGITAL
+      <small>MOONLIGHT SERVICES</small>
+    </a>
+    <a href="services.html" class="back">Retour aux services</a>
+  </div>
+</header>
+
+<main>
+
+<section class="intro">
+  <span>REJOIGNEZ NOTRE COMMUNAUTÉ</span>
+  <h1>Devenez prestataire</h1>
+  <p>
+    Présentez vos compétences, proposez vos services
+    et développez votre activité avec Moonlight Services.
+  </p>
+</section>
+
+<div class="form-box">
+
+  <form id="registerForm">
+
+    <label for="name">Nom professionnel ou nom complet</label>
+    <input id="name" type="text" required
+    placeholder="Ex : Studio Créatif">
+
+    <label for="email">Adresse e-mail</label>
+    <input id="email" type="email" required
+    placeholder="exemple@email.com">
+
+    <label for="phone">Numéro de téléphone</label>
+    <input id="phone" type="tel" required
+    placeholder="+243...">
+
+    <label for="city">Ville</label>
+    <input id="city" type="text" required
+    placeholder="Ex : Kinshasa">
+
+    <label for="bio">Présentez votre activité</label>
+    <textarea id="bio" required
+    placeholder="Décrivez vos compétences et votre expérience..."></textarea>
+
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" required
+    minlength="8" placeholder="Minimum 8 caractères">
+
+    <label for="confirmPassword">Confirmer le mot de passe</label>
+    <input id="confirmPassword" type="password" required
+    minlength="8" placeholder="Confirmez votre mot de passe">
+
+    <button id="registerButton" type="submit">
+      Créer mon compte prestataire
+    </button>
+
+  </form>
+
+  <div id="message" class="message"></div>
+
+  <div class="switch">
+    Déjà inscrit ?
+    <a href="#connexion" id="showLogin">Se connecter</a>
+  </div>
+
+</div>
+
+<div class="form-box" id="loginBox" style="display:none;margin-top:20px">
+
+  <h2>Connexion prestataire</h2>
+
+  <form id="loginForm">
+    <label for="loginEmail">Adresse e-mail</label>
+    <input id="loginEmail" type="email" required>
+
+    <label for="loginPassword">Mot de passe</label>
+    <input id="loginPassword" type="password" required>
+
+    <button type="submit" id="loginButton">Se connecter</button>
+  </form>
+
+  <div id="loginMessage" class="message"></div>
+
+</div>
+
+</main>
+
+<footer>
+© <span id="year"></span> Moonlight Digital — Moonlight Services
+</footer>
+
+<script>
+const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+const form = document.getElementById("registerForm");
+const message = document.getElementById("message");
+const button = document.getElementById("registerButton");
+
+function showMessage(element, text, type) {
+  element.className = "message " + type;
+  element.textContent = text;
+}
+
+function getProfileData() {
+  return {
+    display_name: document.getElementById("name").value.trim(),
+    city: document.getElementById("city").value.trim(),
+    bio: document.getElementById("bio").value.trim()
+  };
+}
+
+async function saveProvider(user, profile) {
+  const { data: existing, error: searchError } = await db
+    .from("service_providers")
+    .select("id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (searchError) throw searchError;
+
+  if (existing) {
+    const { error } = await db
+      .from("service_providers")
+      .update(profile)
+      .eq("user_id", user.id);
+
+    if (error) throw error;
+  } else {
+    const { error } = await db
+      .from("service_providers")
+      .insert({
+        user_id: user.id,
+        ...profile,
+        status: "pending"
+      });
+
+    if (error) throw error;
+  }
+
+  localStorage.removeItem("moonlight_pending_provider");
+
+  showMessage(
+    message,
+    "Votre profil a été envoyé avec succès. Il est maintenant en attente de validation par Moonlight Digital.",
+    "success"
+  );
+}
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  message.className = "message";
+  button.disabled = true;
+  button.textContent = "Création du compte...";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (password !== confirmPassword) {
+    showMessage(message, "Les mots de passe ne correspondent pas.", "error");
+    button.disabled = false;
+    button.textContent = "Créer mon compte prestataire";
+    return;
+  }
+
+  const profile = getProfileData();
+
+  try {
+    const { data, error } = await db.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          display_name: profile.display_name,
+          account_type: "provider"
+        }
+      }
+    });
+
+    if (error) throw error;
+
+    if (!data.user) {
+      throw new Error("Impossible de créer le compte.");
+    }
+
+    if (data.session) {
+      await saveProvider(data.user, profile);
+    } else {
+      localStorage.setItem(
+        "moonlight_pending_provider",
+        JSON.stringify(profile)
+      );
+
+      showMessage(
+        message,
+        "Votre compte a été créé. Consultez votre boîte e-mail pour confirmer votre adresse, puis connectez-vous ci-dessous afin de terminer la création de votre profil.",
+        "info"
+      );
+
+      document.getElementById("loginBox").style.display = "block";
+      document.getElementById("loginEmail").value = email;
+      document.getElementById("loginBox").scrollIntoView({behavior:"smooth"});
+    }
+
+  } catch(error) {
+    console.error("Erreur inscription :", error);
+    showMessage(message, error.message || "Une erreur est survenue.", "error");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Créer mon compte prestataire";
+  }
+});
+
+document.getElementById("showLogin").addEventListener("click", function(e) {
+  e.preventDefault();
+  document.getElementById("loginBox").style.display = "block";
+  document.getElementById("loginBox").scrollIntoView({behavior:"smooth"});
+});
+
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const loginButton = document.getElementById("loginButton");
+  const loginMessage = document.getElementById("loginMessage");
+
+  loginButton.disabled = true;
+  loginButton.textContent = "Connexion...";
+
+  try {
+    const { data, error } = await db.auth.signInWithPassword({
+      email: document.getElementById("loginEmail").value.trim(),
+      password: document.getElementById("loginPassword").value
+    });
+
+    if (error) throw error;
+
+    const pending = localStorage.getItem("moonlight_pending_provider");
+
+    if (pending) {
+      await saveProvider(data.user, JSON.parse(pending));
+    } else {
+      showMessage(
+        loginMessage,
+        "Connexion réussie. Votre compte est connecté.",
+        "success"
+      );
+    }
+
+  } catch(error) {
+    console.error("Erreur connexion :", error);
+    showMessage(loginMessage, error.message, "error");
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = "Se connecter";
+  }
+});
+</script>
+
+</body>
+</html>
