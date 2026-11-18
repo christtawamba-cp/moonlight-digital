@@ -79,6 +79,17 @@ h2{font-size:21px;margin:28px 0 15px}
 .provider{font-size:13px;color:var(--gold)}
 .price{font-weight:bold;font-size:18px;margin-top:13px}
 .empty,.loading{color:var(--muted);text-align:center;padding:25px}
+.error{
+  color:#ff7777;
+  background:#241010;
+  border:1px solid #642b2b;
+  border-radius:10px;
+  padding:15px;
+  margin:10px 0;
+  font-size:13px;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
 footer{
   text-align:center;color:#777;font-size:12px;
   padding:25px;border-top:1px solid var(--line);
@@ -122,11 +133,13 @@ footer{
   >
 
   <h2>Explorer les catégories</h2>
+
   <div class="categories" id="categories">
     <div class="loading">Chargement des catégories...</div>
   </div>
 
   <h2>Services disponibles</h2>
+
   <div class="grid" id="services">
     <div class="loading">Chargement des services...</div>
   </div>
@@ -138,21 +151,48 @@ footer{
 </footer>
 
 <script>
+
+// =====================================
+// CONFIGURATION SUPABASE
+// =====================================
+
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 
 const SUPABASE_ANON_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+
+if (!window.supabase) {
+  document.getElementById("categories").innerHTML =
+    '<div class="error">Impossible de charger la bibliothèque Supabase. Vérifie ta connexion Internet.</div>';
+
+  document.getElementById("services").innerHTML =
+    '<div class="error">La connexion à Supabase est indisponible.</div>';
+
+  throw new Error("Bibliothèque Supabase introuvable.");
+}
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
 
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+// =====================================
+// VARIABLES
+// =====================================
 
 let categories = [];
 let services = [];
 let providers = [];
+
 let selectedCategory = "all";
+
+
+// =====================================
+// SÉCURITÉ HTML
+// =====================================
 
 function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, char => ({
@@ -164,14 +204,25 @@ function escapeHTML(value) {
   })[char]);
 }
 
+
+// =====================================
+// AFFICHAGE DES CATÉGORIES
+// =====================================
+
 function renderCategories() {
+
   const container = document.getElementById("categories");
 
   container.innerHTML = `
-    <button class="category ${selectedCategory === "all" ? "active" : ""}"
-      data-id="all">Toutes les catégories</button>
+    <button
+      class="category ${selectedCategory === "all" ? "active" : ""}"
+      data-id="all">
+      Toutes les catégories
+    </button>
+
     ${categories.map(cat => `
-      <button class="category ${selectedCategory === cat.id ? "active" : ""}"
+      <button
+        class="category ${selectedCategory === cat.id ? "active" : ""}"
         data-id="${escapeHTML(cat.id)}">
         ${escapeHTML(cat.name)}
       </button>
@@ -179,20 +230,40 @@ function renderCategories() {
   `;
 
   container.querySelectorAll(".category").forEach(button => {
+
     button.addEventListener("click", () => {
+
       selectedCategory = button.dataset.id;
+
       renderCategories();
       renderServices();
+
     });
+
   });
+
 }
 
+
+// =====================================
+// AFFICHAGE DES SERVICES
+// =====================================
+
 function renderServices() {
+
   const container = document.getElementById("services");
-  const search = document.getElementById("search").value.toLowerCase();
+
+  const search = document
+    .getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
 
   const filtered = services.filter(service => {
-    const provider = providers.find(p => p.id === service.provider_id);
+
+    const provider = providers.find(
+      p => p.id === service.provider_id
+    );
 
     const categoryMatch =
       selectedCategory === "all" ||
@@ -204,54 +275,134 @@ function renderServices() {
       (provider?.display_name || "").toLowerCase().includes(search);
 
     return categoryMatch && searchMatch && provider;
+
   });
 
   if (!filtered.length) {
+
     container.innerHTML = `
       <div class="empty">
-        Aucun service disponible dans cette catégorie pour le moment.
-      </div>`;
+        Aucun service disponible pour le moment.
+        Revenez bientôt découvrir les offres de nos prestataires.
+      </div>
+    `;
+
     return;
   }
 
   container.innerHTML = filtered.map(service => {
-    const provider = providers.find(p => p.id === service.provider_id);
-    const category = categories.find(c => c.id === service.category_id);
+
+    const provider = providers.find(
+      p => p.id === service.provider_id
+    );
+
+    const category = categories.find(
+      c => c.id === service.category_id
+    );
 
     const image = service.image_url
       ? escapeHTML(service.image_url)
       : "";
 
     return `
+
       <article class="card">
-        ${image
-          ? `<img src="${image}" alt="${escapeHTML(service.title)}" loading="lazy">`
-          : `<div style="height:165px;background:#222;display:grid;place-items:center;color:#d4af37;font-size:35px">🌙</div>`
+
+        ${
+          image
+          ? `
+            <img
+              src="${image}"
+              alt="${escapeHTML(service.title)}"
+              loading="lazy">
+          `
+          : `
+            <div style="
+              height:165px;
+              background:#222;
+              display:grid;
+              place-items:center;
+              color:#d4af37;
+              font-size:35px;">
+              🌙
+            </div>
+          `
         }
 
         <div class="card-content">
-          <div class="provider">${escapeHTML(category?.name || "Service")}</div>
-          <h3>${escapeHTML(service.title)}</h3>
-          <p>${escapeHTML(service.description || "Aucune description disponible.")}</p>
+
           <div class="provider">
-            Prestataire : ${escapeHTML(provider.display_name)}
+            ${escapeHTML(category?.name || "Service")}
+          </div>
+
+          <h3>${escapeHTML(service.title)}</h3>
+
+          <p>
+            ${escapeHTML(
+              service.description || "Aucune description disponible."
+            )}
+          </p>
+
+          <div class="provider">
+            Prestataire :
+            ${escapeHTML(provider.display_name)}
             ${provider.city ? " — " + escapeHTML(provider.city) : ""}
           </div>
+
           <div class="price">
             ${Number(service.price).toLocaleString("fr-FR")}
             ${escapeHTML(service.currency || "USD")}
           </div>
+
         </div>
+
       </article>
+
     `;
+
   }).join("");
+
 }
 
+
+// =====================================
+// AFFICHAGE DES ERREURS
+// =====================================
+
+function showError(element, title, error) {
+
+  console.error(title, error);
+
+  const message = error?.message || "Erreur inconnue";
+
+  element.innerHTML = `
+    <div class="error">
+      <strong>${escapeHTML(title)}</strong>
+      <br><br>
+      ${escapeHTML(message)}
+    </div>
+  `;
+
+}
+
+
+// =====================================
+// CHARGEMENT DES DONNÉES
+// =====================================
+
 async function loadData() {
+
+  const categoryBox = document.getElementById("categories");
   const serviceBox = document.getElementById("services");
 
+  console.log("Moonlight Services : démarrage du chargement.");
+
   try {
-    const [catResult, providerResult, serviceResult] = await Promise.all([
+
+    // LES TROIS REQUÊTES SONT EXÉCUTÉES INDÉPENDAMMENT
+
+    const results = await Promise.allSettled([
+
       db.from("service_categories")
         .select("id,name,slug")
         .eq("is_active", true)
@@ -262,35 +413,166 @@ async function loadData() {
         .eq("status", "active"),
 
       db.from("services")
-        .select("id,provider_id,category_id,title,description,price,currency,image_url,status")
+        .select(`
+          id,
+          provider_id,
+          category_id,
+          title,
+          description,
+          price,
+          currency,
+          image_url,
+          status,
+          created_at
+        `)
         .eq("status", "active")
         .order("created_at", {ascending:false})
+
     ]);
 
-    if (catResult.error) throw catResult.error;
-    if (providerResult.error) throw providerResult.error;
-    if (serviceResult.error) throw serviceResult.error;
 
-    categories = catResult.data || [];
-    providers = providerResult.data || [];
-    services = serviceResult.data || [];
+    // =================================
+    // 1. CATÉGORIES
+    // =================================
 
-    renderCategories();
+    const catResult = results[0];
+
+    if (catResult.status === "fulfilled" && !catResult.value.error) {
+
+      categories = catResult.value.data || [];
+
+      console.log(
+        "CATÉGORIES CHARGÉES :",
+        categories
+      );
+
+      renderCategories();
+
+    } else {
+
+      const error = catResult.status === "rejected"
+        ? catResult.reason
+        : catResult.value.error;
+
+      showError(
+        categoryBox,
+        "Erreur de chargement des catégories :",
+        error
+      );
+
+    }
+
+
+    // =================================
+    // 2. PRESTATAIRES
+    // =================================
+
+    const providerResult = results[1];
+
+    if (
+      providerResult.status === "fulfilled" &&
+      !providerResult.value.error
+    ) {
+
+      providers = providerResult.value.data || [];
+
+      console.log(
+        "PRESTATAIRES CHARGÉS :",
+        providers
+      );
+
+    } else {
+
+      const error = providerResult.status === "rejected"
+        ? providerResult.reason
+        : providerResult.value.error;
+
+      console.error(
+        "ERREUR PRESTATAIRES :",
+        error
+      );
+
+      providers = [];
+
+    }
+
+
+    // =================================
+    // 3. SERVICES
+    // =================================
+
+    const serviceResult = results[2];
+
+    if (
+      serviceResult.status === "fulfilled" &&
+      !serviceResult.value.error
+    ) {
+
+      services = serviceResult.value.data || [];
+
+      console.log(
+        "SERVICES CHARGÉS :",
+        services
+      );
+
+    } else {
+
+      const error = serviceResult.status === "rejected"
+        ? serviceResult.reason
+        : serviceResult.value.error;
+
+      showError(
+        serviceBox,
+        "Erreur de chargement des services :",
+        error
+      );
+
+      return;
+
+    }
+
+
+    // =================================
+    // AFFICHAGE FINAL
+    // =================================
+
     renderServices();
 
+    console.log("Moonlight Services : chargement terminé.");
+
   } catch (error) {
-    console.error("Erreur Moonlight Services :", error);
-    serviceBox.innerHTML = `
-      <div class="empty">
-        Impossible de charger les services.
-        Vérifie ta connexion et les autorisations Supabase.
-      </div>`;
+
+    console.error(
+      "ERREUR GÉNÉRALE MOONLIGHT SERVICES :",
+      error
+    );
+
+    showError(
+      serviceBox,
+      "Erreur générale :",
+      error
+    );
+
   }
+
 }
 
-document.getElementById("search").addEventListener("input", renderServices);
+
+// =====================================
+// RECHERCHE
+// =====================================
+
+document
+  .getElementById("search")
+  .addEventListener("input", renderServices);
+
+
+// =====================================
+// DÉMARRAGE
+// =====================================
 
 loadData();
+
 </script>
 
 </body>
