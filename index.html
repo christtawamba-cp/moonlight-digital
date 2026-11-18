@@ -200,7 +200,8 @@
 
     .artist-access,
     .marketplace-access,
-    .media-access {
+    .media-access,
+    .service-access {
       display: inline-block;
       margin: 18px 5px 0;
       padding: 11px 23px;
@@ -216,7 +217,8 @@
 
     .artist-access:hover,
     .marketplace-access:hover,
-    .media-access:hover {
+    .media-access:hover,
+    .service-access:hover {
       background: white;
       border-color: white;
       transform: scale(1.05);
@@ -304,6 +306,12 @@
     .card p {
       color: #aaa;
       font-size: 14px;
+    }
+
+    .card strong {
+      color: #d4af37;
+      display: block;
+      margin-top: 15px;
     }
 
     /* DETAILS DES SERVICES */
@@ -440,7 +448,8 @@
 
       .artist-access,
       .marketplace-access,
-      .media-access {
+      .media-access,
+      .service-access {
         margin: 12px 3px 0;
         padding: 10px 15px;
         font-size: 12px;
@@ -489,6 +498,8 @@
 
       <a href="#services">💼 Nos services</a>
 
+      <a href="services.html">🌙 MOONLIGHT SERVICES</a>
+
       <a href="#partenariats">🤝 Partenariats</a>
 
       <a href="#nos-reseaux">📱 Nos réseaux sociaux</a>
@@ -533,6 +544,10 @@
 
   <a href="media.html" class="media-access">
     📰 MOONLIGHT MEDIA
+  </a>
+
+  <a href="services.html" class="service-access">
+    💼 MOONLIGHT SERVICES
   </a>
 
 </header>
@@ -688,6 +703,23 @@
         Découvrez des produits proposés par différents vendeurs
         et développez votre activité commerciale.
       </p>
+
+    </a>
+
+    <!-- NOUVELLE CARTE MOONLIGHT SERVICES -->
+
+    <a class="card" href="services.html">
+
+      <h3>🌙 Moonlight Services</h3>
+
+      <p>
+        Découvrez une plateforme qui connecte les clients
+        aux professionnels et prestataires de services.
+        Trouvez des talents, explorez leurs offres
+        et développez vos projets.
+      </p>
+
+      <strong>Découvrir la plateforme →</strong>
 
     </a>
 
@@ -908,8 +940,6 @@
     seront ajoutés dans cet espace.
   </p>
 
-  <!-- LIENS OFFICIELS DES RESEAUX SOCIAUX AJOUTES -->
-
   <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:700px; margin:30px auto;">
 
     <a href="https://www.facebook.com/share/1FnwP5DnDg/?mibextid=wwXIfr"
@@ -1052,8 +1082,6 @@
 
   });
 
-  /* FERMETURE EN CLIQUANT AILLEURS */
-
   document.addEventListener("click", function(event) {
 
     if (!event.target.closest(".menu-container")) {
@@ -1064,8 +1092,6 @@
 
   });
 
-  /* FERMETURE APRES SELECTION */
-
   dropdownMenu.querySelectorAll("a").forEach(function(link) {
 
     link.addEventListener("click", function() {
@@ -1075,8 +1101,6 @@
     });
 
   });
-
-  /* FERMETURE AVEC ECHAP */
 
   document.addEventListener("keydown", function(event) {
 
@@ -1099,6 +1123,7 @@
       "🌙 À propos": "🌙 About us",
       "🎯 Notre mission et vision": "🎯 Our mission and vision",
       "💼 Nos services": "💼 Our services",
+      "🌙 MOONLIGHT SERVICES": "🌙 MOONLIGHT SERVICES",
       "🤝 Partenariats": "🤝 Partnerships",
       "📱 Nos réseaux sociaux": "📱 Our social networks",
       "📞 Contact": "📞 Contact",
@@ -1161,6 +1186,11 @@
       "Découvrez des produits proposés par différents vendeurs et développez votre activité commerciale.":
       "Discover products from different sellers and grow your business.",
 
+      "Découvrez une plateforme qui connecte les clients aux professionnels et prestataires de services. Trouvez des talents, explorez leurs offres et développez vos projets.":
+      "Discover a platform connecting customers with professionals and service providers. Find talent, explore their offers and develop your projects.",
+
+      "Découvrir la plateforme →": "Discover the platform →",
+
       "Comment pouvons-nous vous aider ?": "How can we help you?",
 
       "Nous contacter sur WhatsApp": "Contact us on WhatsApp",
@@ -1195,6 +1225,7 @@
       "🌙 À propos": "🌙 Mpo na biso",
       "🎯 Notre mission et vision": "🎯 Mokano mpe ndoto na biso",
       "💼 Nos services": "💼 Misala na biso",
+      "🌙 MOONLIGHT SERVICES": "🌙 MOONLIGHT SERVICES",
       "🤝 Partenariats": "🤝 Boyokani",
       "📱 Nos réseaux sociaux": "📱 Ba réseaux sociaux na biso",
       "📞 Contact": "📞 Kokutana na biso",
