@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-
 <title>Espace Artiste | Moonlight Digital</title>
-
 <style>
 * {
   margin: 0;
@@ -14,34 +12,28 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
-
 body {
   background: #050505;
   color: white;
   min-height: 100vh;
   padding: 20px;
 }
-
 header {
   text-align: center;
   padding: 30px 10px;
 }
-
 header h1 {
   font-size: 28px;
   letter-spacing: 2px;
 }
-
 header h1 span {
   color: #d4af37;
 }
-
 header p {
   color: #999;
   margin-top: 10px;
   font-size: 14px;
 }
-
 .container {
   max-width: 480px;
   margin: 25px auto;
@@ -50,26 +42,22 @@ header p {
   border-radius: 18px;
   padding: 28px;
 }
-
 .logo {
   text-align: center;
   font-size: 45px;
   margin-bottom: 10px;
 }
-
 h2 {
   text-align: center;
   font-size: 24px;
   margin-bottom: 10px;
 }
-
 .subtitle {
   text-align: center;
   color: #999;
   font-size: 14px;
   margin-bottom: 25px;
 }
-
 .tabs {
   display: flex;
   background: #080808;
@@ -77,7 +65,6 @@ h2 {
   border-radius: 10px;
   margin-bottom: 25px;
 }
-
 .tabs button {
   flex: 1;
   padding: 13px 5px;
@@ -88,27 +75,22 @@ h2 {
   font-weight: bold;
   cursor: pointer;
 }
-
 .tabs button.active {
   background: #d4af37;
   color: #050505;
 }
-
 .form {
   display: none;
 }
-
 .form.active {
   display: block;
 }
-
 label {
   display: block;
   font-size: 13px;
   margin-bottom: 8px;
   color: #ddd;
 }
-
 input, select {
   width: 100%;
   padding: 14px;
@@ -119,12 +101,10 @@ input, select {
   color: white;
   font-size: 15px;
 }
-
 input:focus, select:focus {
   outline: none;
   border-color: #d4af37;
 }
-
 .submit {
   width: 100%;
   padding: 15px;
@@ -136,16 +116,13 @@ input:focus, select:focus {
   font-size: 15px;
   cursor: pointer;
 }
-
 .submit:hover {
   background: white;
 }
-
 .submit:disabled {
   opacity: 0.6;
   cursor: wait;
 }
-
 .notice {
   display: none;
   margin-top: 18px;
@@ -159,7 +136,6 @@ input:focus, select:focus {
   overflow-wrap: anywhere;
   text-align: center;
 }
-
 .dashboard-link {
   display: block;
   margin-top: 18px;
@@ -171,11 +147,9 @@ input:focus, select:focus {
   font-weight: bold;
   text-align: center;
 }
-
 .dashboard-link:hover {
   background: white;
 }
-
 .back {
   display: block;
   text-align: center;
@@ -184,445 +158,310 @@ input:focus, select:focus {
   text-decoration: none;
   font-size: 14px;
 }
-
 footer {
   text-align: center;
   color: #666;
   font-size: 12px;
   padding: 30px 10px;
 }
-
 @media(max-width: 400px) {
   .container {
     padding: 20px;
   }
-
   header h1 {
     font-size: 24px;
   }
 }
 </style>
 </head>
-
 <body>
-
 <header>
   <h1>MOONLIGHT <span>DIGITAL</span></h1>
   <p>Distribution musicale professionnelle</p>
 </header>
-
 <div class="container">
-
   <div class="logo">🌙</div>
-
   <h2>Espace Artiste</h2>
-
   <p class="subtitle">
     Bienvenue sur votre espace de distribution musicale.
   </p>
-
   <div class="tabs">
-
-    <button id="loginTab" class="active" type="button">
-      Connexion
-    </button>
-
-    <button id="registerTab" type="button">
-      Inscription
-    </button>
-
+<button id="loginTab" class="active" type="button">
+  Connexion
+</button>
+<button id="registerTab" type="button">
+  Inscription
+</button>
   </div>
-
   <!-- CONNEXION -->
-
   <form id="loginForm" class="form active">
-
-    <label>Adresse e-mail</label>
-
-    <input
-      type="email"
-      id="loginEmail"
-      placeholder="Votre adresse e-mail"
-      autocomplete="email"
-      required
-    >
-
-    <label>Mot de passe</label>
-
-    <input
-      type="password"
-      id="loginPassword"
-      placeholder="Votre mot de passe"
-      autocomplete="current-password"
-      required
-    >
-
-    <button type="submit" class="submit">
-      Se connecter
-    </button>
-
+<label>Adresse e-mail</label>
+<input
+  type="email"
+  id="loginEmail"
+  placeholder="Votre adresse e-mail"
+  autocomplete="email"
+  required
+>
+<label>Mot de passe</label>
+<input
+  type="password"
+  id="loginPassword"
+  placeholder="Votre mot de passe"
+  autocomplete="current-password"
+  required
+>
+<button type="submit" class="submit">
+  Se connecter
+</button>
   </form>
-
   <!-- INSCRIPTION -->
-
   <form id="registerForm" class="form">
-
-    <label>Nom de l'artiste</label>
-
-    <input
-      type="text"
-      id="artistName"
-      placeholder="Votre nom d'artiste"
-      required
-    >
-
-    <label>Nom complet</label>
-
-    <input
-      type="text"
-      id="fullName"
-      placeholder="Votre nom complet"
-      autocomplete="name"
-      required
-    >
-
-    <label>Adresse e-mail</label>
-
-    <input
-      type="email"
-      id="registerEmail"
-      placeholder="Votre adresse e-mail"
-      autocomplete="email"
-      required
-    >
-
-    <label>Numéro WhatsApp</label>
-
-    <input
-      type="tel"
-      id="phone"
-      placeholder="+243..."
-      required
-    >
-
-    <label>Pays</label>
-
-    <select id="country" required>
-      <option value="">Choisir votre pays</option>
-      <option value="République démocratique du Congo">République démocratique du Congo</option>
-      <option value="Congo-Brazzaville">Congo-Brazzaville</option>
-      <option value="Angola">Angola</option>
-      <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-      <option value="Cameroun">Cameroun</option>
-      <option value="Sénégal">Sénégal</option>
-      <option value="France">France</option>
-      <option value="Belgique">Belgique</option>
-      <option value="Autre">Autre</option>
-    </select>
-
-    <label>Mot de passe</label>
-
-    <input
-      type="password"
-      id="registerPassword"
-      placeholder="Créer un mot de passe"
-      minlength="8"
-      autocomplete="new-password"
-      required
-    >
-
-    <label>Confirmer le mot de passe</label>
-
-    <input
-      type="password"
-      id="confirmPassword"
-      placeholder="Confirmer le mot de passe"
-      minlength="8"
-      autocomplete="new-password"
-      required
-    >
-
-    <button type="submit" class="submit">
-      Créer mon compte
-    </button>
-
+<label>Nom de l'artiste</label>
+<input
+  type="text"
+  id="artistName"
+  placeholder="Votre nom d'artiste"
+  required
+>
+<label>Nom complet</label>
+<input
+  type="text"
+  id="fullName"
+  placeholder="Votre nom complet"
+  autocomplete="name"
+  required
+>
+<label>Adresse e-mail</label>
+<input
+  type="email"
+  id="registerEmail"
+  placeholder="Votre adresse e-mail"
+  autocomplete="email"
+  required
+>
+<label>Numéro WhatsApp</label>
+<input
+  type="tel"
+  id="phone"
+  placeholder="+243..."
+  required
+>
+<label>Pays</label>
+<select id="country" required>
+  <option value="">Choisir votre pays</option>
+  <option value="République démocratique du Congo">République démocratique du Congo</option>
+  <option value="Congo-Brazzaville">Congo-Brazzaville</option>
+  <option value="Angola">Angola</option>
+  <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+  <option value="Cameroun">Cameroun</option>
+  <option value="Sénégal">Sénégal</option>
+  <option value="France">France</option>
+  <option value="Belgique">Belgique</option>
+  <option value="Autre">Autre</option>
+</select>
+<label>Mot de passe</label>
+<input
+  type="password"
+  id="registerPassword"
+  placeholder="Créer un mot de passe"
+  minlength="8"
+  autocomplete="new-password"
+  required
+>
+<label>Confirmer le mot de passe</label>
+<input
+  type="password"
+  id="confirmPassword"
+  placeholder="Confirmer le mot de passe"
+  minlength="8"
+  autocomplete="new-password"
+  required
+>
+<button type="submit" class="submit">
+  Créer mon compte
+</button>
   </form>
-
   <div class="notice" id="notice" role="status"></div>
-
   <a href="index.html" class="back">
     ← Retour à l'accueil
   </a>
-
 </div>
-
 <footer>
   © 2026 Moonlight Digital<br>
   Tous droits réservés.
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-
 /* CONFIGURATION SUPABASE */
-
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
-
 const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
-
-/* IDENTIFIANT DU COMPTE ADMINISTRATEUR */
-
-const ADMIN_ID = "295c4fb1-6222-4bb5-9278-c55395f7d880";
-
+/*
+IDENTIFIANT ADMINISTRATEUR
+IMPORTANT :
+Remplacer cette valeur par l'UUID vérifié
+du compte administrateur général dans Supabase.
+Ne pas utiliser un UUID supposé.
+*/
+const ADMIN_ID = "fe4ef189-b4ad-454b-aa06-10ed47028254";
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
-
 /* ELEMENTS */
-
 const loginTab = document.getElementById("loginTab");
 const registerTab = document.getElementById("registerTab");
-
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
-
 const notice = document.getElementById("notice");
-
 /* NOTIFICATIONS */
-
 function showNotice(message) {
   notice.style.display = "block";
   notice.textContent = message;
 }
-
 function hideNotice() {
   notice.style.display = "none";
   notice.textContent = "";
 }
-
-/* VERIFICATION DU ROLE ADMIN */
-
-async function redirectIfAdmin(user) {
-
-  if (!user) return false;
-
-  if (user.id === ADMIN_ID) {
-
-    showNotice("Bienvenue dans l'administration Moonlight Digital...");
-
-    window.location.replace("admin.html");
-
-    return true;
-  }
-
-  return false;
-}
-
-/* VERIFIER UNE SESSION DEJA EXISTANTE */
-
-async function checkExistingSession() {
-
-  const { data, error } = await supabaseClient.auth.getSession();
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  if (data.session && data.session.user) {
-    await redirectIfAdmin(data.session.user);
-  }
-
-}
-
-checkExistingSession();
-
-/* AFFICHER LE SUCCES ARTISTE */
-
+/* AFFICHAGE DU SUCCES ARTISTE */
 function showLoginSuccess(artistName) {
-
   notice.style.display = "block";
-
-  notice.innerHTML = `
-    <h3 style="color:#d4af37; margin-bottom:10px;">
-      Bienvenue !
-    </h3>
-
-    <p>
-      Votre connexion à Moonlight Digital est réussie.
-    </p>
-
-    <a href="dashboard.html" class="dashboard-link">
-      Accéder à mon tableau de bord
-    </a>
-  `;
-
+  notice.innerHTML = "";
+  const title = document.createElement("h3");
+  title.textContent = "Bienvenue " + artistName + " !";
+  title.style.color = "#d4af37";
+  title.style.marginBottom = "10px";
+  const message = document.createElement("p");
+  message.textContent =
+    "Votre connexion à Moonlight Digital est réussie.";
+  const link = document.createElement("a");
+  link.href = "dashboard.html";
+  link.className = "dashboard-link";
+  link.textContent = "Accéder à mon tableau de bord";
+  notice.appendChild(title);
+  notice.appendChild(message);
+  notice.appendChild(link);
 }
-
 /* CHANGEMENT DES FORMULAIRES */
-
 loginTab.addEventListener("click", function() {
-
   loginTab.classList.add("active");
   registerTab.classList.remove("active");
-
   loginForm.classList.add("active");
   registerForm.classList.remove("active");
-
   hideNotice();
-
 });
-
 registerTab.addEventListener("click", function() {
-
   registerTab.classList.add("active");
   loginTab.classList.remove("active");
-
   registerForm.classList.add("active");
   loginForm.classList.remove("active");
-
   hideNotice();
-
 });
-
 /* INSCRIPTION */
-
 registerForm.addEventListener("submit", async function(e) {
-
   e.preventDefault();
   hideNotice();
-
-  const artistName = document.getElementById("artistName").value.trim();
-  const fullName = document.getElementById("fullName").value.trim();
-  const email = document.getElementById("registerEmail").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const country = document.getElementById("country").value;
-  const password = document.getElementById("registerPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
+  const artistName =
+    document.getElementById("artistName").value.trim();
+  const fullName =
+    document.getElementById("fullName").value.trim();
+  const email =
+    document.getElementById("registerEmail").value.trim();
+  const phone =
+    document.getElementById("phone").value.trim();
+  const country =
+    document.getElementById("country").value;
+  const password =
+    document.getElementById("registerPassword").value;
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
   if (password !== confirmPassword) {
     showNotice("Les deux mots de passe ne correspondent pas.");
     return;
   }
-
   if (password.length < 8) {
     showNotice("Le mot de passe doit contenir au moins 8 caractères.");
     return;
   }
-
   const button = registerForm.querySelector(".submit");
-
   button.disabled = true;
   button.textContent = "Création du compte...";
-
   try {
-
-    const { data, error } = await supabaseClient.auth.signUp({
-
-      email: email,
-      password: password,
-
-      options: {
-        data: {
-          artist_name: artistName,
-          full_name: fullName,
-          phone: phone,
-          country: country
+    const { data, error } =
+      await supabaseClient.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            artist_name: artistName,
+            full_name: fullName,
+            phone: phone,
+            country: country
+          }
         }
-      }
-
-    });
-
+      });
     if (error) throw error;
-
     registerForm.reset();
-
     if (data.session) {
-
       showNotice(
-        "Félicitations ! Votre compte artiste a été créé. Vous êtes maintenant inscrit sur Moonlight Digital."
+        "Félicitations ! Votre compte a été créé. Vous pouvez maintenant vous connecter."
       );
-
     } else {
-
       showNotice(
         "Votre inscription a été enregistrée ! Consultez votre boîte e-mail pour confirmer votre adresse avant de vous connecter."
       );
-
     }
-
   } catch (error) {
-
-    showNotice("Erreur lors de l'inscription : " + error.message);
-
+    showNotice(
+      "Erreur lors de l'inscription : " + error.message
+    );
   } finally {
-
     button.disabled = false;
     button.textContent = "Créer mon compte";
-
   }
-
 });
-
 /* CONNEXION */
-
 loginForm.addEventListener("submit", async function(e) {
-
   e.preventDefault();
   hideNotice();
-
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value;
-
+  const email =
+    document.getElementById("loginEmail").value.trim();
+  const password =
+    document.getElementById("loginPassword").value;
   const button = loginForm.querySelector(".submit");
-
   button.disabled = true;
   button.textContent = "Connexion...";
-
   try {
-
     const { data, error } =
       await supabaseClient.auth.signInWithPassword({
         email: email,
         password: password
       });
-
     if (error) throw error;
-
-    /* RECONNAITRE LE COMPTE ADMINISTRATEUR */
-
+    if (!data.user) {
+      throw new Error("Utilisateur introuvable.");
+    }
+    /* ADMINISTRATEUR GENERAL */
     if (data.user.id === ADMIN_ID) {
-
-      showNotice("Connexion administrateur réussie. Ouverture du tableau de bord...");
-
+      showNotice(
+        "Connexion administrateur réussie. Ouverture de l'administration..."
+      );
       window.location.replace("admin.html");
-
       return;
     }
-
-    /* LES AUTRES COMPTES RESTENT DES COMPTES ARTISTES */
-
+    /* COMPTE ARTISTE */
     const artistName =
-      data.user.user_metadata.artist_name || "Artiste";
-
+      data.user.user_metadata?.artist_name || "Artiste";
     showLoginSuccess(artistName);
-
   } catch (error) {
-
-    showNotice("Erreur de connexion : " + error.message);
-
+    showNotice(
+      "Erreur de connexion : " + error.message
+    );
   } finally {
-
     button.disabled = false;
     button.textContent = "Se connecter";
-
   }
-
 });
-
 </script>
-
 </body>
 </html>
