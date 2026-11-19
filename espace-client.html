@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Mon espace client | Moonlight Services</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+  --bg:#080808;
+  --panel:#141414;
+  --gold:#d4af37;
+  --muted:#aaa;
+  --line:#292929;
+  --green:#36c477;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:white;
+  font-family:Arial,sans-serif;
+}
+
+header {
+  background:#090909;
+  border-bottom:1px solid var(--line);
+  padding:17px;
+}
+
+.top {
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.brand {
+  color:var(--gold);
+  font-size:19px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.brand small {
+  display:block;
+  color:#ddd;
+  font-size:10px;
+  letter-spacing:3px;
+  margin-top:4px;
+}
+
+.logout {
+  background:#291717;
+  color:#ffb0b0;
+  border:1px solid #512727;
+  padding:10px 15px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+main {
+  max-width:1100px;
+  margin:30px auto;
+  padding:0 16px 50px;
+}
+
+.welcome {
+  margin-bottom:25px;
+}
+
+.welcome span {
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:bold;
+}
+
+.welcome h1 {
+  font-size:28px;
+  margin:10px 0;
+}
+
+.welcome p {
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:25px;
+}
+
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:22px;
+}
+
+.card small {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.card h2 {
+  color:var(--gold);
+  font-size:28px;
+  margin:12px 0 0;
+}
+
+.section {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:22px;
+  margin-bottom:22px;
+}
+
+.section-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.section-title h2 {
+  font-size:19px;
+  margin:0;
+}
+
+.gold {
+  color:var(--gold);
+}
+
+.order {
+  border:1px solid var(--line);
+  background:#0d0d0d;
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:12px;
+}
+
+.order:last-child {
+  margin-bottom:0;
+}
+
+.order-top {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.order h3 {
+  font-size:15px;
+  margin:0 0 8px;
+}
+
+.order p {
+  color:var(--muted);
+  font-size:13px;
+  margin:6px 0;
+}
+
+.badge {
+  display:inline-block;
+  padding:7px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  background:#252525;
+  color:#ddd;
+}
+
+.badge.pending {
+  background:#3b3011;
+  color:#f1d77b;
+}
+
+.badge.confirmed,
+.badge.completed {
+  background:#12351f;
+  color:#9df0b1;
+}
+
+.badge.cancelled {
+  background:#421919;
+  color:#ffb2b2;
+}
+
+.empty {
+  text-align:center;
+  padding:30px 15px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.primary {
+  display:inline-block;
+  background:var(--gold);
+  color:black;
+  padding:12px 17px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
+}
+
+label {
+  display:block;
+  margin:16px 0 8px;
+  color:#ddd;
+  font-size:13px;
+}
+
+input {
+  width:100%;
+  padding:13px;
+  background:#090909;
+  color:white;
+  border:1px solid #383838;
+  border-radius:8px;
+  font-size:14px;
+}
+
+input:focus {
+  outline:none;
+  border-color:var(--gold);
+}
+
+input:disabled {
+  opacity:.6;
+}
+
+.form-button {
+  margin-top:18px;
+}
+
+.message {
+  display:none;
+  padding:12px;
+  margin-top:15px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.success {
+  display:block;
+  background:#12351f;
+  color:#9df0b1;
+}
+
+.error {
+  display:block;
+  background:#421919;
+  color:#ffb2b2;
+}
+
+.info {
+  display:block;
+  background:#25210f;
+  color:#f1d77b;
+}
+
+.loading {
+  text-align:center;
+  padding:40px;
+  color:var(--gold);
+}
+
+footer {
+  text-align:center;
+  padding:25px;
+  border-top:1px solid var(--line);
+  color:#777;
+  font-size:12px;
+}
+
+@media(max-width:700px) {
+  .grid {
+    grid-template-columns:1fr;
+  }
+
+  .welcome h1 {
+    font-size:24px;
+  }
+
+  .section {
+    padding:17px;
+  }
+
+  .order-top {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+
+    <a href="index.html" class="brand">
+      MOONLIGHT DIGITAL
+      <small>MOONLIGHT SERVICES</small>
+    </a>
+
+    <button class="logout" id="logoutButton">
+      Déconnexion
+    </button>
+
+  </div>
+</header>
+
+<main>
+
+<div id="loading" class="loading">
+  Chargement de votre espace client...
+</div>
+
+<div id="dashboard" style="display:none">
+
+  <section class="welcome">
+    <span>ESPACE CLIENT</span>
+
+    <h1>
+      Bonjour, <span id="clientName">Client</span> 👋
+    </h1>
+
+    <p>
+      Bienvenue dans votre espace personnel Moonlight Services.
+      Retrouvez vos commandes et gérez votre compte.
+    </p>
+  </section>
+
+  <div class="grid">
+
+    <div class="card">
+      <small>Total de mes commandes</small>
+      <h2 id="totalOrders">0</h2>
+    </div>
+
+    <div class="card">
+      <small>Commandes en attente</small>
+      <h2 id="pendingOrders">0</h2>
+    </div>
+
+    <div class="card">
+      <small>Commandes terminées</small>
+      <h2 id="completedOrders">0</h2>
+    </div>
+
+  </div>
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Mes commandes</h2>
+
+      <button class="primary" id="refreshButton">
+        Actualiser
+      </button>
+    </div>
+
+    <div id="ordersContainer">
+      <div class="empty">
+        Chargement de vos commandes...
+      </div>
+    </div>
+
+    <div id="orderMessage" class="message"></div>
+
+  </section>
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Mon profil</h2>
+    </div>
+
+    <form id="profileForm">
+
+      <label for="profileName">Nom complet</label>
+      <input id="profileName" type="text" required>
+
+      <label for="profileEmail">Adresse e-mail</label>
+      <input id="profileEmail" type="email" disabled>
+
+      <label for="profilePhone">Numéro de téléphone</label>
+      <input id="profilePhone" type="tel">
+
+      <button class="primary form-button" type="submit" id="saveButton">
+        Enregistrer mes modifications
+      </button>
+
+    </form>
+
+    <div id="profileMessage" class="message"></div>
+
+  </section>
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Découvrir les services</h2>
+    </div>
+
+    <p style="color:#aaa;line-height:1.6">
+      Vous avez besoin d'un service professionnel ?
+      Découvrez les prestataires disponibles sur Moonlight Services.
+    </p>
+
+    <a href="services.html" class="primary">
+      Découvrir les services
+    </a>
+
+  </section>
+
+</div>
+
+</main>
+
+<footer>
+© <span id="year"></span> Moonlight Digital — Moonlight Services
+</footer>
+
+<script>
+
+const SUPABASE_URL =
+"https://lmyefbevtukmtoijjlja.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+let currentUser = null;
+
+const loading = document.getElementById("loading");
+const dashboard = document.getElementById("dashboard");
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function(char) {
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char];
+  });
+}
+
+function showMessage(element,text,type) {
+  element.className = "message " + type;
+  element.textContent = text;
+}
+
+function formatAmount(amount,currency) {
+  const number = Number(amount);
+
+  if (!Number.isFinite(number)) {
+    return "Montant indisponible";
+  }
+
+  return number.toLocaleString("fr-FR") +
+    " " + escapeHTML(currency || "");
+}
+
+function formatDate(date) {
+  if (!date) return "Date indisponible";
+
+  const parsed = new Date(date);
+
+  if (Number.isNaN(parsed.getTime())) {
+    return "Date indisponible";
+  }
+
+  return parsed.toLocaleDateString("fr-FR");
+}
+
+function statusLabel(status) {
+  const labels = {
+    pending:"En attente",
+    confirmed:"Confirmée",
+    in_progress:"En cours",
+    completed:"Terminée",
+    cancelled:"Annulée",
+    rejected:"Refusée"
+  };
+
+  return labels[status] || status || "Non précisé";
+}
+
+function statusClass(status) {
+  if (status === "completed" || status === "confirmed") {
+    return status;
+  }
+
+  if (status === "cancelled" || status === "rejected") {
+    return "cancelled";
+  }
+
+  if (status === "pending") {
+    return "pending";
+  }
+
+  return "";
+}
+
+/*
+  CHARGEMENT DU COMPTE CLIENT
+*/
+
+async function loadAccount() {
+
+  const {data,error} = await db.auth.getSession();
+
+  if (error) throw error;
+
+  const session = data.session;
+
+  if (!session) {
+    window.location.href = "connexion.html";
+    return;
+  }
+
+  currentUser = session.user;
+
+  const metadata = currentUser.user_metadata || {};
+
+  document.getElementById("clientName").textContent =
+    metadata.display_name || "Client";
+
+  document.getElementById("profileName").value =
+    metadata.display_name || "";
+
+  document.getElementById("profileEmail").value =
+    currentUser.email || "";
+
+  document.getElementById("profilePhone").value =
+    metadata.phone || "";
+
+  loading.style.display = "none";
+  dashboard.style.display = "block";
+
+  await loadOrders();
+}
+
+/*
+  CHARGEMENT DES COMMANDES
+*/
+
+async function loadOrders() {
+
+  const container = document.getElementById("ordersContainer");
+  const orderMessage = document.getElementById("orderMessage");
+
+  container.innerHTML =
+    '<div class="empty">Chargement des commandes...</div>';
+
+  orderMessage.className = "message";
+
+  try {
+
+    const {data:orders,error} = await db
+      .from("service_orders")
+      .select("id,service_id,provider_id,amount,currency,status,payment_status,created_at")
+      .eq("customer_id",currentUser.id)
+      .order("created_at",{ascending:false});
+
+    if (error) throw error;
+
+    const list = orders || [];
+
+    document.getElementById("totalOrders").textContent =
+      list.length;
+
+    document.getElementById("pendingOrders").textContent =
+      list.filter(order => order.status === "pending").length;
+
+    document.getElementById("completedOrders").textContent =
+      list.filter(order => order.status === "completed").length;
+
+    if (list.length === 0) {
+
+      container.innerHTML = `
+        <div class="empty">
+          <h3>Aucune commande pour le moment</h3>
+          <p>
+            Vous n'avez pas encore commandé de service.
+            Découvrez notre catalogue pour commencer.
+          </p>
+          <a href="services.html" class="primary">
+            Explorer les services
+          </a>
+        </div>
+      `;
+
+      return;
+    }
+
+    const serviceIds = [...new Set(
+      list.map(order => order.service_id).filter(Boolean)
+    )];
+
+    const providerIds = [...new Set(
+      list.map(order => order.provider_id).filter(Boolean)
+    )];
+
+    let services = [];
+    let providers = [];
+
+    if (serviceIds.length > 0) {
+
+      const {data,error} = await db
+        .from("services")
+        .select("id,title")
+        .in("id",serviceIds);
+
+      if (error) throw error;
+
+      services = data || [];
+    }
+
+    if (providerIds.length > 0) {
+
+      const {data,error} = await db
+        .from("service_providers")
+        .select("id,display_name")
+        .in("id",providerIds);
+
+      if (error) throw error;
+
+      providers = data || [];
+    }
+
+    const serviceMap = new Map(
+      services.map(item => [item.id,item.title])
+    );
+
+    const providerMap = new Map(
+      providers.map(item => [item.id,item.display_name])
+    );
+
+    container.innerHTML = list.map(order => {
+
+      const title = serviceMap.get(order.service_id)
+        || "Service";
+
+      const provider = providerMap.get(order.provider_id)
+        || "Prestataire";
+
+      return `
+        <article class="order">
+
+          <div class="order-top">
+
+            <div>
+              <h3>${escapeHTML(title)}</h3>
+
+              <p>
+                Prestataire :
+                ${escapeHTML(provider)}
+              </p>
+
+              <p>
+                Commande du :
+                ${escapeHTML(formatDate(order.created_at))}
+              </p>
+
+              <p>
+                Montant :
+                <strong class="gold">
+                  ${formatAmount(order.amount,order.currency)}
+                </strong>
+              </p>
+
+              <p>
+                Paiement :
+                ${escapeHTML(order.payment_status || "Non précisé")}
+              </p>
+            </div>
+
+            <span class="badge ${statusClass(order.status)}">
+              ${escapeHTML(statusLabel(order.status))}
+            </span>
+
+          </div>
+
+        </article>
+      `;
+
+    }).join("");
+
+  } catch(error) {
+
+    console.error("Erreur chargement commandes :",error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Impossible de charger vos commandes.
+      </div>
+    `;
+
+    showMessage(
+      orderMessage,
+      "Erreur : " + error.message +
+      ". Vérifiez les autorisations RLS de vos tables Supabase.",
+      "error"
+    );
+
+  }
+}
+
+/*
+  MODIFICATION DU PROFIL
+*/
+
+document.getElementById("profileForm")
+.addEventListener("submit",async function(e) {
+
+  e.preventDefault();
+
+  const saveButton = document.getElementById("saveButton");
+  const profileMessage = document.getElementById("profileMessage");
+
+  saveButton.disabled = true;
+  saveButton.textContent = "Enregistrement...";
+
+  const name =
+    document.getElementById("profileName").value.trim();
+
+  const phone =
+    document.getElementById("profilePhone").value.trim();
+
+  try {
+
+    const {data,error} = await db.auth.updateUser({
+
+      data:{
+        display_name:name,
+        phone:phone,
+        account_type:"client"
+      }
+
+    });
+
+    if (error) throw error;
+
+    currentUser = data.user;
+
+    document.getElementById("clientName").textContent = name;
+
+    showMessage(
+      profileMessage,
+      "Votre profil a été mis à jour avec succès.",
+      "success"
+    );
+
+  } catch(error) {
+
+    console.error("Erreur modification profil :",error);
+
+    showMessage(
+      profileMessage,
+      error.message || "Impossible de modifier votre profil.",
+      "error"
+    );
+
+  } finally {
+
+    saveButton.disabled = false;
+    saveButton.textContent = "Enregistrer mes modifications";
+
+  }
+
+});
+
+/*
+  ACTUALISATION DES COMMANDES
+*/
+
+document.getElementById("refreshButton")
+.addEventListener("click",loadOrders);
+
+/*
+  DÉCONNEXION
+*/
+
+document.getElementById("logoutButton")
+.addEventListener("click",async function() {
+
+  const button = this;
+
+  button.disabled = true;
+  button.textContent = "Déconnexion...";
+
+  try {
+
+    const {error} = await db.auth.signOut();
+
+    if (error) throw error;
+
+    window.location.href = "connexion.html";
+
+  } catch(error) {
+
+    alert("Erreur de déconnexion : " + error.message);
+
+    button.disabled = false;
+    button.textContent = "Déconnexion";
+
+  }
+
+});
+
+/*
+  VÉRIFICATION INITIALE
+*/
+
+loadAccount().catch(error => {
+
+  console.error("Erreur espace client :",error);
+
+  loading.textContent =
+    "Impossible de charger votre espace client : " +
+    error.message;
+
+});
+
+</script>
+
+</body>
+</html>
