@@ -1,1059 +1,2045 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
-  <meta name="description" content="Moonlight Digital accompagne les artistes, entrepreneurs et marques dans leur communication, leur visibilité, le marketing digital, la distribution musicale et la vente en ligne.">
-  <meta name="author" content="Moonlight Digital">
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090d">
 
-  <link rel="canonical" href="https://christtawamba-cp.github.io/moonlight-digital/">
-  <link rel="icon" type="image/png" href="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
-  <link rel="apple-touch-icon" href="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
-  <link rel="manifest" href="manifest.json">
+<meta name="description" content="Moonlight Digital est une entreprise numérique qui connecte les talents, les entreprises et les opportunités à travers la distribution musicale, les médias, la marketplace et les services numériques.">
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Moonlight Digital">
+<meta name="author" content="Moonlight Digital">
+<meta name="robots" content="index, follow">
 
-  <title>Moonlight Digital | Agence digitale, marketplace et distribution musicale</title>
+<link rel="canonical" href="https://christtawamba-cp.github.io/moonlight-digital/">
 
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Moonlight Digital">
-  <meta property="og:title" content="Moonlight Digital | Votre visibilité, notre stratégie">
-  <meta property="og:description" content="Communication digitale, marketing, visibilité des marques, distribution musicale et marketplace.">
-  <meta property="og:url" content="https://christtawamba-cp.github.io/moonlight-digital/">
-  <meta property="og:image" content="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
+<link rel="icon" type="image/png" href="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Moonlight Digital">
-  <meta name="twitter:description" content="Votre visibilité. Notre stratégie.">
-  <meta name="twitter:image" content="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
+<link rel="apple-touch-icon" href="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="manifest" href="manifest.json">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Moonlight Digital",
-    "url": "https://christtawamba-cp.github.io/moonlight-digital/",
-    "logo": "https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png",
-    "description": "Moonlight Digital accompagne les artistes, entrepreneurs et marques dans leur communication, leur marketing digital, leur visibilité, leur distribution musicale et la vente en ligne.",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+243890385429",
-      "contactType": "customer service"
-    }
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Moonlight Digital">
+
+<title>Moonlight Digital | Connecter les talents aux opportunités</title>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Moonlight Digital">
+<meta property="og:title" content="Moonlight Digital | Le numérique qui connecte">
+<meta property="og:description" content="Découvrez nos solutions numériques : distribution musicale, médias, marketplace et services.">
+<meta property="og:url" content="https://christtawamba-cp.github.io/moonlight-digital/">
+<meta property="og:image" content="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Moonlight Digital",
+  "url": "https://christtawamba-cp.github.io/moonlight-digital/",
+  "logo": "https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png",
+  "description": "Entreprise numérique active dans la distribution musicale, les médias, la marketplace et les services numériques.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+243890385429",
+    "contactType": "customer service"
   }
-  </script>
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #050505;
-      color: white;
-      line-height: 1.6;
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-
-    header {
-      position: relative;
-      padding: 25px 60px 25px 20px;
-      text-align: center;
-      border-bottom: 1px solid #292929;
-      background: #080808;
-    }
-
-    header h1 {
-      color: #d4af37;
-      font-size: 30px;
-      letter-spacing: 1px;
-    }
-
-    header span {
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    /* MENU TROIS POINTS */
-
-    .menu-container {
-      position: absolute;
-      top: 18px;
-      right: 15px;
-      z-index: 1000;
-    }
-
-    .menu-dots {
-      width: 45px;
-      height: 45px;
-      background: transparent;
-      color: #d4af37;
-      border: 1px solid #d4af37;
-      border-radius: 50%;
-      font-size: 27px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
-    }
-
-    .menu-dots:hover {
-      background: #d4af37;
-      color: #050505;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 53px;
-      right: 0;
-      width: 260px;
-      max-width: calc(100vw - 30px);
-      background: #101010;
-      border: 1px solid #d4af37;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-    }
-
-    .dropdown-menu.active {
-      display: block;
-      animation: menuAppear 0.2s ease;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 14px 17px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      border-bottom: 1px solid #292929;
-      text-align: left;
-    }
-
-    .dropdown-menu a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-menu a:hover {
-      background: #252015;
-      color: #d4af37;
-    }
-
-    /* ADMINISTRATION TOUJOURS VISIBLE */
-
-    .dropdown-menu a#adminMenuItem {
-      display: block !important;
-      color: #d4af37;
-      font-weight: bold;
-      border-top: 1px solid #d4af37;
-      background: #17140b;
-    }
-
-    .dropdown-menu a#adminMenuItem:hover {
-      background: #d4af37;
-      color: #050505;
-    }
-
-    .language-selector {
-      padding: 15px;
-      background: #101010;
-      border-top: 1px solid #292929;
-    }
-
-    .language-selector label {
-      display: block;
-      color: #d4af37;
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-
-    .language-selector select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #d4af37;
-      background: #050505;
-      color: white;
-      font-size: 14px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    @keyframes menuAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-7px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* BOUTONS DE NAVIGATION */
-
-    .artist-access,
-    .marketplace-access,
-    .media-access,
-    .service-access {
-      display: inline-block;
-      margin: 18px 5px 0;
-      padding: 11px 23px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      border-radius: 25px;
-      transition: 0.3s;
-      background: #d4af37;
-      color: #050505;
-      border: 1px solid #d4af37;
-    }
-
-    .artist-access:hover,
-    .marketplace-access:hover,
-    .media-access:hover,
-    .service-access:hover {
-      background: white;
-      border-color: white;
-      transform: scale(1.05);
-    }
-
-    /* ACCUEIL */
-
-    .hero {
-      padding: 75px 20px;
-      text-align: center;
-    }
-
-    .hero h2 {
-      color: #d4af37;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      color: #bbb;
-      max-width: 650px;
-      margin: auto;
-      font-size: 17px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 24px;
-      background: #d4af37;
-      color: #050505;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      background: white;
-      transform: translateY(-2px);
-    }
-
-    /* SERVICES */
-
-    .services {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .services > h2 {
-      text-align: center;
-      color: #d4af37;
-      margin-bottom: 35px;
-      font-size: 30px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      display: block;
-      background: #111;
-      border: 1px solid #292929;
-      padding: 24px;
-      border-radius: 16px;
-      color: white;
-      text-decoration: none;
-      transition: 0.25s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #d4af37;
-    }
-
-    .card h3 {
-      color: #d4af37;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    .card strong {
-      color: #d4af37;
-      display: block;
-      margin-top: 15px;
-    }
-
-    /* DETAILS DES SERVICES */
-
-    .service-details {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .service-detail {
-      background: #0d0d0d;
-      border: 1px solid #292929;
-      border-radius: 18px;
-      padding: 30px 24px;
-      margin-bottom: 25px;
-      scroll-margin-top: 20px;
-    }
-
-    .service-detail h2 {
-      color: #d4af37;
-      font-size: 27px;
-      margin-bottom: 15px;
-    }
-
-    .service-detail h3 {
-      color: white;
-      margin-top: 25px;
-      margin-bottom: 12px;
-    }
-
-    .service-detail p {
-      color: #bbb;
-    }
-
-    .service-detail ul {
-      margin: 15px 0 0 20px;
-      color: #bbb;
-    }
-
-    .service-detail li {
-      margin-bottom: 8px;
-    }
-
-    /* PRESENTATION */
-
-    .about {
-      text-align: center;
-      padding: 60px 20px;
-      background: #0d0d0d;
-      margin-top: 30px;
-      scroll-margin-top: 20px;
-    }
-
-    .about h2,
-    .contact h2 {
-      color: #d4af37;
-    }
-
-    .about p {
-      max-width: 650px;
-      margin: 15px auto;
-      color: #aaa;
-    }
-
-    /* CONTACT */
-
-    .contact {
-      text-align: center;
-      padding: 60px 20px;
-      scroll-margin-top: 20px;
-    }
-
-    .contact p {
-      color: #aaa;
-      margin-top: 10px;
-    }
-
-    /* INSTALLATION */
-
-    .install-box {
-      display: none;
-      margin: 25px auto 0;
-      max-width: 650px;
-      background: #111;
-      border: 1px solid #333;
-      border-radius: 15px;
-      padding: 18px;
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    .install-box strong {
-      color: white;
-    }
-
-    /* FOOTER */
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #777;
-      font-size: 13px;
-      border-top: 1px solid #222;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 600px) {
-
-      header {
-        padding: 25px 55px 25px 12px;
-      }
-
-      header h1 {
-        font-size: 22px;
-      }
-
-      header span {
-        font-size: 13px;
-      }
-
-      .hero {
-        padding: 60px 20px;
-      }
-
-      .hero h2 {
-        font-size: 32px;
-      }
-
-      .service-detail {
-        padding: 25px 20px;
-      }
-
-      .artist-access,
-      .marketplace-access,
-      .media-access,
-      .service-access {
-        margin: 12px 3px 0;
-        padding: 10px 15px;
-        font-size: 12px;
-      }
-
-      .menu-container {
-        top: 15px;
-        right: 10px;
-      }
-
-      .menu-dots {
-        width: 40px;
-        height: 40px;
-      }
-
-    }
-
-  </style>
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =================================
+   BASE
+================================= */
+
+:root {
+  --background: #08090d;
+  --surface: #101219;
+  --surface-light: #171a23;
+  --gold: #d8b45a;
+  --gold-light: #f0d58e;
+  --white: #ffffff;
+  --muted: #a5a9b4;
+  --border: rgba(255,255,255,.09);
+  --radius: 20px;
+  --max-width: 1180px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--background);
+  color: var(--white);
+  font-family: "DM Sans", Arial, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.container {
+  width: min(100% - 40px, var(--max-width));
+  margin: auto;
+}
+
+.gold {
+  color: var(--gold);
+}
+
+.section {
+  padding: 95px 0;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(28px, 4vw, 43px);
+  line-height: 1.2;
+  margin-bottom: 17px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* =================================
+   HEADER
+================================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: rgba(8,9,13,.94);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 25px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 47px;
+  height: 47px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.brand-text strong {
+  display: block;
+  font-family: "Manrope", sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+.brand-text span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* NAVIGATION */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.desktop-nav a {
+  color: #d1d2d8;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.desktop-nav a:hover {
+  color: var(--gold);
+}
+
+.header-contact {
+  background: var(--gold);
+  color: #111 !important;
+  padding: 11px 18px;
+  border-radius: 30px;
+  font-weight: 800 !important;
+}
+
+/* MENU TROIS POINTS */
+
+.menu-container {
+  position: relative;
+  z-index: 1000;
+}
+
+.menu-dots {
+  width: 43px;
+  height: 43px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+
+.menu-dots:hover {
+  background: var(--gold);
+  color: #08090d;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 270px;
+  max-width: calc(100vw - 30px);
+  background: #12141b;
+  border: 1px solid rgba(216,180,90,.5);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0,0,0,.5);
+}
+
+.dropdown-menu.active {
+  display: block;
+  animation: menuAppear .2s ease;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 13px 17px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  transition: .2s;
+}
+
+.dropdown-menu a:hover {
+  background: #242018;
+  color: var(--gold);
+}
+
+.dropdown-menu a#adminMenuItem {
+  display: block !important;
+  color: var(--gold);
+  font-weight: 800;
+  background: #211c10;
+  border-top: 1px solid var(--gold);
+}
+
+.language-selector {
+  padding: 15px;
+  background: #0d0f14;
+}
+
+.language-selector label {
+  display: block;
+  color: var(--gold);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.language-selector select {
+  width: 100%;
+  padding: 11px;
+  background: #08090d;
+  color: white;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  outline: none;
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   HERO
+================================= */
+
+.hero {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 40%, rgba(216,180,90,.15), transparent 42%),
+    radial-gradient(ellipse at 10% 90%, rgba(56,68,110,.13), transparent 40%),
+    linear-gradient(135deg,#08090d,#11141d 60%,#090a0e);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border: 1px solid rgba(216,180,90,.12);
+  border-radius: 50%;
+  right: -140px;
+  top: 60px;
+  box-shadow:
+    0 0 0 55px rgba(216,180,90,.025),
+    0 0 0 110px rgba(216,180,90,.02);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  padding: 95px 0;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba(216,180,90,.35);
+  background: rgba(216,180,90,.07);
+  padding: 9px 15px;
+  border-radius: 30px;
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -2px;
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero-description {
+  color: #b8bbc5;
+  max-width: 670px;
+  font-size: 17px;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 23px;
+  background: var(--gold);
+  color: #111;
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.button:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-3px);
+}
+
+.button-outline {
+  background: transparent;
+  color: white;
+  border-color: rgba(255,255,255,.25);
+}
+
+.button-outline:hover {
+  background: white;
+  color: #111;
+  border-color: white;
+}
+
+.hero-note {
+  color: #9296a2;
+  font-size: 12px;
+  margin-top: 25px;
+}
+
+/* =================================
+   ACCESS SHORTCUTS
+================================= */
+
+.quick-access {
+  position: relative;
+  z-index: 5;
+  margin-top: -38px;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 13px;
+}
+
+.quick-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 20px 17px;
+  background: #141720;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.quick-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  background: #191c25;
+}
+
+.quick-icon {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(216,180,90,.12);
+  border-radius: 12px;
+  font-size: 21px;
+}
+
+.quick-card strong {
+  display: block;
+  font-size: 13px;
+}
+
+.quick-card small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* =================================
+   ABOUT
+================================= */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.about-content h2 {
+  font-family: "Manrope",sans-serif;
+  font-size: clamp(28px,4vw,42px);
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+
+.about-content p {
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.about-highlight {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(216,180,90,.07);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  color: #e9d9b1;
+  font-weight: 600;
+}
+
+.about-visual {
+  min-height: 360px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(216,180,90,.2);
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at center,rgba(216,180,90,.16),transparent 60%),
+    #11141d;
+  overflow: hidden;
+}
+
+.about-visual::before,
+.about-visual::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(216,180,90,.15);
+  border-radius: 50%;
+  width: 270px;
+  height: 270px;
+}
+
+.about-visual::after {
+  width: 370px;
+  height: 370px;
+}
+
+.about-visual-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.about-visual-content div {
+  font-size: 70px;
+  margin-bottom: 10px;
+}
+
+.about-visual-content strong {
+  display: block;
+  color: var(--gold);
+  font-family: "Manrope",sans-serif;
+  font-size: 24px;
+}
+
+.about-visual-content span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* =================================
+   POLES D'ACTIVITE
+================================= */
+
+.poles-section {
+  background: #0d0f15;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.poles-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.pole-card {
+  position: relative;
+  padding: 32px;
+  background: linear-gradient(145deg,#171a23,#101219);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: .35s;
+}
+
+.pole-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(216,180,90,.65);
+  box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.pole-number {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  color: rgba(255,255,255,.07);
+  font-family: "Manrope",sans-serif;
+  font-size: 55px;
+  font-weight: 800;
+}
+
+.pole-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(216,180,90,.12);
+  font-size: 28px;
+  margin-bottom: 22px;
+}
+
+.pole-card h3 {
+  font-family: "Manrope",sans-serif;
+  color: var(--gold);
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.pole-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.pole-link {
+  display: inline-block;
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.pole-link:hover {
+  text-decoration: underline;
+}
+
+/* =================================
+   SERVICES
+================================= */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 17px;
+}
+
+.service-card {
+  padding: 25px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  transition: .3s;
+}
+
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.service-card .icon {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--gold-light);
+}
+
+.service-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =================================
+   DETAILS SERVICES
+================================= */
+
+.service-details {
+  background: #0d0f15;
+  border-top: 1px solid var(--border);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 18px;
+}
+
+.service-detail {
+  background: #141720;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 27px;
+  scroll-margin-top: 100px;
+}
+
+.service-detail h3 {
+  color: var(--gold);
+  font-size: 19px;
+  margin-bottom: 13px;
+}
+
+.service-detail p,
+.service-detail li {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.service-detail ul {
+  margin: 15px 0 20px 20px;
+}
+
+.service-detail li {
+  margin-bottom: 8px;
+}
+
+/* =================================
+   MISSION / VISION
+================================= */
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.mission-card {
+  padding: 35px;
+  background: linear-gradient(145deg,#171a23,#101219);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.mission-card .icon {
+  font-size: 32px;
+  margin-bottom: 18px;
+}
+
+.mission-card h3 {
+  color: var(--gold);
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.mission-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* =================================
+   WHY US
+================================= */
+
+.why-section {
+  background:
+    radial-gradient(ellipse at 50% 100%,rgba(216,180,90,.09),transparent 55%),
+    #101219;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+}
+
+.why-card {
+  padding: 25px 20px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255,255,255,.025);
+}
+
+.why-card .icon {
+  font-size: 30px;
+  margin-bottom: 13px;
+}
+
+.why-card h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.why-card p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* =================================
+   PARTENARIATS
+================================= */
+
+.partnership {
+  padding: 80px 20px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center,rgba(216,180,90,.13),transparent 65%),
+    #11141c;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.partnership-content {
+  max-width: 750px;
+  margin: auto;
+}
+
+.partnership h2 {
+  font-family: "Manrope",sans-serif;
+  font-size: clamp(28px,4vw,42px);
+  margin-bottom: 18px;
+}
+
+.partnership p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+/* =================================
+   RESEAUX SOCIAUX
+================================= */
+
+.social-section {
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.social-links a {
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .25s;
+}
+
+.social-links a:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.2);
+}
+
+.facebook { background: #1877F2; }
+.instagram { background: #C13584; }
+.tiktok { background: #242424; }
+.youtube { background: #e60000; }
+
+/* =================================
+   CONTACT
+================================= */
+
+.contact-section {
+  padding: 85px 20px;
+  background: #0e1016;
+  text-align: center;
+}
+
+.contact-box {
+  max-width: 760px;
+  margin: auto;
+  padding: 40px 25px;
+  border: 1px solid rgba(216,180,90,.25);
+  border-radius: 22px;
+  background: linear-gradient(145deg,#171a23,#101219);
+}
+
+.contact-box h2 {
+  font-family: "Manrope",sans-serif;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.contact-box p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* =================================
+   INSTALLATION
+================================= */
+
+.install-box {
+  display: none;
+  max-width: 650px;
+  margin: 25px auto 0;
+  padding: 17px;
+  background: #171a23;
+  border: 1px solid rgba(216,180,90,.3);
+  border-radius: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.install-box strong {
+  color: var(--gold);
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+  padding: 45px 20px 25px;
+  background: #07080b;
+  border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+  max-width: var(--max-width);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 35px;
+  padding-bottom: 30px;
+}
+
+.footer-brand h3 {
+  color: var(--gold);
+  font-family: "Manrope",sans-serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer-brand p,
+.footer-column a {
+  color: #8f939f;
+  font-size: 12px;
+}
+
+.footer-column h4 {
+  color: white;
+  font-size: 13px;
+  margin-bottom: 13px;
+}
+
+.footer-column a {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 9px;
+}
+
+.footer-column a:hover {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: #777b85;
+  font-size: 11px;
+}
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+.reveal {
+  animation: fadeUp .8s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media(max-width:1000px) {
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:700px) {
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .header-inner {
+    min-height: 73px;
+    padding: 10px 15px;
+  }
+
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-text strong {
+    font-size: 14px;
+  }
+
+  .brand-text span {
+    font-size: 9px;
+  }
+
+  .hero {
+    min-height: 570px;
+  }
+
+  .hero-content {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    letter-spacing: -1.3px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .quick-grid {
+    gap: 9px;
+  }
+
+  .quick-card {
+    padding: 14px 10px;
+    gap: 9px;
+  }
+
+  .quick-card strong {
+    font-size: 11px;
+  }
+
+  .quick-card small {
+    font-size: 9px;
+  }
+
+  .quick-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 17px;
+  }
+
+  .about-grid,
+  .poles-grid,
+  .mission-grid,
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-visual {
+    min-height: 280px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .pole-card {
+    padding: 25px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .contact-box h2 {
+    font-size: 26px;
+  }
+
+}
+
+@media(max-width:380px) {
+
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
+<!-- =================================
+     HEADER
+================================= -->
+
 <header>
 
-  <!-- MENU TROIS POINTS -->
+<div class="header-inner">
 
-  <div class="menu-container">
+<a href="#" class="brand">
+  <img
+    src="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png"
+    alt="Logo Moonlight Digital">
 
-    <button
-      class="menu-dots"
-      id="menuDots"
-      type="button"
-      aria-label="Ouvrir le menu"
-      aria-expanded="false"
-      aria-controls="dropdownMenu">
-      ⋮
-    </button>
+  <div class="brand-text">
+    <strong>MOONLIGHT DIGITAL</strong>
+    <span>CONNECTER. INNOVER. DÉVELOPPER.</span>
+  </div>
+</a>
 
-    <nav class="dropdown-menu" id="dropdownMenu">
+<nav class="desktop-nav">
+  <a href="#about">À propos</a>
+  <a href="#poles">Nos activités</a>
+  <a href="#services">Nos services</a>
+  <a href="#partenariats">Partenariats</a>
+  <a href="#contact" class="header-contact">Nous contacter</a>
+</nav>
 
-      <a href="#about">🌙 À propos</a>
+<div class="menu-container">
 
-      <a href="#mission">🎯 Notre mission et vision</a>
+<button
+  class="menu-dots"
+  id="menuDots"
+  type="button"
+  aria-label="Ouvrir le menu"
+  aria-expanded="false"
+  aria-controls="dropdownMenu">
+  ⋮
+</button>
 
-      <a href="#services">💼 Nos services</a>
+<nav class="dropdown-menu" id="dropdownMenu">
 
-      <a href="inscription.html">🌙 MOONLIGHT SERVICES</a>
+  <a href="#about">🌙 À propos</a>
 
-      <a href="#partenariats">🤝 Partenariats</a>
+  <a href="#mission">🎯 Notre mission et vision</a>
 
-      <a href="#nos-reseaux">📱 Nos réseaux sociaux</a>
+  <a href="#poles">🏢 Nos activités</a>
 
-      <a href="#contact">📞 Contact</a>
+  <a href="#services">💼 Nos services</a>
 
-      <!-- ESPACE ADMINISTRATION TOUJOURS VISIBLE -->
+  <a href="espace-artiste.html">🎵 Espace artiste</a>
 
-      <a href="admin.html" id="adminMenuItem">
-        🔐 ESPACE ADMINISTRATION
-      </a>
+  <a href="marketplace.html">🛍️ Marketplace</a>
 
-      <div class="language-selector">
+  <a href="media.html">📰 Moonlight Media</a>
 
-        <label for="languageSelect">
-          🌍 Choisir la langue
-        </label>
+  <a href="inscription.html">🌙 Moonlight Services</a>
 
-        <select id="languageSelect">
+  <a href="#partenariats">🤝 Partenariats</a>
 
-          <option value="fr">🇫🇷 Français</option>
+  <a href="#nos-reseaux">📱 Nos réseaux sociaux</a>
 
-          <option value="en">🇬🇧 English</option>
+  <a href="#contact">📞 Contact</a>
 
-          <option value="ln">🇨🇩 Lingála</option>
+  <a href="admin.html" id="adminMenuItem">
+    🔐 ESPACE ADMINISTRATION
+  </a>
 
-        </select>
+  <div class="language-selector">
+    <label for="languageSelect">🌍 Choisir la langue</label>
 
-      </div>
-
-    </nav>
-
+    <select id="languageSelect">
+      <option value="fr">🇫🇷 Français</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="ln">🇨🇩 Lingála</option>
+    </select>
   </div>
 
-  <h1>🌙 MOONLIGHT DIGITAL</h1>
-
-  Votre visibilité. Notre stratégie.
-
-  <br>
-
-  <a href="espace-artiste.html" class="artist-access">
-    🎵 ESPACE ARTISTE
-  </a>
-
-  <a href="marketplace.html" class="marketplace-access">
-    🛍️ MARKETPLACE
-  </a>
-
-  <a href="media.html" class="media-access">
-    📰 MOONLIGHT MEDIA
-  </a>
-
-  <a href="inscription.html" class="service-access">
-    💼 MOONLIGHT SERVICES
-  </a>
-
+</nav>
+</div>
+</div>
 </header>
 
-<!-- ACCUEIL -->
+<!-- =================================
+     HERO
+================================= -->
+
+<main>
 
 <section class="hero">
 
-  <h2>Faites grandir votre visibilité.</h2>
+<div class="container">
 
-  <p>
-    Moonlight Digital accompagne les entrepreneurs,
-    artistes et marques dans leur communication,
-    leur visibilité et leur développement digital.
-  </p>
+<div class="hero-content reveal">
 
-  <a class="button"
-     href="https://wa.me/243890385429"
-     target="_blank"
-     rel="noopener noreferrer">
-    Nous contacter
-  </a>
+<div class="hero-badge">
+  🌙 UNE VISION. PLUSIEURS OPPORTUNITÉS.
+</div>
 
-  <div class="install-box" id="installBox">
+<h1>
+  Le numérique qui<br>
+  connecte les <span>talents</span><br>
+  aux opportunités.
+</h1>
 
-    <strong>📲 Installer Moonlight Digital</strong>
+<p class="hero-description">
+  Moonlight Digital est une entreprise numérique
+  qui développe des solutions pour les artistes,
+  les entrepreneurs, les entreprises et les marques.
+  Notre ambition : créer des connexions, révéler les talents
+  et ouvrir de nouvelles perspectives.
+</p>
 
-    <br><br>
+<div class="hero-actions">
 
-    Sur iPhone : ouvrez le menu
-    <strong>Partager</strong> de Safari,
-    puis choisissez
-    <strong>Ajouter à l’écran d’accueil</strong>.
+<a href="#poles" class="button">
+  Découvrir nos activités →
+</a>
 
+<a href="https://wa.me/243890385429"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="button button-outline">
+  Nous contacter
+</a>
+
+</div>
+
+<p class="hero-note">
+  🌍 Depuis la République démocratique du Congo,
+  avec une ambition tournée vers le monde.
+</p>
+
+<div class="install-box" id="installBox">
+  <strong>📲 Installer Moonlight Digital</strong>
+  <br><br>
+  Sur iPhone : ouvrez le menu Partager de Safari,
+  puis choisissez Ajouter à l’écran d’accueil.
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     ACCES RAPIDES
+================================= -->
+
+<section class="quick-access">
+<div class="container">
+
+<div class="quick-grid">
+
+<a href="espace-artiste.html" class="quick-card">
+  <div class="quick-icon">🎵</div>
+  <div>
+    <strong>Espace artiste</strong>
+    <small>Distribution musicale</small>
   </div>
+</a>
 
+<a href="marketplace.html" class="quick-card">
+  <div class="quick-icon">🛍️</div>
+  <div>
+    <strong>Marketplace</strong>
+    <small>Produits et commerce</small>
+  </div>
+</a>
+
+<a href="media.html" class="quick-card">
+  <div class="quick-icon">📰</div>
+  <div>
+    <strong>Moonlight Media</strong>
+    <small>Actualités et informations</small>
+  </div>
+</a>
+
+<a href="inscription.html" class="quick-card">
+  <div class="quick-icon">💼</div>
+  <div>
+    <strong>Moonlight Services</strong>
+    <small>Clients et prestataires</small>
+  </div>
+</a>
+
+</div>
+</div>
 </section>
 
-<!-- A PROPOS -->
+<!-- =================================
+     PRESENTATION
+================================= -->
 
-<section class="about" id="about">
+<section class="section" id="about">
+<div class="container">
 
-  <h2>🌙 À propos de Moonlight Digital</h2>
+<div class="about-grid">
 
-  <p>
-    Moonlight Digital est une entreprise numérique
-    qui accompagne les artistes, entrepreneurs,
-    vendeurs et marques dans leur développement.
-  </p>
+<div class="about-content">
 
-  <p>
-    À travers la communication digitale,
-    le marketing, la distribution musicale,
-    les médias et les solutions numériques,
-    nous contribuons à connecter les talents
-    aux opportunités.
-  </p>
+<span class="section-label">QUI SOMMES-NOUS ?</span>
 
+<h2>
+  Une entreprise numérique construite autour des <span class="gold">opportunités.</span>
+</h2>
+
+<p>
+  Moonlight Digital est une entreprise numérique
+  qui ambitionne de contribuer à la transformation
+  digitale en Afrique.
+</p>
+
+<p>
+  Nous développons plusieurs activités complémentaires
+  dans les domaines de la distribution musicale,
+  des médias, du commerce en ligne et des services numériques.
+</p>
+
+<p>
+  Notre objectif est de créer un environnement dans lequel
+  les artistes, les entreprises, les vendeurs et les professionnels
+  peuvent développer leurs projets et accéder à de nouvelles opportunités.
+</p>
+
+<div class="about-highlight">
+  Notre ambition est de connecter les talents,
+  les entreprises et les opportunités au monde entier.
+</div>
+
+</div>
+
+<div class="about-visual">
+
+<div class="about-visual-content">
+  <div>🌙</div>
+  <strong>MOONLIGHT DIGITAL</strong>
+  <span>CONNECTER • INNOVER • DÉVELOPPER</span>
+</div>
+
+</div>
+
+</div>
+</div>
 </section>
 
-<!-- MISSION ET VISION -->
+<!-- =================================
+     NOS ACTIVITES
+================================= -->
 
-<section class="about" id="mission">
+<section class="section poles-section" id="poles">
+<div class="container">
 
-  <h2>🎯 Notre mission et notre vision</h2>
+<div class="section-heading">
 
+<span class="section-label">NOTRE ÉCOSYSTÈME</span>
+
+<h2>Nos pôles d'activité</h2>
+
+<p>
+  Plusieurs activités, une même ambition :
+  construire des solutions numériques utiles
+  et accessibles aux talents et aux entreprises.
+</p>
+
+</div>
+
+<div class="poles-grid">
+
+<article class="pole-card">
+
+<span class="pole-number">01</span>
+
+<div class="pole-icon">🎵</div>
+
+<h3>Moonlight Distribution</h3>
+
+<p>
+  Nous accompagnons les artistes dans la préparation,
+  la distribution et le développement de leurs projets musicaux
+  sur les plateformes numériques.
+</p>
+
+<a href="espace-artiste.html" class="pole-link">
+  Accéder à l'espace artiste →
+</a>
+
+</article>
+
+<article class="pole-card">
+
+<span class="pole-number">02</span>
+
+<div class="pole-icon">📰</div>
+
+<h3>Moonlight Media</h3>
+
+<p>
+  Un espace consacré à l'information, à l'actualité,
+  à la communication et à la mise en lumière
+  des initiatives et des talents.
+</p>
+
+<a href="media.html" class="pole-link">
+  Découvrir Moonlight Media →
+</a>
+
+</article>
+
+<article class="pole-card">
+
+<span class="pole-number">03</span>
+
+<div class="pole-icon">🛍️</div>
+
+<h3>Moonlight Marketplace</h3>
+
+<p>
+  Une plateforme qui rapproche les vendeurs et les acheteurs,
+  facilite la découverte des produits et accompagne
+  le développement du commerce en ligne.
+</p>
+
+<a href="marketplace.html" class="pole-link">
+  Visiter la marketplace →
+</a>
+
+</article>
+
+<article class="pole-card">
+
+<span class="pole-number">04</span>
+
+<div class="pole-icon">💼</div>
+
+<h3>Moonlight Services</h3>
+
+<p>
+  Une plateforme qui connecte les clients
+  aux professionnels et prestataires de services
+  pour faciliter la réalisation de leurs projets.
+</p>
+
+<a href="inscription.html" class="pole-link">
+  Découvrir la plateforme →
+</a>
+
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     SERVICES
+================================= -->
+
+<section class="section" id="services">
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-label">NOS SOLUTIONS</span>
+
+<h2>Des services pour faire avancer vos projets</h2>
+
+<p>
+  Nous proposons des solutions adaptées aux besoins
+  des artistes, entrepreneurs, entreprises et marques.
+</p>
+
+</div>
+
+<div class="services-grid">
+
+<article class="service-card">
+  <div class="icon">📱</div>
+  <h3>Gestion des réseaux sociaux</h3>
   <p>
-    Notre mission est de rendre le numérique
-    plus accessible aux talents, aux entreprises
-    et aux entrepreneurs.
+    Gestion et développement de pages Facebook,
+    Instagram, TikTok et autres plateformes.
   </p>
+</article>
 
+<article class="service-card">
+  <div class="icon">📈</div>
+  <h3>Visibilité digitale</h3>
   <p>
-    Notre vision est de faire de Moonlight Digital
-    une référence du numérique en Afrique,
-    en partant de la République démocratique du Congo,
-    et de connecter les talents, les entreprises
+    Accompagnement pour améliorer la portée
+    et la visibilité de vos contenus.
+  </p>
+</article>
+
+<article class="service-card">
+  <div class="icon">🎯</div>
+  <h3>Promotion et publicité</h3>
+  <p>
+    Promotion de produits, services, événements,
+    artistes et projets.
+  </p>
+</article>
+
+<article class="service-card">
+  <div class="icon">💡</div>
+  <h3>Stratégie de communication</h3>
+  <p>
+    Développement de stratégies de contenu
+    et accompagnement de votre image de marque.
+  </p>
+</article>
+
+<article class="service-card">
+  <div class="icon">🎨</div>
+  <h3>Accompagnement digital</h3>
+  <p>
+    Conseils et solutions pour renforcer
+    votre présence professionnelle sur Internet.
+  </p>
+</article>
+
+<article class="service-card">
+  <div class="icon">🤝</div>
+  <h3>Partenariats et collaborations</h3>
+  <p>
+    Mise en relation et développement
+    de collaborations avec des acteurs du numérique.
+  </p>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     DETAILS DES SERVICES
+================================= -->
+
+<section class="section service-details">
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-label">NOTRE ACCOMPAGNEMENT</span>
+
+<h2>Comment pouvons-nous vous aider ?</h2>
+
+<p>
+  Découvrez quelques-uns des services proposés
+  par Moonlight Digital.
+</p>
+
+</div>
+
+<div class="detail-grid">
+
+<div class="service-detail" id="reseaux-sociaux">
+
+<h3>📱 Réseaux sociaux</h3>
+
+<p>
+  Nous vous accompagnons dans la gestion
+  et le développement de votre présence en ligne.
+</p>
+
+<ul>
+  <li>Création et optimisation de pages professionnelles</li>
+  <li>Gestion de Facebook, Instagram et TikTok</li>
+  <li>Création et planification de contenus</li>
+  <li>Développement de votre communauté</li>
+  <li>Conseils en stratégie de communication</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20service%20R%C3%A9seaux%20sociaux."
+target="_blank"
+rel="noopener noreferrer">
+Nous contacter
+</a>
+
+</div>
+
+<div class="service-detail" id="boostage">
+
+<h3>📈 Visibilité et boostage</h3>
+
+<p>
+  Nous vous accompagnons pour donner davantage
+  de visibilité à vos publications et campagnes.
+</p>
+
+<ul>
+  <li>Amélioration de la portée des publications</li>
+  <li>Promotion de vos contenus</li>
+  <li>Accompagnement des campagnes publicitaires</li>
+  <li>Développement de votre visibilité</li>
+  <li>Conseils pour atteindre votre audience</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20visibilit%C3%A9%20digitale."
+target="_blank"
+rel="noopener noreferrer">
+Nous contacter
+</a>
+
+</div>
+
+<div class="service-detail" id="promotion">
+
+<h3>🎯 Promotion</h3>
+
+<p>
+  Faites connaître vos produits, services,
+  événements et projets auprès de votre public.
+</p>
+
+<ul>
+  <li>Promotion de produits et services</li>
+  <li>Promotion d'événements</li>
+  <li>Promotion d'artistes et de projets</li>
+  <li>Campagnes de communication</li>
+  <li>Mise en avant de vos offres</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20promotion."
+target="_blank"
+rel="noopener noreferrer">
+Nous contacter
+</a>
+
+</div>
+
+<div class="service-detail" id="communication-digitale">
+
+<h3>💼 Communication digitale</h3>
+
+<p>
+  Nous vous aidons à construire une présence
+  professionnelle et cohérente sur Internet.
+</p>
+
+<ul>
+  <li>Stratégie de communication</li>
+  <li>Stratégie de contenu</li>
+  <li>Amélioration de votre image en ligne</li>
+  <li>Positionnement de votre marque</li>
+  <li>Accompagnement digital</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20communication%20digitale."
+target="_blank"
+rel="noopener noreferrer">
+Nous contacter
+</a>
+
+</div>
+
+<div class="service-detail" id="distribution-musicale">
+
+<h3>🎵 Distribution musicale</h3>
+
+<p>
+  Nous accompagnons les artistes dans la préparation
+  et la distribution de leurs sorties musicales.
+</p>
+
+<ul>
+  <li>Préparation des sorties musicales</li>
+  <li>Distribution sur les plateformes musicales</li>
+  <li>Accompagnement lors de la mise en ligne</li>
+  <li>Suivi des sorties musicales</li>
+  <li>Accompagnement après la sortie</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20artiste%20et%20je%20souhaite%20distribuer%20ma%20musique."
+target="_blank"
+rel="noopener noreferrer">
+Je suis artiste
+</a>
+
+</div>
+
+<div class="service-detail">
+
+<h3>🛍️ Solutions commerciales</h3>
+
+<p>
+  Nous développons des solutions numériques
+  pour rapprocher les vendeurs et les acheteurs.
+</p>
+
+<ul>
+  <li>Découverte de produits</li>
+  <li>Mise en relation entre vendeurs et acheteurs</li>
+  <li>Développement de votre activité commerciale</li>
+  <li>Accès à la marketplace</li>
+</ul>
+
+<a class="button" href="marketplace.html">
+Découvrir la marketplace
+</a>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     MISSION ET VISION
+================================= -->
+
+<section class="section" id="mission">
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-label">NOTRE IDENTITÉ</span>
+
+<h2>Notre mission et notre vision</h2>
+
+<p>
+  Une ambition claire : participer à la construction
+  d'un écosystème numérique plus accessible et connecté.
+</p>
+
+</div>
+
+<div class="mission-grid">
+
+<div class="mission-card">
+  <div class="icon">🎯</div>
+  <h3>Notre mission</h3>
+  <p>
+    Rendre le numérique plus accessible aux talents,
+    aux entreprises et aux entrepreneurs en développant
+    des solutions qui favorisent leur visibilité,
+    leur croissance et leur accès aux opportunités.
+  </p>
+</div>
+
+<div class="mission-card">
+  <div class="icon">🌍</div>
+  <h3>Notre vision</h3>
+  <p>
+    Faire de Moonlight Digital une référence du numérique
+    en Afrique, en partant de la République démocratique
+    du Congo, et construire une entreprise capable
+    de connecter les talents, les entreprises
     et les opportunités au monde entier.
   </p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     POURQUOI NOUS
+================================= -->
+
+<section class="section why-section" id="pourquoi">
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-label">NOS ENGAGEMENTS</span>
+
+<h2>Pourquoi Moonlight Digital ?</h2>
+
+<p>
+  Nous voulons construire un environnement numérique
+  fondé sur l'innovation, la collaboration
+  et les opportunités.
+</p>
+
+</div>
+
+<div class="why-grid">
+
+<div class="why-card">
+  <div class="icon">🚀</div>
+  <h3>Innovation</h3>
+  <p>Des solutions numériques adaptées aux nouveaux besoins.</p>
+</div>
+
+<div class="why-card">
+  <div class="icon">🤝</div>
+  <h3>Collaboration</h3>
+  <p>Des connexions entre talents, entreprises et professionnels.</p>
+</div>
+
+<div class="why-card">
+  <div class="icon">🌍</div>
+  <h3>Ambition africaine</h3>
+  <p>Une vision qui commence en RDC et regarde vers le monde.</p>
+</div>
+
+<div class="why-card">
+  <div class="icon">💡</div>
+  <h3>Opportunités</h3>
+  <p>La volonté de révéler les talents et de soutenir les projets.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     PARTENARIATS
+================================= -->
+
+<section class="partnership" id="partenariats">
+
+<div class="partnership-content">
+
+<span class="section-label">CONSTRUISONS ENSEMBLE</span>
+
+<h2>
+  Ensemble, créons de nouvelles <span class="gold">opportunités.</span>
+</h2>
+
+<p>
+  Moonlight Digital est ouvert aux collaborations
+  avec les entreprises, les marques, les artistes,
+  les entrepreneurs et les professionnels.
+  Nous croyons aux partenariats stratégiques
+  et aux projets qui créent de la valeur.
+</p>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20proposer%20un%20partenariat."
+target="_blank"
+rel="noopener noreferrer">
+Proposer un partenariat →
+</a>
+
+</div>
+</section>
+
+<!-- =================================
+     RESEAUX SOCIAUX
+================================= -->
+
+<section class="section social-section" id="nos-reseaux">
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-label">RESTONS CONNECTÉS</span>
+
+<h2>Retrouvez Moonlight Digital</h2>
+
+<p>
+  Suivez nos actualités, nos projets,
+  nos services et nos différentes réalisations.
+</p>
+
+</div>
+
+<div class="social-links">
+
+<a class="facebook"
+href="https://www.facebook.com/share/1FnwP5DnDg/?mibextid=wwXIfr"
+target="_blank"
+rel="noopener noreferrer">
+📘 Facebook
+</a>
+
+<a class="instagram"
+href="https://www.instagram.com/moonlight_digital_01?dlrf=YXZzZHpjNTJjb3A5&utm_source=qr"
+target="_blank"
+rel="noopener noreferrer">
+📸 Instagram
+</a>
+
+<a class="tiktok"
+href="https://www.tiktok.com/@moonlightdigital1"
+target="_blank"
+rel="noopener noreferrer">
+🎵 TikTok
+</a>
+
+<a class="youtube"
+href="https://www.youtube.com/@Moonlightdigital01"
+target="_blank"
+rel="noopener noreferrer">
+▶️ YouTube
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- =================================
+     CONTACT
+================================= -->
+
+<section class="contact-section" id="contact">
+
+<div class="contact-box">
+
+<span class="section-label">PARLONS DE VOTRE PROJET</span>
+
+<h2>Contactez Moonlight Digital</h2>
+
+<p>
+  Vous avez un projet, une question ou une proposition
+  de collaboration ? Notre équipe est disponible
+  pour échanger avec vous.
+</p>
+
+<a class="button"
+href="https://wa.me/243890385429"
+target="_blank"
+rel="noopener noreferrer">
+💬 Nous écrire sur WhatsApp
+</a>
+
+</div>
 
 </section>
 
-<!-- SERVICES -->
-
-<section class="services" id="services">
-
-  <h2>Nos services</h2>
-
-  <div class="cards">
-
-    <a class="card" href="#reseaux-sociaux">
-
-      <h3>📱 Réseaux sociaux</h3>
-
-      <p>
-        Gestion et développement de vos pages Facebook,
-        Instagram, TikTok et WhatsApp.
-      </p>
-
-    </a>
-
-    <a class="card" href="#boostage">
-
-      <h3>📈 Boostage</h3>
-
-      <p>
-        Augmentez la visibilité de vos publications
-        et touchez davantage de personnes.
-      </p>
-
-    </a>
-
-    <a class="card" href="#promotion">
-
-      <h3>🎯 Promotion</h3>
-
-      <p>
-        Promotion de vos produits, services,
-        événements et projets.
-      </p>
-
-    </a>
-
-    <a class="card" href="#communication-digitale">
-
-      <h3>💼 Communication digitale</h3>
-
-      <p>
-        Stratégie de contenu et accompagnement
-        pour développer votre présence en ligne.
-      </p>
-
-    </a>
-
-    <a class="card" href="#distribution-musicale">
-
-      <h3>🎵 Distribution musicale</h3>
-
-      <p>
-        Distribution et accompagnement des artistes
-        pour diffuser leurs chansons sur les plateformes musicales.
-      </p>
-
-    </a>
-
-    <a class="card" href="marketplace.html">
-
-      <h3>🛍️ Marketplace</h3>
-
-      <p>
-        Découvrez des produits proposés par différents vendeurs
-        et développez votre activité commerciale.
-      </p>
-
-    </a>
-
-    <a class="card" href="inscription.html">
-
-      <h3>🌙 Moonlight Services</h3>
-
-      <p>
-        Découvrez une plateforme qui connecte les clients
-        aux professionnels et prestataires de services.
-        Trouvez des talents, explorez leurs offres
-        et développez vos projets.
-      </p>
-
-      <strong>Découvrir la plateforme →</strong>
-
-    </a>
-
-  </div>
-
-</section>
-
-<!-- DETAILS DES SERVICES -->
-
-<section class="service-details">
-
-  <div class="service-detail" id="reseaux-sociaux">
-
-    <h2>📱 Réseaux sociaux</h2>
-
-    <p>
-      Moonlight Digital vous accompagne dans la gestion
-      et le développement de votre présence sur les réseaux sociaux.
-    </p>
-
-    <h3>Comment pouvons-nous vous aider ?</h3>
-
-    <ul>
-
-      <li>Création et optimisation de pages professionnelles</li>
-
-      <li>Gestion de Facebook, Instagram, TikTok et WhatsApp</li>
-
-      <li>Création et planification de contenus</li>
-
-      <li>Développement de votre communauté</li>
-
-      <li>Amélioration de votre visibilité en ligne</li>
-
-      <li>Conseils en stratégie de communication</li>
-
-    </ul>
-
-    <a class="button"
-       href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20service%20R%C3%A9seaux%20sociaux."
-       target="_blank"
-       rel="noopener noreferrer">
-      Nous contacter sur WhatsApp
-    </a>
-
-  </div>
-
-  <div class="service-detail" id="boostage">
-
-    <h2>📈 Boostage</h2>
-
-    <p>
-      Vous souhaitez donner davantage de visibilité
-      à vos publications et atteindre une audience adaptée ?
-    </p>
-
-    <h3>Comment pouvons-nous vous aider ?</h3>
-
-    <ul>
-
-      <li>Augmenter la portée de vos publications</li>
-
-      <li>Donner plus de visibilité à vos contenus</li>
-
-      <li>Promouvoir vos produits et services</li>
-
-      <li>Atteindre une audience adaptée</li>
-
-      <li>Accompagner vos campagnes publicitaires</li>
-
-    </ul>
-
-    <a class="button"
-       href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20service%20de%20Boostage."
-       target="_blank"
-       rel="noopener noreferrer">
-      Nous contacter sur WhatsApp
-    </a>
-
-  </div>
-
-  <div class="service-detail" id="promotion">
-
-    <h2>🎯 Promotion</h2>
-
-    <p>
-      Faites connaître vos produits, services,
-      événements et projets auprès d'une audience adaptée.
-    </p>
-
-    <h3>Comment pouvons-nous vous aider ?</h3>
-
-    <ul>
-
-      <li>Promotion de vos produits</li>
-
-      <li>Promotion de vos services</li>
-
-      <li>Promotion d'événements</li>
-
-      <li>Promotion d'artistes et de projets</li>
-
-      <li>Campagnes de visibilité sur les réseaux sociaux</li>
-
-      <li>Mise en avant de vos offres</li>
-
-    </ul>
-
-    <a class="button"
-       href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20service%20de%20Promotion."
-       target="_blank"
-       rel="noopener noreferrer">
-      Nous contacter sur WhatsApp
-    </a>
-
-  </div>
-
-  <div class="service-detail" id="communication-digitale">
-
-    <h2>💼 Communication digitale</h2>
-
-    <p>
-      Nous vous aidons à construire une présence
-      professionnelle et cohérente sur Internet.
-    </p>
-
-    <h3>Comment pouvons-nous vous aider ?</h3>
-
-    <ul>
-
-      <li>Élaboration d'une stratégie de communication</li>
-
-      <li>Développement d'une stratégie de contenu</li>
-
-      <li>Amélioration de votre image en ligne</li>
-
-      <li>Positionnement de votre marque</li>
-
-      <li>Conseils pour vos réseaux sociaux</li>
-
-      <li>Accompagnement dans le développement de votre visibilité</li>
-
-    </ul>
-
-    <a class="button"
-       href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20service%20de%20Communication%20digitale."
-       target="_blank"
-       rel="noopener noreferrer">
-      Nous contacter sur WhatsApp
-    </a>
-
-  </div>
-
-  <div class="service-detail" id="distribution-musicale">
-
-    <h2>🎵 Distribution musicale</h2>
-
-    <p>
-      Vous êtes artiste et vous souhaitez rendre votre musique
-      disponible sur les principales plateformes musicales ?
-      Moonlight Digital vous accompagne dans votre projet.
-    </p>
-
-    <h3>Comment pouvons-nous vous aider ?</h3>
-
-    <ul>
-
-      <li>Préparation de votre sortie musicale</li>
-
-      <li>Distribution de vos chansons sur les plateformes musicales</li>
-
-      <li>Accompagnement lors de la mise en ligne</li>
-
-      <li>Gestion des informations liées à votre sortie</li>
-
-      <li>Suivi de votre sortie musicale</li>
-
-      <li>Accompagnement après la sortie</li>
-
-    </ul>
-
-    <p>
-      <strong>Pour les artistes :</strong>
-      nous vous accompagnons dans les différentes étapes
-      de la distribution de votre musique.
-    </p>
-
-    <a class="button"
-       href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20suis%20artiste%20et%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20service%20de%20distribution%20musicale."
-       target="_blank"
-       rel="noopener noreferrer">
-      Je suis artiste — Nous contacter
-    </a>
-
-  </div>
-
-</section>
-
-<!-- PARTENARIATS -->
-
-<section class="about" id="partenariats">
-
-  <h2>🤝 Partenariats et collaborations</h2>
-
-  <p>
-    Moonlight Digital est ouvert aux collaborations
-    avec les entreprises, les marques, les artistes,
-    les entrepreneurs et les professionnels.
-  </p>
-
-  <p>
-    Nous croyons aux partenariats stratégiques,
-    au partage d'opportunités et à la création
-    de projets capables de produire un impact positif.
-  </p>
-
-  <a class="button"
-     href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20proposer%20un%20partenariat."
-     target="_blank"
-     rel="noopener noreferrer">
-    Proposer un partenariat
-  </a>
-
-</section>
-
-<!-- RESEAUX SOCIAUX -->
-
-<section class="about" id="nos-reseaux">
-
-  <h2>📱 Retrouvez Moonlight Digital</h2>
-
-  <p>
-    Suivez les actualités de Moonlight Digital,
-    nos nouveaux projets, nos services,
-    nos opportunités et nos différentes réalisations.
-  </p>
-
-  <p>
-    Nos liens officiels sur les réseaux sociaux
-    seront ajoutés dans cet espace.
-  </p>
-
-  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:700px; margin:30px auto;">
-
-    <a href="https://www.facebook.com/share/1FnwP5DnDg/?mibextid=wwXIfr"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-block; padding:12px 20px; background:#1877F2; color:white; text-decoration:none; border-radius:10px; font-weight:bold;">
-      📘 Facebook
-    </a>
-
-    <a href="https://www.instagram.com/moonlight_digital_01?dlrf=YXZzZHpjNTJjb3A5&utm_source=qr"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-block; padding:12px 20px; background:#C13584; color:white; text-decoration:none; border-radius:10px; font-weight:bold;">
-      📸 Instagram
-    </a>
-
-    <a href="https://www.tiktok.com/@moonlightdigital1"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-block; padding:12px 20px; background:#222; color:white; text-decoration:none; border-radius:10px; font-weight:bold;">
-      🎵 TikTok
-    </a>
-
-    <a href="http://www.youtube.com/@Moonlightdigital01"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-block; padding:12px 20px; background:#FF0000; color:white; text-decoration:none; border-radius:10px; font-weight:bold;">
-      ▶️ YouTube
-    </a>
-
-  </div>
-
-</section>
-
-<!-- POURQUOI MOONLIGHT DIGITAL -->
-
-<section class="about" id="pourquoi">
-
-  <h2>Pourquoi Moonlight Digital ?</h2>
-
-  <p>
-    Nous ne cherchons pas seulement des vues.
-    Notre objectif est de vous aider à développer
-    une véritable visibilité et à atteindre votre public.
-  </p>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-
-  <h2>Contact</h2>
-
-  <p>WhatsApp : +243 890 385 429</p>
-
-  <a class="button"
-     href="https://wa.me/243890385429"
-     target="_blank"
-     rel="noopener noreferrer">
-    Ouvrir WhatsApp
-  </a>
-
-</section>
-
-<!-- FOOTER -->
+</main>
+
+<!-- =================================
+     FOOTER
+================================= -->
 
 <footer>
 
-  © 2026 Moonlight Digital — Tous droits réservés.
+<div class="footer-grid">
+
+<div class="footer-brand">
+
+<h3>🌙 MOONLIGHT DIGITAL</h3>
+
+<p>
+  Le numérique qui connecte les talents
+  aux opportunités.
+  Depuis la RDC, avec une ambition mondiale.
+</p>
+
+</div>
+
+<div class="footer-column">
+
+<h4>Découvrir</h4>
+
+<a href="#about">À propos</a>
+<a href="#poles">Nos activités</a>
+<a href="#services">Nos services</a>
+<a href="#mission">Notre vision</a>
+
+</div>
+
+<div class="footer-column">
+
+<h4>Nos plateformes</h4>
+
+<a href="espace-artiste.html">Espace artiste</a>
+<a href="marketplace.html">Marketplace</a>
+<a href="media.html">Moonlight Media</a>
+<a href="inscription.html">Moonlight Services</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+© 2026 Moonlight Digital — Tous droits réservés.
+
+<br>
+
+Conçu avec ambition en République démocratique du Congo.
+
+</div>
 
 </footer>
 
 <script>
 
-/* =====================================
-   ESPACE ADMINISTRATION MOONLIGHT DIGITAL
-   ===================================== */
-
-// Le bouton est toujours visible.
-// La véritable sécurité reste dans admin.html.
-// Aucun changement des autorisations Supabase.
+/* =================================
+   ESPACE ADMINISTRATION
+================================= */
 
 const adminMenuItem = document.getElementById("adminMenuItem");
 
@@ -1061,19 +2047,20 @@ if (adminMenuItem) {
   adminMenuItem.hidden = false;
 }
 
-
-/* SERVICE WORKER / PWA */
+/* =================================
+   SERVICE WORKER / PWA
+================================= */
 
 if ("serviceWorker" in navigator) {
 
-  window.addEventListener("load", function () {
+  window.addEventListener("load", function() {
 
     navigator.serviceWorker
       .register("./service-worker.js")
-      .then(function () {
+      .then(function() {
         console.log("Moonlight Digital PWA activée.");
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log("Erreur PWA :", error);
       });
 
@@ -1081,8 +2068,9 @@ if ("serviceWorker" in navigator) {
 
 }
 
-
-/* INSTALLATION IPHONE */
+/* =================================
+   INSTALLATION IPHONE
+================================= */
 
 const installBox = document.getElementById("installBox");
 
@@ -1098,11 +2086,11 @@ if (isIOS && !isStandalone && installBox) {
   installBox.style.display = "block";
 }
 
-
-/* MENU TROIS POINTS */
+/* =================================
+   MENU TROIS POINTS
+================================= */
 
 const menuDots = document.getElementById("menuDots");
-
 const dropdownMenu = document.getElementById("dropdownMenu");
 
 function closeMenu() {
@@ -1133,9 +2121,7 @@ document.addEventListener("click", function(event) {
 
 dropdownMenu.querySelectorAll("a").forEach(function(link) {
 
-  link.addEventListener("click", function() {
-    closeMenu();
-  });
+  link.addEventListener("click", closeMenu);
 
 });
 
@@ -1147,206 +2133,87 @@ document.addEventListener("keydown", function(event) {
 
 });
 
-
-/* SYSTEME DE CHANGEMENT DE LANGUE */
+/* =================================
+   SYSTEME DE LANGUE
+================================= */
 
 const languageSelect = document.getElementById("languageSelect");
 
 const translations = {
 
-  en: {
+en: {
 
-    "🌙 À propos": "🌙 About us",
-    "🎯 Notre mission et vision": "🎯 Our mission and vision",
-    "💼 Nos services": "💼 Our services",
-    "🌙 MOONLIGHT SERVICES": "🌙 MOONLIGHT SERVICES",
-    "🤝 Partenariats": "🤝 Partnerships",
-    "📱 Nos réseaux sociaux": "📱 Our social networks",
-    "📞 Contact": "📞 Contact",
-    "🔐 ESPACE ADMINISTRATION": "🔐 ADMINISTRATION",
+"À propos": "About us",
+"Nos activités": "Our activities",
+"Nos services": "Our services",
+"Partenariats": "Partnerships",
+"Nous contacter": "Contact us",
+"Notre mission et vision": "Our mission and vision",
+"Choisir la langue": "Choose your language",
 
-    "Votre visibilité. Notre stratégie.": "Your visibility. Our strategy.",
+"Le numérique qui": "Digital technology that",
+"connecte les": "connects",
+"talents": "talent",
+"aux opportunités.": "with opportunities.",
 
-    "🎵 ESPACE ARTISTE": "🎵 ARTIST SPACE",
-    "🛍️ MARKETPLACE": "🛍️ MARKETPLACE",
-    "📰 MOONLIGHT MEDIA": "📰 MOONLIGHT MEDIA",
+"Découvrir nos activités →": "Discover our activities →",
 
-    "Faites grandir votre visibilité.": "Grow your visibility.",
+"Depuis la République démocratique du Congo, avec une ambition tournée vers le monde.":
+"From the Democratic Republic of the Congo, with a vision for the world.",
 
-    "Moonlight Digital accompagne les entrepreneurs, artistes et marques dans leur communication, leur visibilité et leur développement digital.":
+"Une entreprise numérique construite autour des":
+"A digital company built around",
 
-    "Moonlight Digital supports entrepreneurs, artists and brands in their communication, visibility and digital development.",
+"opportunités.": "opportunities.",
 
-    "Nous contacter": "Contact us",
+"Une vision. Plusieurs opportunités.": "One vision. Multiple opportunities.",
 
-    "🌙 À propos de Moonlight Digital": "🌙 About Moonlight Digital",
+"Nos pôles d'activité": "Our business divisions",
 
-    "Moonlight Digital est une entreprise numérique qui accompagne les artistes, entrepreneurs, vendeurs et marques dans leur développement.":
+"Moonlight Distribution": "Moonlight Distribution",
+"Moonlight Media": "Moonlight Media",
+"Moonlight Marketplace": "Moonlight Marketplace",
+"Moonlight Services": "Moonlight Services",
 
-    "Moonlight Digital is a digital company that supports artists, entrepreneurs, sellers and brands in their development.",
+"Notre mission et notre vision": "Our mission and vision",
 
-    "À travers la communication digitale, le marketing, la distribution musicale, les médias et les solutions numériques, nous contribuons à connecter les talents aux opportunités.":
+"Pourquoi Moonlight Digital ?": "Why Moonlight Digital?",
 
-    "Through digital communication, marketing, music distribution, media and digital solutions, we help connect talent with opportunities.",
+"Retrouvez Moonlight Digital": "Follow Moonlight Digital",
 
-    "🎯 Notre mission et notre vision": "🎯 Our mission and vision",
+"Contactez Moonlight Digital": "Contact Moonlight Digital",
 
-    "Notre mission est de rendre le numérique plus accessible aux talents, aux entreprises et aux entrepreneurs.":
+"Tous droits réservés.": "All rights reserved.",
 
-    "Our mission is to make digital technology more accessible to talent, businesses and entrepreneurs.",
+"À propos": "About us"
 
-    "Notre vision est de faire de Moonlight Digital une référence du numérique en Afrique, en partant de la République démocratique du Congo, et de connecter les talents, les entreprises et les opportunités au monde entier.":
+},
 
-    "Our vision is to make Moonlight Digital a leading digital reference in Africa, starting in the Democratic Republic of the Congo, and connect talent, businesses and opportunities worldwide.",
+ln: {
 
-    "Nos services": "Our services",
+"À propos": "Mpo na biso",
+"Nos activités": "Misala na biso",
+"Nos services": "Misala na biso",
+"Partenariats": "Boyokani",
+"Nous contacter": "Solola na biso",
+"Notre mission et vision": "Mokano mpe ndoto na biso",
+"Choisir la langue": "Pona lokota",
 
-    "📱 Réseaux sociaux": "📱 Social networks",
+"Nos pôles d'activité": "Misala na biso",
 
-    "Gestion et développement de vos pages Facebook, Instagram, TikTok et WhatsApp.":
+"Pourquoi Moonlight Digital ?": "Mpo na nini Moonlight Digital?",
 
-    "Management and growth of your Facebook, Instagram, TikTok and WhatsApp pages.",
+"Retrouvez Moonlight Digital": "Landela Moonlight Digital",
 
-    "📈 Boostage": "📈 Promotion boosts",
+"Contactez Moonlight Digital": "Solola na Moonlight Digital",
 
-    "Augmentez la visibilité de vos publications et touchez davantage de personnes.":
+"Tous droits réservés.": "Makoki nyonso ebatelami."
 
-    "Increase the visibility of your posts and reach more people.",
-
-    "🎯 Promotion": "🎯 Promotion",
-
-    "Promotion de vos produits, services, événements et projets.":
-
-    "Promotion of your products, services, events and projects.",
-
-    "💼 Communication digitale": "💼 Digital communication",
-
-    "Stratégie de contenu et accompagnement pour développer votre présence en ligne.":
-
-    "Content strategy and support to grow your online presence.",
-
-    "🎵 Distribution musicale": "🎵 Music distribution",
-
-    "Distribution et accompagnement des artistes pour diffuser leurs chansons sur les plateformes musicales.":
-
-    "Distribution and support for artists to release their music on streaming platforms.",
-
-    "Découvrez des produits proposés par différents vendeurs et développez votre activité commerciale.":
-
-    "Discover products from different sellers and grow your business.",
-
-    "Découvrez une plateforme qui connecte les clients aux professionnels et prestataires de services. Trouvez des talents, explorez leurs offres et développez vos projets.":
-
-    "Discover a platform connecting customers with professionals and service providers. Find talent, explore their offers and develop your projects.",
-
-    "Découvrir la plateforme →": "Discover the platform →",
-
-    "Comment pouvons-nous vous aider ?": "How can we help you?",
-
-    "Nous contacter sur WhatsApp": "Contact us on WhatsApp",
-
-    "Proposer un partenariat": "Propose a partnership",
-
-    "📱 Retrouvez Moonlight Digital": "📱 Follow Moonlight Digital",
-
-    "Suivez les actualités de Moonlight Digital, nos nouveaux projets, nos services, nos opportunités et nos différentes réalisations.":
-
-    "Follow Moonlight Digital news, our new projects, services, opportunities and achievements.",
-
-    "Nos liens officiels sur les réseaux sociaux seront ajoutés dans cet espace.":
-
-    "Our official social media links are available here.",
-
-    "Pourquoi Moonlight Digital ?": "Why Moonlight Digital?",
-
-    "Nous ne cherchons pas seulement des vues. Notre objectif est de vous aider à développer une véritable visibilité et à atteindre votre public.":
-
-    "We don't just seek views. Our goal is to help you build real visibility and reach your audience.",
-
-    "Ouvrir WhatsApp": "Open WhatsApp",
-
-    "Contact": "Contact",
-
-    "© 2026 Moonlight Digital — Tous droits réservés.":
-
-    "© 2026 Moonlight Digital — All rights reserved.",
-
-    "Choisir la langue": "Choose your language"
-
-  },
-
-  ln: {
-
-    "🌙 À propos": "🌙 Mpo na biso",
-
-    "🎯 Notre mission et vision": "🎯 Mokano mpe ndoto na biso",
-
-    "💼 Nos services": "💼 Misala na biso",
-
-    "🌙 MOONLIGHT SERVICES": "🌙 MOONLIGHT SERVICES",
-
-    "🤝 Partenariats": "🤝 Boyokani",
-
-    "📱 Nos réseaux sociaux": "📱 Ba réseaux sociaux na biso",
-
-    "📞 Contact": "📞 Kokutana na biso",
-
-    "🔐 ESPACE ADMINISTRATION": "🔐 ADMINISTRATION",
-
-    "Votre visibilité. Notre stratégie.": "Komonana na yo. Mayele na biso.",
-
-    "🎵 ESPACE ARTISTE": "🎵 ESIKA YA ARTISTE",
-
-    "🛍️ MARKETPLACE": "🛍️ ZANDO",
-
-    "📰 MOONLIGHT MEDIA": "📰 MOONLIGHT MEDIA",
-
-    "Faites grandir votre visibilité.": "Bongisa komonana na yo.",
-
-    "Nous contacter": "Solola na biso",
-
-    "🌙 À propos de Moonlight Digital": "🌙 Mpo na Moonlight Digital",
-
-    "🎯 Notre mission et notre vision": "🎯 Mokano mpe ndoto na biso",
-
-    "Nos services": "Misala na biso",
-
-    "📱 Réseaux sociaux": "📱 Ba réseaux sociaux",
-
-    "📈 Boostage": "📈 Kobakisa komonana",
-
-    "🎯 Promotion": "🎯 Promotion",
-
-    "💼 Communication digitale": "💼 Communication digitale",
-
-    "🎵 Distribution musicale": "🎵 Distribution ya miziki",
-
-    "Comment pouvons-nous vous aider ?": "Ndenge nini tokoki kosalisa yo ?",
-
-    "Nous contacter sur WhatsApp": "Solola na biso na WhatsApp",
-
-    "Proposer un partenariat": "Proposer boyokani",
-
-    "📱 Retrouvez Moonlight Digital": "📱 Landela Moonlight Digital",
-
-    "Pourquoi Moonlight Digital ?": "Mpo na nini Moonlight Digital ?",
-
-    "Ouvrir WhatsApp": "Fungola WhatsApp",
-
-    "Contact": "Kokutana na biso",
-
-    "© 2026 Moonlight Digital — Tous droits réservés.":
-
-    "© 2026 Moonlight Digital — Makoki nyonso ebatelami.",
-
-    "Choisir la langue": "Pona lokota"
-
-  }
+}
 
 };
 
-
-/* CONSERVATION DES TEXTES ORIGINAUX */
+/* SAUVEGARDE DES TEXTES */
 
 const originalTexts = new Map();
 
@@ -1362,7 +2229,7 @@ while (textNode = walker.nextNode()) {
   if (
     textNode.parentElement &&
     !textNode.parentElement.closest(".language-selector") &&
-    !["SCRIPT", "STYLE", "OPTION"].includes(textNode.parentElement.tagName)
+    !["SCRIPT","STYLE","OPTION"].includes(textNode.parentElement.tagName)
   ) {
 
     originalTexts.set(textNode, textNode.nodeValue);
@@ -1371,27 +2238,21 @@ while (textNode = walker.nextNode()) {
 
 }
 
-
-/* TRADUCTION DES TEXTES */
+/* CHANGEMENT DE LANGUE */
 
 function changeLanguage(language) {
 
   const dictionary = translations[language] || {};
 
-  originalTexts.forEach(function(original, node) {
+  originalTexts.forEach(function(original,node) {
 
-    const parent = node.parentElement;
+    if (!node.parentElement) return;
 
-    if (!parent) return;
-
-    const normalized = original.trim().replace(/\s+/g, " ");
+    const normalized = original.trim().replace(/\s+/g," ");
 
     if (language === "fr") {
-
       node.nodeValue = original;
-
       return;
-
     }
 
     const translated = dictionary[normalized];
@@ -1414,32 +2275,23 @@ function changeLanguage(language) {
 
   document.documentElement.lang = language;
 
-  const languageLabel = document.querySelector(
-    ".language-selector label"
-  );
+  const label = document.querySelector(".language-selector label");
 
-  if (languageLabel) {
+  if (label) {
 
     if (language === "en") {
-
-      languageLabel.textContent = "🌍 Choose your language";
-
+      label.textContent = "🌍 Choose your language";
     } else if (language === "ln") {
-
-      languageLabel.textContent = "🌍 Pona lokota";
-
+      label.textContent = "🌍 Pona lokota";
     } else {
-
-      languageLabel.textContent = "🌍 Choisir la langue";
-
+      label.textContent = "🌍 Choisir la langue";
     }
 
   }
 
 }
 
-
-/* LANGUE PAR DEFAUT : FRANCAIS */
+/* LANGUE PAR DEFAUT */
 
 if (languageSelect) {
 
@@ -1450,7 +2302,7 @@ if (languageSelect) {
 
   changeLanguage(savedLanguage);
 
-  languageSelect.addEventListener("change", function() {
+  languageSelect.addEventListener("change",function() {
 
     const selectedLanguage = this.value;
 
