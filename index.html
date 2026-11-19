@@ -7,10 +7,12 @@
   <meta name="description" content="Moonlight Digital accompagne les artistes, entrepreneurs et marques dans leur communication, leur visibilité, le marketing digital, la distribution musicale et la vente en ligne.">
   <meta name="author" content="Moonlight Digital">
   <meta name="robots" content="index, follow">
+
   <link rel="canonical" href="https://christtawamba-cp.github.io/moonlight-digital/">
   <link rel="icon" type="image/png" href="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
   <link rel="apple-touch-icon" href="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
   <link rel="manifest" href="manifest.json">
+
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Moonlight Digital">
@@ -23,6 +25,7 @@
   <meta property="og:description" content="Communication digitale, marketing, visibilité des marques, distribution musicale et marketplace.">
   <meta property="og:url" content="https://christtawamba-cp.github.io/moonlight-digital/">
   <meta property="og:image" content="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Moonlight Digital">
   <meta name="twitter:description" content="Votre visibilité. Notre stratégie.">
@@ -47,6 +50,7 @@
   </script>
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -85,6 +89,7 @@
     }
 
     /* MENU TROIS POINTS */
+
     .menu-container {
       position: absolute;
       top: 18px;
@@ -150,9 +155,19 @@
       color: #d4af37;
     }
 
-    /* ADMINISTRATION MASQUÉE PAR DÉFAUT */
-    .dropdown-menu a[hidden] {
-      display: none !important;
+    /* ADMINISTRATION TOUJOURS VISIBLE */
+
+    .dropdown-menu a#adminMenuItem {
+      display: block !important;
+      color: #d4af37;
+      font-weight: bold;
+      border-top: 1px solid #d4af37;
+      background: #17140b;
+    }
+
+    .dropdown-menu a#adminMenuItem:hover {
+      background: #d4af37;
+      color: #050505;
     }
 
     .language-selector {
@@ -192,6 +207,7 @@
     }
 
     /* BOUTONS DE NAVIGATION */
+
     .artist-access,
     .marketplace-access,
     .media-access,
@@ -219,6 +235,7 @@
     }
 
     /* ACCUEIL */
+
     .hero {
       padding: 75px 20px;
       text-align: center;
@@ -255,6 +272,7 @@
     }
 
     /* SERVICES */
+
     .services {
       padding: 50px 20px;
       max-width: 1000px;
@@ -307,6 +325,7 @@
     }
 
     /* DETAILS DES SERVICES */
+
     .service-details {
       max-width: 1000px;
       margin: auto;
@@ -347,7 +366,8 @@
       margin-bottom: 8px;
     }
 
-    /* PRESENTATION ET INFORMATIONS */
+    /* PRESENTATION */
+
     .about {
       text-align: center;
       padding: 60px 20px;
@@ -368,6 +388,7 @@
     }
 
     /* CONTACT */
+
     .contact {
       text-align: center;
       padding: 60px 20px;
@@ -380,6 +401,7 @@
     }
 
     /* INSTALLATION */
+
     .install-box {
       display: none;
       margin: 25px auto 0;
@@ -397,6 +419,7 @@
     }
 
     /* FOOTER */
+
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -406,7 +429,9 @@
     }
 
     /* RESPONSIVE */
+
     @media (max-width: 600px) {
+
       header {
         padding: 25px 55px 25px 12px;
       }
@@ -449,7 +474,9 @@
         width: 40px;
         height: 40px;
       }
+
     }
+
   </style>
 </head>
 
@@ -458,6 +485,7 @@
 <header>
 
   <!-- MENU TROIS POINTS -->
+
   <div class="menu-container">
 
     <button
@@ -473,31 +501,45 @@
     <nav class="dropdown-menu" id="dropdownMenu">
 
       <a href="#about">🌙 À propos</a>
+
       <a href="#mission">🎯 Notre mission et vision</a>
+
       <a href="#services">💼 Nos services</a>
+
       <a href="inscription.html">🌙 MOONLIGHT SERVICES</a>
+
       <a href="#partenariats">🤝 Partenariats</a>
+
       <a href="#nos-reseaux">📱 Nos réseaux sociaux</a>
+
       <a href="#contact">📞 Contact</a>
 
-      <!-- BOUTON ADMINISTRATION -->
-      <a href="admin.html" id="adminMenuItem" hidden>
-        🔐 Administration
+      <!-- ESPACE ADMINISTRATION TOUJOURS VISIBLE -->
+
+      <a href="admin.html" id="adminMenuItem">
+        🔐 ESPACE ADMINISTRATION
       </a>
 
       <div class="language-selector">
+
         <label for="languageSelect">
           🌍 Choisir la langue
         </label>
 
         <select id="languageSelect">
+
           <option value="fr">🇫🇷 Français</option>
+
           <option value="en">🇬🇧 English</option>
+
           <option value="ln">🇨🇩 Lingála</option>
+
         </select>
+
       </div>
 
     </nav>
+
   </div>
 
   <h1>🌙 MOONLIGHT DIGITAL</h1>
@@ -525,6 +567,7 @@
 </header>
 
 <!-- ACCUEIL -->
+
 <section class="hero">
 
   <h2>Faites grandir votre visibilité.</h2>
@@ -535,22 +578,30 @@
     leur visibilité et leur développement digital.
   </p>
 
-  <a class="button" href="https://wa.me/243890385429" target="_blank" rel="noopener noreferrer">
+  <a class="button"
+     href="https://wa.me/243890385429"
+     target="_blank"
+     rel="noopener noreferrer">
     Nous contacter
   </a>
 
   <div class="install-box" id="installBox">
+
     <strong>📲 Installer Moonlight Digital</strong>
+
     <br><br>
+
     Sur iPhone : ouvrez le menu
     <strong>Partager</strong> de Safari,
     puis choisissez
     <strong>Ajouter à l’écran d’accueil</strong>.
+
   </div>
 
 </section>
 
 <!-- A PROPOS -->
+
 <section class="about" id="about">
 
   <h2>🌙 À propos de Moonlight Digital</h2>
@@ -572,6 +623,7 @@
 </section>
 
 <!-- MISSION ET VISION -->
+
 <section class="about" id="mission">
 
   <h2>🎯 Notre mission et notre vision</h2>
@@ -593,6 +645,7 @@
 </section>
 
 <!-- SERVICES -->
+
 <section class="services" id="services">
 
   <h2>Nos services</h2>
@@ -600,68 +653,92 @@
   <div class="cards">
 
     <a class="card" href="#reseaux-sociaux">
+
       <h3>📱 Réseaux sociaux</h3>
+
       <p>
         Gestion et développement de vos pages Facebook,
         Instagram, TikTok et WhatsApp.
       </p>
+
     </a>
 
     <a class="card" href="#boostage">
+
       <h3>📈 Boostage</h3>
+
       <p>
         Augmentez la visibilité de vos publications
         et touchez davantage de personnes.
       </p>
+
     </a>
 
     <a class="card" href="#promotion">
+
       <h3>🎯 Promotion</h3>
+
       <p>
         Promotion de vos produits, services,
         événements et projets.
       </p>
+
     </a>
 
     <a class="card" href="#communication-digitale">
+
       <h3>💼 Communication digitale</h3>
+
       <p>
         Stratégie de contenu et accompagnement
         pour développer votre présence en ligne.
       </p>
+
     </a>
 
     <a class="card" href="#distribution-musicale">
+
       <h3>🎵 Distribution musicale</h3>
+
       <p>
         Distribution et accompagnement des artistes
         pour diffuser leurs chansons sur les plateformes musicales.
       </p>
+
     </a>
 
     <a class="card" href="marketplace.html">
+
       <h3>🛍️ Marketplace</h3>
+
       <p>
         Découvrez des produits proposés par différents vendeurs
         et développez votre activité commerciale.
       </p>
+
     </a>
 
     <a class="card" href="inscription.html">
+
       <h3>🌙 Moonlight Services</h3>
+
       <p>
         Découvrez une plateforme qui connecte les clients
         aux professionnels et prestataires de services.
         Trouvez des talents, explorez leurs offres
         et développez vos projets.
       </p>
+
       <strong>Découvrir la plateforme →</strong>
+
     </a>
 
   </div>
+
 </section>
 
 <!-- DETAILS DES SERVICES -->
+
 <section class="service-details">
 
   <div class="service-detail" id="reseaux-sociaux">
@@ -676,12 +753,19 @@
     <h3>Comment pouvons-nous vous aider ?</h3>
 
     <ul>
+
       <li>Création et optimisation de pages professionnelles</li>
+
       <li>Gestion de Facebook, Instagram, TikTok et WhatsApp</li>
+
       <li>Création et planification de contenus</li>
+
       <li>Développement de votre communauté</li>
+
       <li>Amélioration de votre visibilité en ligne</li>
+
       <li>Conseils en stratégie de communication</li>
+
     </ul>
 
     <a class="button"
@@ -705,11 +789,17 @@
     <h3>Comment pouvons-nous vous aider ?</h3>
 
     <ul>
+
       <li>Augmenter la portée de vos publications</li>
+
       <li>Donner plus de visibilité à vos contenus</li>
+
       <li>Promouvoir vos produits et services</li>
+
       <li>Atteindre une audience adaptée</li>
+
       <li>Accompagner vos campagnes publicitaires</li>
+
     </ul>
 
     <a class="button"
@@ -733,12 +823,19 @@
     <h3>Comment pouvons-nous vous aider ?</h3>
 
     <ul>
+
       <li>Promotion de vos produits</li>
+
       <li>Promotion de vos services</li>
+
       <li>Promotion d'événements</li>
+
       <li>Promotion d'artistes et de projets</li>
+
       <li>Campagnes de visibilité sur les réseaux sociaux</li>
+
       <li>Mise en avant de vos offres</li>
+
     </ul>
 
     <a class="button"
@@ -762,12 +859,19 @@
     <h3>Comment pouvons-nous vous aider ?</h3>
 
     <ul>
+
       <li>Élaboration d'une stratégie de communication</li>
+
       <li>Développement d'une stratégie de contenu</li>
+
       <li>Amélioration de votre image en ligne</li>
+
       <li>Positionnement de votre marque</li>
+
       <li>Conseils pour vos réseaux sociaux</li>
+
       <li>Accompagnement dans le développement de votre visibilité</li>
+
     </ul>
 
     <a class="button"
@@ -792,12 +896,19 @@
     <h3>Comment pouvons-nous vous aider ?</h3>
 
     <ul>
+
       <li>Préparation de votre sortie musicale</li>
+
       <li>Distribution de vos chansons sur les plateformes musicales</li>
+
       <li>Accompagnement lors de la mise en ligne</li>
+
       <li>Gestion des informations liées à votre sortie</li>
+
       <li>Suivi de votre sortie musicale</li>
+
       <li>Accompagnement après la sortie</li>
+
     </ul>
 
     <p>
@@ -818,6 +929,7 @@
 </section>
 
 <!-- PARTENARIATS -->
+
 <section class="about" id="partenariats">
 
   <h2>🤝 Partenariats et collaborations</h2>
@@ -834,13 +946,17 @@
     de projets capables de produire un impact positif.
   </p>
 
-  <a class="button" href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20proposer%20un%20partenariat." target="_blank" rel="noopener noreferrer">
+  <a class="button"
+     href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20proposer%20un%20partenariat."
+     target="_blank"
+     rel="noopener noreferrer">
     Proposer un partenariat
   </a>
 
 </section>
 
 <!-- RESEAUX SOCIAUX -->
+
 <section class="about" id="nos-reseaux">
 
   <h2>📱 Retrouvez Moonlight Digital</h2>
@@ -891,6 +1007,7 @@
 </section>
 
 <!-- POURQUOI MOONLIGHT DIGITAL -->
+
 <section class="about" id="pourquoi">
 
   <h2>Pourquoi Moonlight Digital ?</h2>
@@ -904,87 +1021,45 @@
 </section>
 
 <!-- CONTACT -->
+
 <section class="contact" id="contact">
 
   <h2>Contact</h2>
 
   <p>WhatsApp : +243 890 385 429</p>
 
-  <a class="button" href="https://wa.me/243890385429" target="_blank" rel="noopener noreferrer">
+  <a class="button"
+     href="https://wa.me/243890385429"
+     target="_blank"
+     rel="noopener noreferrer">
     Ouvrir WhatsApp
   </a>
 
 </section>
 
 <!-- FOOTER -->
+
 <footer>
+
   © 2026 Moonlight Digital — Tous droits réservés.
+
 </footer>
 
 <script>
 
 /* =====================================
-   ADMINISTRATION MOONLIGHT DIGITAL
+   ESPACE ADMINISTRATION MOONLIGHT DIGITAL
    ===================================== */
 
-const MOONLIGHT_SUPABASE_URL =
-  "https://lmyefbevtukmtoijjlja.supabase.co";
-
-const MOONLIGHT_SUPABASE_KEY =
-  "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
-
-const moonlightSupabase = window.supabase.createClient(
-  MOONLIGHT_SUPABASE_URL,
-  MOONLIGHT_SUPABASE_KEY
-);
+// Le bouton est toujours visible.
+// La véritable sécurité reste dans admin.html.
+// Aucun changement des autorisations Supabase.
 
 const adminMenuItem = document.getElementById("adminMenuItem");
 
-/* Vérification du statut administrateur */
-async function checkMoonlightAdmin() {
-
-  if (!adminMenuItem) return;
-
-  adminMenuItem.hidden = true;
-
-  try {
-
-    const { data: { user }, error: userError } =
-      await moonlightSupabase.auth.getUser();
-
-    if (userError || !user) return;
-
-    const { data: isAdmin, error: adminError } =
-      await moonlightSupabase.rpc("is_admin");
-
-    if (adminError) {
-      console.error("Erreur de vérification administrateur :", adminError);
-      return;
-    }
-
-    if (isAdmin === true) {
-      adminMenuItem.hidden = false;
-    }
-
-  } catch (error) {
-
-    console.error("Erreur administration :", error);
-    adminMenuItem.hidden = true;
-
-  }
+if (adminMenuItem) {
+  adminMenuItem.hidden = false;
 }
-
-/* Vérification au chargement */
-checkMoonlightAdmin();
-
-/* Actualisation après connexion ou déconnexion */
-moonlightSupabase.auth.onAuthStateChange(function(event, session) {
-
-  setTimeout(function() {
-    checkMoonlightAdmin();
-  }, 0);
-
-});
 
 
 /* SERVICE WORKER / PWA */
@@ -1027,11 +1102,13 @@ if (isIOS && !isStandalone && installBox) {
 /* MENU TROIS POINTS */
 
 const menuDots = document.getElementById("menuDots");
+
 const dropdownMenu = document.getElementById("dropdownMenu");
 
 function closeMenu() {
 
   dropdownMenu.classList.remove("active");
+
   menuDots.setAttribute("aria-expanded", "false");
 
 }
@@ -1086,13 +1163,18 @@ const translations = {
     "🤝 Partenariats": "🤝 Partnerships",
     "📱 Nos réseaux sociaux": "📱 Our social networks",
     "📞 Contact": "📞 Contact",
+    "🔐 ESPACE ADMINISTRATION": "🔐 ADMINISTRATION",
+
     "Votre visibilité. Notre stratégie.": "Your visibility. Our strategy.",
+
     "🎵 ESPACE ARTISTE": "🎵 ARTIST SPACE",
     "🛍️ MARKETPLACE": "🛍️ MARKETPLACE",
     "📰 MOONLIGHT MEDIA": "📰 MOONLIGHT MEDIA",
+
     "Faites grandir votre visibilité.": "Grow your visibility.",
 
     "Moonlight Digital accompagne les entrepreneurs, artistes et marques dans leur communication, leur visibilité et leur développement digital.":
+
     "Moonlight Digital supports entrepreneurs, artists and brands in their communication, visibility and digital development.",
 
     "Nous contacter": "Contact us",
@@ -1100,71 +1182,93 @@ const translations = {
     "🌙 À propos de Moonlight Digital": "🌙 About Moonlight Digital",
 
     "Moonlight Digital est une entreprise numérique qui accompagne les artistes, entrepreneurs, vendeurs et marques dans leur développement.":
+
     "Moonlight Digital is a digital company that supports artists, entrepreneurs, sellers and brands in their development.",
 
     "À travers la communication digitale, le marketing, la distribution musicale, les médias et les solutions numériques, nous contribuons à connecter les talents aux opportunités.":
+
     "Through digital communication, marketing, music distribution, media and digital solutions, we help connect talent with opportunities.",
 
     "🎯 Notre mission et notre vision": "🎯 Our mission and vision",
 
     "Notre mission est de rendre le numérique plus accessible aux talents, aux entreprises et aux entrepreneurs.":
+
     "Our mission is to make digital technology more accessible to talent, businesses and entrepreneurs.",
 
     "Notre vision est de faire de Moonlight Digital une référence du numérique en Afrique, en partant de la République démocratique du Congo, et de connecter les talents, les entreprises et les opportunités au monde entier.":
+
     "Our vision is to make Moonlight Digital a leading digital reference in Africa, starting in the Democratic Republic of the Congo, and connect talent, businesses and opportunities worldwide.",
 
     "Nos services": "Our services",
+
     "📱 Réseaux sociaux": "📱 Social networks",
 
     "Gestion et développement de vos pages Facebook, Instagram, TikTok et WhatsApp.":
+
     "Management and growth of your Facebook, Instagram, TikTok and WhatsApp pages.",
 
     "📈 Boostage": "📈 Promotion boosts",
+
     "Augmentez la visibilité de vos publications et touchez davantage de personnes.":
+
     "Increase the visibility of your posts and reach more people.",
 
     "🎯 Promotion": "🎯 Promotion",
 
     "Promotion de vos produits, services, événements et projets.":
+
     "Promotion of your products, services, events and projects.",
 
     "💼 Communication digitale": "💼 Digital communication",
 
     "Stratégie de contenu et accompagnement pour développer votre présence en ligne.":
+
     "Content strategy and support to grow your online presence.",
 
     "🎵 Distribution musicale": "🎵 Music distribution",
 
     "Distribution et accompagnement des artistes pour diffuser leurs chansons sur les plateformes musicales.":
+
     "Distribution and support for artists to release their music on streaming platforms.",
 
     "Découvrez des produits proposés par différents vendeurs et développez votre activité commerciale.":
+
     "Discover products from different sellers and grow your business.",
 
     "Découvrez une plateforme qui connecte les clients aux professionnels et prestataires de services. Trouvez des talents, explorez leurs offres et développez vos projets.":
+
     "Discover a platform connecting customers with professionals and service providers. Find talent, explore their offers and develop your projects.",
 
     "Découvrir la plateforme →": "Discover the platform →",
+
     "Comment pouvons-nous vous aider ?": "How can we help you?",
+
     "Nous contacter sur WhatsApp": "Contact us on WhatsApp",
+
     "Proposer un partenariat": "Propose a partnership",
+
     "📱 Retrouvez Moonlight Digital": "📱 Follow Moonlight Digital",
 
     "Suivez les actualités de Moonlight Digital, nos nouveaux projets, nos services, nos opportunités et nos différentes réalisations.":
+
     "Follow Moonlight Digital news, our new projects, services, opportunities and achievements.",
 
     "Nos liens officiels sur les réseaux sociaux seront ajoutés dans cet espace.":
+
     "Our official social media links are available here.",
 
     "Pourquoi Moonlight Digital ?": "Why Moonlight Digital?",
 
     "Nous ne cherchons pas seulement des vues. Notre objectif est de vous aider à développer une véritable visibilité et à atteindre votre public.":
+
     "We don't just seek views. Our goal is to help you build real visibility and reach your audience.",
 
     "Ouvrir WhatsApp": "Open WhatsApp",
+
     "Contact": "Contact",
 
     "© 2026 Moonlight Digital — Tous droits réservés.":
+
     "© 2026 Moonlight Digital — All rights reserved.",
 
     "Choisir la langue": "Choose your language"
@@ -1174,35 +1278,65 @@ const translations = {
   ln: {
 
     "🌙 À propos": "🌙 Mpo na biso",
+
     "🎯 Notre mission et vision": "🎯 Mokano mpe ndoto na biso",
+
     "💼 Nos services": "💼 Misala na biso",
+
     "🌙 MOONLIGHT SERVICES": "🌙 MOONLIGHT SERVICES",
+
     "🤝 Partenariats": "🤝 Boyokani",
+
     "📱 Nos réseaux sociaux": "📱 Ba réseaux sociaux na biso",
+
     "📞 Contact": "📞 Kokutana na biso",
+
+    "🔐 ESPACE ADMINISTRATION": "🔐 ADMINISTRATION",
+
     "Votre visibilité. Notre stratégie.": "Komonana na yo. Mayele na biso.",
+
     "🎵 ESPACE ARTISTE": "🎵 ESIKA YA ARTISTE",
+
     "🛍️ MARKETPLACE": "🛍️ ZANDO",
+
     "📰 MOONLIGHT MEDIA": "📰 MOONLIGHT MEDIA",
+
     "Faites grandir votre visibilité.": "Bongisa komonana na yo.",
+
     "Nous contacter": "Solola na biso",
+
     "🌙 À propos de Moonlight Digital": "🌙 Mpo na Moonlight Digital",
+
     "🎯 Notre mission et notre vision": "🎯 Mokano mpe ndoto na biso",
+
     "Nos services": "Misala na biso",
+
     "📱 Réseaux sociaux": "📱 Ba réseaux sociaux",
+
     "📈 Boostage": "📈 Kobakisa komonana",
+
     "🎯 Promotion": "🎯 Promotion",
+
     "💼 Communication digitale": "💼 Communication digitale",
+
     "🎵 Distribution musicale": "🎵 Distribution ya miziki",
+
     "Comment pouvons-nous vous aider ?": "Ndenge nini tokoki kosalisa yo ?",
+
     "Nous contacter sur WhatsApp": "Solola na biso na WhatsApp",
+
     "Proposer un partenariat": "Proposer boyokani",
+
     "📱 Retrouvez Moonlight Digital": "📱 Landela Moonlight Digital",
+
     "Pourquoi Moonlight Digital ?": "Mpo na nini Moonlight Digital ?",
+
     "Ouvrir WhatsApp": "Fungola WhatsApp",
+
     "Contact": "Kokutana na biso",
 
     "© 2026 Moonlight Digital — Tous droits réservés.":
+
     "© 2026 Moonlight Digital — Makoki nyonso ebatelami.",
 
     "Choisir la langue": "Pona lokota"
@@ -1255,6 +1389,7 @@ function changeLanguage(language) {
     if (language === "fr") {
 
       node.nodeValue = original;
+
       return;
 
     }
@@ -1264,6 +1399,7 @@ function changeLanguage(language) {
     if (translated) {
 
       const leading = original.match(/^\s*/)[0];
+
       const trailing = original.match(/\s*$/)[0];
 
       node.nodeValue = leading + translated + trailing;
