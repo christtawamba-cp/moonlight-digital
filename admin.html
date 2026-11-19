@@ -411,7 +411,8 @@ Cliquez sur « Publier un article » pour ouvrir votre interface de gestion.
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
 
-const ADMIN_ID = "295c4fb1-6222-4bb5-9278-c55395f7d880";
+/* IDENTIFIANT CORRIGÉ DU COMPTE ADMINISTRATEUR CENTRAL */
+const ADMIN_ID = "813045a0-df38-4610-a5c5-1ad14a0fa47d";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -871,7 +872,6 @@ function renderProducts(products) {
 
       if(!product) return;
 
-      // Vérifier si des commandes sont liées au produit.
       const {count,error} = await db
         .from("orders")
         .select("id",{count:"exact",head:true})
