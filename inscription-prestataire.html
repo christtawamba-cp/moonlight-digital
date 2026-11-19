@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080808">
+
 <title>Devenir prestataire | Moonlight Services</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -17,7 +18,9 @@
   --line: #292929;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -147,7 +150,7 @@ button:disabled {
   border-radius: 8px;
   display: none;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .success {
@@ -188,6 +191,10 @@ footer {
   border-top: 1px solid var(--line);
 }
 
+.hidden {
+  display: none !important;
+}
+
 @media(max-width:480px) {
   .form-box {
     padding: 18px;
@@ -208,39 +215,56 @@ footer {
 
 <header>
   <div class="top">
+
     <a href="index.html" class="brand">
       MOONLIGHT DIGITAL
       <small>MOONLIGHT SERVICES</small>
     </a>
 
-    <a href="services.html" class="back">Retour aux services</a>
+    <a href="services.html" class="back">
+      Retour aux services
+    </a>
+
   </div>
 </header>
 
 <main>
 
 <section class="intro">
+
   <span>REJOIGNEZ NOTRE COMMUNAUTÉ</span>
+
   <h1>Devenez prestataire</h1>
+
   <p>
     Présentez vos compétences, proposez vos services
     et développez votre activité avec Moonlight Services.
   </p>
+
 </section>
 
-<div class="form-box">
+<!-- INSCRIPTION -->
+
+<div class="form-box" id="registerBox">
 
   <form id="registerForm">
 
-    <label for="name">Nom professionnel ou nom complet</label>
+    <label for="name">
+      Nom professionnel ou nom complet
+    </label>
+
     <input
       id="name"
       type="text"
       required
+      maxlength="100"
       placeholder="Ex : Studio Créatif"
     >
 
-    <label for="email">Adresse e-mail</label>
+    <label for="email">
+      Adresse e-mail
+    </label>
+
     <input
       id="email"
       type="email"
@@ -248,7 +272,10 @@ footer {
       placeholder="exemple@email.com"
     >
 
-    <label for="phone">Numéro de téléphone</label>
+    <label for="phone">
+      Numéro de téléphone
+    </label>
+
     <input
       id="phone"
       type="tel"
@@ -256,7 +283,10 @@ footer {
       placeholder="+243..."
     >
 
-    <label for="city">Ville</label>
+    <label for="city">
+      Ville
+    </label>
+
     <input
       id="city"
       type="text"
@@ -264,14 +294,21 @@ footer {
       placeholder="Ex : Kinshasa"
     >
 
-    <label for="bio">Présentez votre activité</label>
+    <label for="bio">
+      Présentez votre activité
+    </label>
+
     <textarea
       id="bio"
       required
+      maxlength="1000"
       placeholder="Décrivez vos compétences et votre expérience..."
     ></textarea>
 
-    <label for="password">Mot de passe</label>
+    <label for="password">
+      Mot de passe
+    </label>
+
     <input
       id="password"
       type="password"
@@ -280,7 +317,10 @@ footer {
       placeholder="Minimum 8 caractères"
     >
 
-    <label for="confirmPassword">Confirmer le mot de passe</label>
+    <label for="confirmPassword">
+      Confirmer le mot de passe
+    </label>
+
     <input
       id="confirmPassword"
       type="password"
@@ -299,22 +339,42 @@ footer {
 
   <div class="switch">
     Déjà inscrit ?
-    <a href="#connexion" id="showLogin">Se connecter</a>
+    <a href="#connexion" id="showLogin">
+      Se connecter
+    </a>
   </div>
 
 </div>
 
-<div class="form-box" id="loginBox" style="display:none;margin-top:20px">
+<!-- CONNEXION -->
+
+<div class="form-box hidden" id="loginBox" style="margin-top:20px">
 
   <h2>Connexion prestataire</h2>
 
   <form id="loginForm">
 
-    <label for="loginEmail">Adresse e-mail</label>
-    <input id="loginEmail" type="email" required>
+    <label for="loginEmail">
+      Adresse e-mail
+    </label>
 
-    <label for="loginPassword">Mot de passe</label>
-    <input id="loginPassword" type="password" required>
+    <input
+      id="loginEmail"
+      type="email"
+      required
+      placeholder="Votre adresse e-mail"
+    >
+
+    <label for="loginPassword">
+      Mot de passe
+    </label>
+
+    <input
+      id="loginPassword"
+      type="password"
+      required
+      placeholder="Votre mot de passe"
+    >
 
     <button type="submit" id="loginButton">
       Se connecter
@@ -329,13 +389,20 @@ footer {
 </main>
 
 <footer>
-© <span id="year"></span> Moonlight Digital — Moonlight Services
+  © <span id="year"></span> Moonlight Digital — Moonlight Services
 </footer>
 
 <script>
-const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 
-const SUPABASE_ANON_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+/* =====================================
+   CONFIGURATION SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+"https://lmyefbevtukmtoijjlja.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
@@ -343,109 +410,83 @@ const db = window.supabase.createClient(
 );
 
 document.getElementById("year").textContent =
-  new Date().getFullYear();
+new Date().getFullYear();
 
-const form = document.getElementById("registerForm");
-const message = document.getElementById("message");
-const button = document.getElementById("registerButton");
 
-const loginBox = document.getElementById("loginBox");
+/* =====================================
+   ÉLÉMENTS
+===================================== */
+
+const registerForm =
+document.getElementById("registerForm");
+
+const registerButton =
+document.getElementById("registerButton");
+
+const message =
+document.getElementById("message");
+
+const loginBox =
+document.getElementById("loginBox");
+
+const loginForm =
+document.getElementById("loginForm");
+
+const loginButton =
+document.getElementById("loginButton");
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+
+/* =====================================
+   AFFICHAGE DES MESSAGES
+===================================== */
 
 function showMessage(element, text, type) {
+
   element.className = "message " + type;
+
   element.textContent = text;
+
 }
 
-function getProfileData() {
-  return {
-    display_name: document.getElementById("name").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
-    city: document.getElementById("city").value.trim(),
-    bio: document.getElementById("bio").value.trim()
-  };
-}
 
-/*
-  Enregistrement du profil dans la table service_providers.
-  Le téléphone reste dans les métadonnées Auth,
-  car la table service_providers ne possède pas de colonne phone.
-*/
+/* =====================================
+   INSCRIPTION PRESTATAIRE
+===================================== */
 
-async function saveProvider(user, profile) {
-
-  const databaseProfile = {
-    display_name: profile.display_name,
-    city: profile.city,
-    bio: profile.bio
-  };
-
-  // Vérifier si le prestataire possède déjà un profil.
-
-  const { data: existing, error: searchError } = await db
-    .from("service_providers")
-    .select("id")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (searchError) {
-    throw searchError;
-  }
-
-  if (existing) {
-
-    // Mettre à jour le profil existant sans modifier son statut.
-
-    const { error } = await db
-      .from("service_providers")
-      .update(databaseProfile)
-      .eq("user_id", user.id);
-
-    if (error) {
-      throw error;
-    }
-
-  } else {
-
-    // Créer un nouveau profil en attente de validation.
-
-    const { error } = await db
-      .from("service_providers")
-      .insert({
-        user_id: user.id,
-        ...databaseProfile,
-        status: "pending"
-      });
-
-    if (error) {
-      throw error;
-    }
-  }
-
-  localStorage.removeItem("moonlight_pending_provider");
-
-  showMessage(
-    message,
-    "Votre profil a été envoyé avec succès. Il est maintenant en attente de validation par Moonlight Digital.",
-    "success"
-  );
-}
-
-/*
-  INSCRIPTION
-*/
-
-form.addEventListener("submit", async function(e) {
+registerForm.addEventListener("submit", async function(e) {
 
   e.preventDefault();
 
   message.className = "message";
 
-  button.disabled = true;
-  button.textContent = "Création du compte...";
+  registerButton.disabled = true;
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+  registerButton.textContent = "Création du compte...";
+
+  const displayName =
+  document.getElementById("name").value.trim();
+
+  const email =
+  document.getElementById("email").value.trim();
+
+  const phone =
+  document.getElementById("phone").value.trim();
+
+  const city =
+  document.getElementById("city").value.trim();
+
+  const bio =
+  document.getElementById("bio").value.trim();
+
+  const password =
+  document.getElementById("password").value;
+
+  const confirmPassword =
+  document.getElementById("confirmPassword").value;
+
 
   if (password !== confirmPassword) {
 
@@ -455,13 +496,15 @@ form.addEventListener("submit", async function(e) {
       "error"
     );
 
-    button.disabled = false;
-    button.textContent = "Créer mon compte prestataire";
+    registerButton.disabled = false;
+
+    registerButton.textContent =
+    "Créer mon compte prestataire";
 
     return;
+
   }
 
-  const profile = getProfileData();
 
   try {
 
@@ -472,55 +515,85 @@ form.addEventListener("submit", async function(e) {
       password: password,
 
       options: {
+
+        emailRedirectTo:
+        "https://christtawamba-cp.github.io/moonlight-digital/connexion.html",
+
         data: {
-          display_name: profile.display_name,
-          phone: profile.phone,
-          city: profile.city,
+
+          display_name: displayName,
+
+          phone: phone,
+
+          city: city,
+
+          bio: bio,
+
           account_type: "provider"
+
         }
+
       }
 
     });
+
 
     if (error) {
       throw error;
     }
 
     if (!data.user) {
-      throw new Error("Impossible de créer le compte.");
+
+      throw new Error(
+        "Impossible de créer votre compte."
+      );
+
     }
+
+
+    /* CAS 1 : SESSION IMMÉDIATE */
 
     if (data.session) {
 
-      await saveProvider(data.user, profile);
-
-    } else {
-
-      // Conserver les informations du prestataire
-      // jusqu'à la confirmation de son adresse e-mail.
-
-      localStorage.setItem(
-        "moonlight_pending_provider",
-        JSON.stringify(profile)
-      );
-
       showMessage(
         message,
-        "Votre compte a été créé. Consultez votre boîte e-mail pour confirmer votre adresse. Ensuite, revenez sur cette page et connectez-vous ci-dessous pour terminer la création de votre profil.",
-        "info"
+        "Votre compte est créé. Vérification de votre profil...",
+        "success"
       );
 
-      loginBox.style.display = "block";
+      window.location.href =
+      "espace-prestataire.html";
 
-      document.getElementById("loginEmail").value = email;
-
-      loginBox.scrollIntoView({
-        behavior: "smooth"
-      });
+      return;
 
     }
 
-  } catch(error) {
+
+    /* CAS 2 : CONFIRMATION PAR E-MAIL */
+
+    showMessage(
+      message,
+      "Félicitations ! Votre compte a été créé. Un e-mail de confirmation vient de vous être envoyé. Consultez votre boîte de réception, ouvrez le message de Supabase et confirmez votre adresse e-mail. Votre profil sera activé automatiquement.",
+      "success"
+    );
+
+    registerButton.textContent =
+    "E-mail de confirmation envoyé";
+
+    registerButton.disabled = true;
+
+    loginBox.classList.remove("hidden");
+
+    document.getElementById("loginEmail").value =
+    email;
+
+    loginBox.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+  catch(error) {
 
     console.error("Erreur inscription :", error);
 
@@ -530,25 +603,26 @@ form.addEventListener("submit", async function(e) {
       "error"
     );
 
-  } finally {
+    registerButton.disabled = false;
 
-    button.disabled = false;
-
-    button.textContent = "Créer mon compte prestataire";
+    registerButton.textContent =
+    "Créer mon compte prestataire";
 
   }
 
 });
 
-/*
-  AFFICHER LE FORMULAIRE DE CONNEXION
-*/
 
-document.getElementById("showLogin").addEventListener("click", function(e) {
+/* =====================================
+   AFFICHER LA CONNEXION
+===================================== */
+
+document.getElementById("showLogin")
+.addEventListener("click", function(e) {
 
   e.preventDefault();
 
-  loginBox.style.display = "block";
+  loginBox.classList.remove("hidden");
 
   loginBox.scrollIntoView({
     behavior: "smooth"
@@ -556,82 +630,145 @@ document.getElementById("showLogin").addEventListener("click", function(e) {
 
 });
 
-/*
-  CONNEXION ET FINALISATION DU PROFIL
-*/
 
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
+/* =====================================
+   CONNEXION PRESTATAIRE
+===================================== */
+
+loginForm.addEventListener("submit", async function(e) {
 
   e.preventDefault();
 
-  const loginButton = document.getElementById("loginButton");
-  const loginMessage = document.getElementById("loginMessage");
-
   loginButton.disabled = true;
+
   loginButton.textContent = "Connexion...";
 
   loginMessage.className = "message";
+
+
+  const email =
+  document.getElementById("loginEmail").value.trim();
+
+  const password =
+  document.getElementById("loginPassword").value;
+
 
   try {
 
     const { data, error } = await db.auth.signInWithPassword({
 
-      email: document.getElementById("loginEmail").value.trim(),
+      email: email,
 
-      password: document.getElementById("loginPassword").value
+      password: password
 
     });
+
 
     if (error) {
       throw error;
     }
 
-    const pending = localStorage.getItem(
-      "moonlight_pending_provider"
-    );
 
-    if (pending) {
+    const user = data.user;
 
-      const profile = JSON.parse(pending);
 
-      // Compléter les métadonnées si nécessaire.
+    /* VÉRIFIER LE TYPE DE COMPTE */
 
-      const { error: metadataError } = await db.auth.updateUser({
-        data: {
-          display_name: profile.display_name,
-          phone: profile.phone,
-          city: profile.city,
-          account_type: "provider"
-        }
-      });
+    if (user.user_metadata.account_type !== "provider") {
 
-      if (metadataError) {
-        throw metadataError;
-      }
+      await db.auth.signOut();
 
-      await saveProvider(data.user, profile);
-
-    } else {
-
-      showMessage(
-        loginMessage,
-        "Connexion réussie. Votre compte est connecté.",
-        "success"
+      throw new Error(
+        "Ce compte n'est pas enregistré comme compte prestataire."
       );
 
     }
 
-  } catch(error) {
+
+    /* VÉRIFIER LA CONFIRMATION DE L'E-MAIL */
+
+    if (!user.email_confirmed_at) {
+
+      await db.auth.signOut();
+
+      throw new Error(
+        "Veuillez confirmer votre adresse e-mail avant de vous connecter."
+      );
+
+    }
+
+
+    /* RÉCUPÉRER LE PROFIL */
+
+    const { data: provider, error: providerError } =
+    await db
+
+      .from("service_providers")
+
+      .select("id, status")
+
+      .eq("user_id", user.id)
+
+      .maybeSingle();
+
+
+    if (providerError) {
+      throw providerError;
+    }
+
+
+    if (!provider) {
+
+      throw new Error(
+        "Votre profil prestataire est introuvable. Contactez Moonlight Digital."
+      );
+
+    }
+
+
+    /* VÉRIFIER LE STATUT */
+
+    if (provider.status !== "active") {
+
+      await db.auth.signOut();
+
+      throw new Error(
+        "Votre compte n'est pas actif. Veuillez contacter Moonlight Digital."
+      );
+
+    }
+
+
+    /* CONNEXION RÉUSSIE */
+
+    showMessage(
+      loginMessage,
+      "Connexion réussie ! Bienvenue sur Moonlight Services.",
+      "success"
+    );
+
+    setTimeout(function() {
+
+      window.location.href =
+      "espace-prestataire.html";
+
+    }, 700);
+
+  }
+
+  catch(error) {
 
     console.error("Erreur connexion :", error);
 
     showMessage(
       loginMessage,
-      error.message || "Une erreur est survenue lors de la connexion.",
+      error.message || "Impossible de vous connecter.",
       "error"
     );
 
-  } finally {
+  }
+
+  finally {
 
     loginButton.disabled = false;
 
@@ -640,6 +777,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   }
 
 });
+
 </script>
 
 </body>
