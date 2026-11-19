@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Créer un compte client | Moonlight Services</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+  --bg:#080808;
+  --panel:#141414;
+  --gold:#d4af37;
+  --muted:#aaa;
+  --line:#292929;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:white;
+  font-family:Arial,sans-serif;
+}
+
+header {
+  padding:17px;
+  border-bottom:1px solid var(--line);
+  background:#090909;
+}
+
+.top {
+  max-width:850px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand {
+  color:var(--gold);
+  font-size:19px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.brand small {
+  display:block;
+  color:#ddd;
+  font-size:10px;
+  letter-spacing:3px;
+  margin-top:4px;
+}
+
+.back {
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+
+main {
+  max-width:550px;
+  margin:35px auto;
+  padding:0 16px 50px;
+}
+
+.intro {
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.intro span {
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:bold;
+}
+
+h1 {
+  font-size:29px;
+  margin:12px 0;
+}
+
+.intro p {
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.form-box {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:24px;
+}
+
+label {
+  display:block;
+  margin:16px 0 8px;
+  font-size:13px;
+  color:#ddd;
+}
+
+input {
+  width:100%;
+  padding:14px;
+  border:1px solid #383838;
+  background:#090909;
+  color:white;
+  border-radius:8px;
+  outline:none;
+  font-size:14px;
+}
+
+input:focus {
+  border-color:var(--gold);
+}
+
+button {
+  width:100%;
+  padding:15px;
+  margin-top:22px;
+  border:none;
+  border-radius:8px;
+  background:var(--gold);
+  color:black;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled {
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.message {
+  margin-top:18px;
+  padding:13px;
+  border-radius:8px;
+  display:none;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.success {
+  display:block;
+  background:#12351f;
+  color:#9df0b1;
+}
+
+.error {
+  display:block;
+  background:#421919;
+  color:#ffb2b2;
+}
+
+.info {
+  display:block;
+  background:#25210f;
+  color:#f1d77b;
+}
+
+.switch {
+  text-align:center;
+  margin-top:22px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.switch a {
+  color:var(--gold);
+  text-decoration:none;
+}
+
+footer {
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:12px;
+  border-top:1px solid var(--line);
+}
+
+@media(max-width:480px) {
+  .form-box {
+    padding:18px;
+  }
+
+  h1 {
+    font-size:25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+    <a href="index.html" class="brand">
+      MOONLIGHT DIGITAL
+      <small>MOONLIGHT SERVICES</small>
+    </a>
+
+    <a href="services.html" class="back">
+      Retour aux services
+    </a>
+  </div>
+</header>
+
+<main>
+
+<section class="intro">
+  <span>BIENVENUE CHEZ MOONLIGHT SERVICES</span>
+
+  <h1>Créer un compte client</h1>
+
+  <p>
+    Inscrivez-vous pour découvrir nos prestataires,
+    commander des services et suivre vos commandes.
+  </p>
+</section>
+
+<div class="form-box">
+
+  <form id="registerForm">
+
+    <label for="name">Nom complet</label>
+    <input
+      id="name"
+      type="text"
+      required
+      placeholder="Votre nom complet"
+    >
+
+    <label for="email">Adresse e-mail</label>
+    <input
+      id="email"
+      type="email"
+      required
+      placeholder="exemple@email.com"
+    >
+
+    <label for="phone">Numéro de téléphone</label>
+    <input
+      id="phone"
+      type="tel"
+      required
+      placeholder="+243..."
+    >
+
+    <label for="password">Mot de passe</label>
+    <input
+      id="password"
+      type="password"
+      required
+      minlength="8"
+      placeholder="Minimum 8 caractères"
+    >
+
+    <label for="confirmPassword">Confirmer le mot de passe</label>
+    <input
+      id="confirmPassword"
+      type="password"
+      required
+      minlength="8"
+      placeholder="Confirmez votre mot de passe"
+    >
+
+    <button id="registerButton" type="submit">
+      Créer mon compte client
+    </button>
+
+  </form>
+
+  <div id="message" class="message"></div>
+
+  <div class="switch">
+    Déjà inscrit ?
+    <a href="connexion.html">Se connecter</a>
+  </div>
+
+</div>
+
+</main>
+
+<footer>
+© <span id="year"></span> Moonlight Digital — Moonlight Services
+</footer>
+
+<script>
+
+const SUPABASE_URL =
+"https://lmyefbevtukmtoijjlja.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+const form = document.getElementById("registerForm");
+const message = document.getElementById("message");
+const button = document.getElementById("registerButton");
+
+function showMessage(text,type) {
+  message.className = "message " + type;
+  message.textContent = text;
+}
+
+form.addEventListener("submit",async function(e) {
+
+  e.preventDefault();
+
+  button.disabled = true;
+  button.textContent = "Création du compte...";
+
+  message.className = "message";
+
+  const name =
+  document.getElementById("name").value.trim();
+
+  const email =
+  document.getElementById("email").value.trim();
+
+  const phone =
+  document.getElementById("phone").value.trim();
+
+  const password =
+  document.getElementById("password").value;
+
+  const confirmPassword =
+  document.getElementById("confirmPassword").value;
+
+  if(password !== confirmPassword) {
+
+    showMessage(
+      "Les mots de passe ne correspondent pas.",
+      "error"
+    );
+
+    button.disabled = false;
+    button.textContent = "Créer mon compte client";
+
+    return;
+  }
+
+  try {
+
+    const {data,error} = await db.auth.signUp({
+
+      email:email,
+
+      password:password,
+
+      options:{
+        data:{
+          display_name:name,
+          phone:phone,
+          account_type:"client"
+        }
+      }
+
+    });
+
+    if(error) throw error;
+
+    if(!data.user) {
+      throw new Error("Impossible de créer votre compte.");
+    }
+
+    if(data.session) {
+
+      showMessage(
+        "Félicitations ! Votre compte client a été créé avec succès. Vous pouvez maintenant accéder aux services Moonlight.",
+        "success"
+      );
+
+    } else {
+
+      showMessage(
+        "Votre compte a été créé ! Consultez votre boîte e-mail pour confirmer votre adresse. Après confirmation, vous pourrez vous connecter à Moonlight Services.",
+        "info"
+      );
+
+    }
+
+    form.reset();
+
+  } catch(error) {
+
+    console.error("Erreur inscription client :",error);
+
+    showMessage(
+      error.message || "Une erreur est survenue.",
+      "error"
+    );
+
+  } finally {
+
+    button.disabled = false;
+    button.textContent = "Créer mon compte client";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
