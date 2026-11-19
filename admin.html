@@ -16,6 +16,7 @@ header p{color:#cbd5e1}
 main{max-width:1200px;margin:25px auto;padding:15px}
 .panel{background:white;padding:20px;border-radius:12px;margin-bottom:20px}
 input,button,select{padding:12px;border-radius:7px;border:1px solid #ddd}
+input{max-width:100%}
 button{background:#172b4d;color:white;border:0;cursor:pointer}
 button:disabled{opacity:.6;cursor:not-allowed}
 .release,.item-card{border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin:15px 0;background:white}
@@ -65,6 +66,14 @@ th{background:#f8fafc}
 .management-tabs button.active{background:#172b4d;color:white}
 .badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#eef2ff;color:#3730a3;font-size:12px}
 .empty-state{padding:20px;text-align:center;color:#667085}
+
+.login-box{max-width:430px;margin:20px auto;padding:15px}
+.login-box h2{text-align:center;color:#b68b27}
+.login-box input{width:100%;margin:8px 0 18px}
+.login-box button{width:100%;padding:14px}
+.login-logo{text-align:center;font-size:45px}
+.login-footer{text-align:center;font-size:12px;color:#888;margin-top:25px}
+
 @media(max-width:600px){
 header{padding:18px}
 main{padding:10px}
@@ -370,7 +379,9 @@ Cliquez sur « Publier un article » pour ouvrir votre interface de gestion.
 <script>
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
-const ADMIN_ID = "813045a0-df38-4610-a5c5-1ad14a0fa47d";
+
+/* IDENTIFIANT DE L'ADMINISTRATEUR GÉNÉRAL */
+const ADMIN_ID = "fe4ef189-b4ad-454b-aa06-10ed47028254";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -448,9 +459,205 @@ async function countTable(table, column = "id", filters = []) {
   return {value:count ?? 0,error:null};
 }
 
+/* =========================================
+   CONNEXION DIRECTE ADMINISTRATEUR GÉNÉRAL
+========================================= */
+
+function showAdminLogin(errorText = "") {
+  dashboard.classList.add("hidden");
+  loading.classList.remove("hidden");
+
+  loading.innerHTML = `
+    <div class="login-box">
+
+      <div class="login-logo">🌙</div>
+
+      <h2>Administration</h2>
+
+      <p style="text-align:center;">
+        Connectez-vous à votre espace administrateur général.
+      </p>
+
+      ${errorText ? `
+        <div class="error" style="
+          background:#fee2e2;
+          padding:12px;
+          border-radius:8px;
+          margin-bottom:15px;
+        ">${escapeHTML(errorText)}</div>
+      ` : ""}
+
+      <form id="adminLoginForm">
+
+        <label for="adminEmail"><strong>Adresse e-mail</strong></label>
+
+        <input
+          type="email"
+          id="adminEmail"
+          placeholder="Votre adresse e-mail"
+          autocomplete="username"
+          required
+        >
+
+        <label for="adminPassword"><strong>Mot de passe</strong></label>
+
+        <input
+          type="password"
+          id="adminPassword"
+          placeholder="Votre mot de passe"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit" id="adminLoginButton">
+          🔐 Se connecter
+        </button>
+
+        <p id="adminLoginMessage" class="message"></p>
+
+      </form>
+
+      <div class="login-footer">
+        Moonlight Digital — Accès réservé à l'administration générale.
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("adminLoginForm").addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+    const email = document.getElementById("adminEmail").value.trim();
+    const password = document.getElementById("adminPassword").value;
+
+    const button = document.getElementById("adminLoginButton");
+    const loginMessage = document.getElementById("adminLoginMessage");
+
+    button.disabled = true;
+    button.textContent = "Vérification en cours...";
+    loginMessage.textContent = "";
+
+    try {
+
+      const {data,error} = await db.auth.signInWithPassword({
+        email:email,
+        password:password
+      });
+
+      if(error) {
+
+        loginMessage.className = "message error";
+        loginMessage.textContent = "Connexion impossible : " + error.message;
+
+        button.disabled = false;
+        button.textContent = "🔐 Se connecter";
+
+        return;
+      }
+
+      if(!data.user || data.user.id !== ADMIN_ID) {
+
+        await db.auth.signOut();
+
+        showAdminLogin(
+          "Accès refusé : ce compte n'est pas autorisé à accéder à l'administration générale."
+        );
+
+        return;
+      }
+
+      await openAdminDashboard(data.user);
+
+    } catch(error) {
+
+      loginMessage.className = "message error";
+      loginMessage.textContent = "Une erreur est survenue : " + error.message;
+
+      button.disabled = false;
+      button.textContent = "🔐 Se connecter";
+
+    }
+
+  });
+}
+
+/* OUVERTURE DU TABLEAU DE BORD */
+
+async function openAdminDashboard(user) {
+
+  if(!user || user.id !== ADMIN_ID) {
+
+    await db.auth.signOut();
+
+    showAdminLogin("Accès refusé.");
+
+    return;
+  }
+
+  currentAdminId = user.id;
+
+  loading.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+
+  await Promise.all([
+    loadDashboardStats(),
+    loadReleases()
+  ]);
+
+}
+
+/* VÉRIFICATION DE LA SESSION */
+
+async function initialize() {
+
+  loading.textContent = "Vérification de votre accès...";
+
+  try {
+
+    const {data,error} = await db.auth.getSession();
+
+    if(error) {
+
+      showAdminLogin("Erreur de connexion : " + error.message);
+
+      return;
+    }
+
+    const session = data.session;
+
+    if(!session) {
+
+      showAdminLogin();
+
+      return;
+    }
+
+    if(session.user.id !== ADMIN_ID) {
+
+      await db.auth.signOut();
+
+      showAdminLogin(
+        "Accès refusé : ce compte n'est pas autorisé à accéder à l'administration générale."
+      );
+
+      return;
+    }
+
+    await openAdminDashboard(session.user);
+
+  } catch(error) {
+
+    showAdminLogin("Une erreur est survenue : " + error.message);
+
+  }
+
+}
+
 /* STATISTIQUES */
 
 async function loadDashboardStats() {
+
   const ids = [
     "statUsers","statArtists","statReleases","statProducts",
     "statOrders","statSellers","statPosts","statSales",
@@ -461,6 +668,7 @@ async function loadDashboardStats() {
   ids.forEach(id => setStat(id,"Chargement..."));
 
   const results = await Promise.all([
+
     countTable("profiles"),
     countTable("artists"),
     countTable("releases"),
@@ -472,13 +680,16 @@ async function loadDashboardStats() {
     countTable("service_providers"),
     countTable("services"),
     countTable("service_orders")
+
   ]);
 
   const [users,artists,releases,products,orders,sellers,posts,salesResult,providers,services,serviceOrders] = results;
 
   function displayCount(id,result) {
+
     if(result.error) setStat(id,"Non disponible",true);
     else setStat(id,result.value);
+
   }
 
   displayCount("statUsers",users);
@@ -493,73 +704,41 @@ async function loadDashboardStats() {
   displayCount("statServiceOrders",serviceOrders);
 
   if(salesResult.error) {
+
     setStat("statSales","Non disponible",true);
     setStat("statRevenue","Non disponible",true);
+
   } else {
+
     const sales = salesResult.data || [];
     const revenue = sales.reduce((sum,s) => sum + Number(s.sale_amount || 0),0);
+
     setStat("statSales",sales.length);
     setStat("statRevenue",money(revenue));
+
   }
 
   document.getElementById("statsMessage").textContent =
     "Dernière actualisation : " + new Date().toLocaleString("fr-FR");
-}
 
-/* INITIALISATION ET ACCÈS ADMIN */
-
-async function initialize() {
-  loading.textContent = "Vérification de votre accès...";
-
-  try {
-    const {data,error} = await db.auth.getSession();
-
-    if(error) {
-      loading.innerHTML = '<p class="error">Erreur de connexion : '+escapeHTML(error.message)+'</p>';
-      return;
-    }
-
-    const session = data.session;
-
-    if(!session) {
-      loading.innerHTML = '<p class="error">Vous devez vous connecter pour accéder à cette page.</p><p><a href="espace-artiste.html">Se connecter</a></p>';
-      return;
-    }
-
-    const userId = session.user.id;
-
-    if(userId !== ADMIN_ID) {
-      loading.innerHTML = '<p class="error">Accès refusé : ce compte n’est pas autorisé à accéder à l’administration.</p>';
-      return;
-    }
-
-    currentAdminId = userId;
-    loading.classList.add("hidden");
-    dashboard.classList.remove("hidden");
-
-    await Promise.all([
-      loadDashboardStats(),
-      loadReleases()
-    ]);
-
-  } catch(error) {
-    loading.innerHTML = '<p class="error">Une erreur est survenue : '+escapeHTML(error.message)+'</p>';
-  }
 }
 
 /* NAVIGATION PRINCIPALE */
 
 function showSection(section) {
+
   currentSection = section;
 
   const sections = ["home","music","market","services","manage","media"];
 
   sections.forEach(name => {
+
     const element = document.getElementById(name + "Section");
     const tab = document.getElementById(name + "Tab");
 
     if(element) element.classList.toggle("hidden",name !== section);
     if(tab) tab.classList.toggle("active",name === section);
+
   });
 
   if(section === "home") loadDashboardStats();
@@ -567,6 +746,7 @@ function showSection(section) {
   if(section === "music") loadReleases();
   if(section === "services") loadMoonlightServices();
   if(section === "manage") loadManagement();
+
 }
 
 document.getElementById("homeTab").addEventListener("click",() => showSection("home"));
@@ -577,6 +757,7 @@ document.getElementById("manageTab").addEventListener("click",() => showSection(
 document.getElementById("mediaTab").addEventListener("click",() => showSection("media"));
 
 document.getElementById("refresh").addEventListener("click",async () => {
+
   if(currentSection === "music") await loadReleases();
   else if(currentSection === "market") await loadMarketplace();
   else if(currentSection === "services") await loadMoonlightServices();
@@ -584,22 +765,32 @@ document.getElementById("refresh").addEventListener("click",async () => {
   else await loadDashboardStats();
 
   showMessage("Actualisation terminée.");
+
 });
 
+/* DÉCONNEXION */
+
 document.getElementById("logout").addEventListener("click",async () => {
+
   await db.auth.signOut();
-  window.location.href = "espace-artiste.html";
+
+  window.location.href = "admin.html";
+
 });
 
 /* SOUS-SECTIONS GESTION */
 
 function showManageSection(section) {
+
   const sections = ["products","orders","artists","users"];
 
   sections.forEach(name => {
+
     document.getElementById(name + "ManageSection").classList.toggle("hidden",name !== section);
     document.getElementById(name + "ManageTab").classList.toggle("active",name === section);
+
   });
+
 }
 
 document.getElementById("productsManageTab").addEventListener("click",() => {
@@ -629,7 +820,9 @@ async function loadManagement() {
 /* SUPPRESSION */
 
 async function deleteRecord(table,id,label) {
+
   const confirmed = confirm("ATTENTION !\n\nVoulez-vous vraiment supprimer : "+label+" ?\n\nCette action est définitive.");
+
   if(!confirmed) return false;
 
   showMessage("Suppression en cours...");
@@ -637,36 +830,48 @@ async function deleteRecord(table,id,label) {
   const {error} = await db.from(table).delete().eq("id",id);
 
   if(error) {
+
     showMessage("Suppression impossible : "+error.message,"error");
+
     return false;
   }
 
   showMessage(label+" supprimé avec succès.");
+
   return true;
+
 }
 
 /* PRODUITS */
 
 async function loadProducts() {
+
   const container = document.getElementById("productsList");
   container.textContent = "Chargement des produits...";
 
   const {data,error} = await db.from("products").select("*").order("created_at",{ascending:false});
 
   if(error) {
+
     container.innerHTML = '<p class="error">Erreur de chargement : '+escapeHTML(error.message)+'</p>';
+
     return;
   }
 
   productsCache = data || [];
+
   renderProducts(productsCache);
+
 }
 
 function renderProducts(products) {
+
   const container = document.getElementById("productsList");
 
   if(!products.length) {
+
     container.innerHTML = emptyMessage("Aucun produit enregistré.");
+
     return;
   }
 
@@ -686,76 +891,106 @@ function renderProducts(products) {
   `).join("");
 
   container.querySelectorAll("[data-delete-product]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.deleteProduct;
       const product = productsCache.find(p => p.id === id);
+
       if(!product) return;
 
       const {count,error} = await db.from("orders").select("id",{count:"exact",head:true}).eq("product_id",id);
 
       if(error) {
+
         showMessage("Impossible de vérifier les commandes liées : "+error.message,"error");
+
         return;
       }
 
       if(count > 0) {
+
         alert("Ce produit possède encore "+count+" commande(s).\n\nSupprimez d'abord les commandes liées.");
+
         return;
       }
 
       button.disabled = true;
+
       const success = await deleteRecord("products",id,product.name);
+
       button.disabled = false;
 
       if(success) {
+
         await loadProducts();
         await loadDashboardStats();
+
       }
+
     });
+
   });
+
 }
 
 document.getElementById("productsSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
+
   renderProducts(productsCache.filter(product =>
     [product.name,product.category,product.description,product.status]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 /* COMMANDES MARKETPLACE */
 
 async function loadOrders() {
+
   const container = document.getElementById("ordersList");
   container.textContent = "Chargement des commandes...";
 
   const [ordersResult,productsResult] = await Promise.all([
+
     db.from("orders").select("*").order("created_at",{ascending:false}),
     db.from("products").select("id,name")
+
   ]);
 
   if(ordersResult.error) {
+
     container.innerHTML = '<p class="error">Erreur : '+escapeHTML(ordersResult.error.message)+'</p>';
+
     return;
   }
 
   if(productsResult.error) {
+
     container.innerHTML = '<p class="error">Impossible de charger les produits associés : '+escapeHTML(productsResult.error.message)+'</p>';
+
     return;
   }
 
   const productMap = {};
+
   (productsResult.data || []).forEach(product => productMap[product.id] = product.name);
 
   ordersCache = ordersResult.data || [];
+
   renderOrders(ordersCache,productMap);
+
 }
 
 function renderOrders(orders,productMap = {}) {
+
   const container = document.getElementById("ordersList");
 
   if(!orders.length) {
+
     container.innerHTML = emptyMessage("Aucune commande enregistrée.");
+
     return;
   }
 
@@ -781,55 +1016,75 @@ function renderOrders(orders,productMap = {}) {
   `).join("");
 
   container.querySelectorAll("[data-delete-order]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.deleteOrder;
       const order = ordersCache.find(o => o.id === id);
+
       if(!order) return;
 
       button.disabled = true;
+
       const success = await deleteRecord("orders",id,"la commande #"+id.slice(0,8));
+
       button.disabled = false;
 
       if(success) {
+
         await loadOrders();
         await loadDashboardStats();
         await loadProducts();
+
       }
+
     });
+
   });
+
 }
 
 document.getElementById("ordersSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
 
   renderOrders(ordersCache.filter(order =>
     [order.id,order.buyer_name,order.buyer_phone,order.buyer_address,order.status]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 /* ARTISTES */
 
 async function loadArtists() {
+
   const container = document.getElementById("artistsList");
   container.textContent = "Chargement des artistes...";
 
   const {data,error} = await db.from("artists").select("*").order("created_at",{ascending:false});
 
   if(error) {
+
     container.innerHTML = '<p class="error">Erreur : '+escapeHTML(error.message)+'</p>';
+
     return;
   }
 
   artistsCache = data || [];
+
   renderArtists(artistsCache);
+
 }
 
 function renderArtists(artists) {
+
   const container = document.getElementById("artistsList");
 
   if(!artists.length) {
+
     container.innerHTML = emptyMessage("Aucun profil artiste enregistré.");
+
     return;
   }
 
@@ -848,9 +1103,12 @@ function renderArtists(artists) {
   `).join("");
 
   container.querySelectorAll("[data-delete-artist]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.deleteArtist;
       const artist = artistsCache.find(a => a.id === id);
+
       if(!artist) return;
 
       const confirmed = confirm("ATTENTION !\n\nVoulez-vous supprimer le profil de "+(artist.artist_name || "cet artiste")+" ?\n\nLes morceaux associés à ce profil dans tracks seront également supprimés automatiquement.\n\nLe profil utilisateur dans profiles ne sera pas supprimé.");
@@ -858,56 +1116,75 @@ function renderArtists(artists) {
       if(!confirmed) return;
 
       button.disabled = true;
+
       const {error} = await db.from("artists").delete().eq("id",id);
+
       button.disabled = false;
 
       if(error) {
+
         showMessage("Erreur : "+error.message,"error");
+
         return;
       }
 
       showMessage("Profil artiste supprimé avec succès.");
+
       await loadArtists();
       await loadDashboardStats();
+
     });
+
   });
+
 }
 
 document.getElementById("artistsSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
 
   renderArtists(artistsCache.filter(artist =>
     [artist.artist_name,artist.bio,artist.user_id]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 /* UTILISATEURS */
 
 async function loadUsers() {
+
   const container = document.getElementById("usersList");
   container.textContent = "Chargement des utilisateurs...";
 
   const {data,error} = await db.from("profiles").select("*").order("created_at",{ascending:false});
 
   if(error) {
+
     container.innerHTML = '<p class="error">Erreur : '+escapeHTML(error.message)+'</p>';
+
     return;
   }
 
   usersCache = data || [];
+
   renderUsers(usersCache);
+
 }
 
 function renderUsers(users) {
+
   const container = document.getElementById("usersList");
 
   if(!users.length) {
+
     container.innerHTML = emptyMessage("Aucun utilisateur enregistré.");
+
     return;
   }
 
   container.innerHTML = users.map(user => {
+
     const isAdmin = user.id === currentAdminId;
 
     return `
@@ -924,10 +1201,13 @@ function renderUsers(users) {
         </div>
       </div>
     `;
+
   }).join("");
 
   container.querySelectorAll("[data-delete-user]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.deleteUser;
       const user = usersCache.find(u => u.id === id);
 
@@ -940,50 +1220,66 @@ function renderUsers(users) {
       if(!confirmed) return;
 
       button.disabled = true;
+
       const {error} = await db.from("profiles").delete().eq("id",id);
+
       button.disabled = false;
 
       if(error) {
+
         showMessage("Erreur : "+error.message,"error");
+
         return;
       }
 
       showMessage("Profil utilisateur supprimé avec succès.");
+
       await loadUsers();
       await loadArtists();
       await loadDashboardStats();
+
     });
+
   });
+
 }
 
 document.getElementById("usersSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
 
   renderUsers(usersCache.filter(user =>
     [user.full_name,user.artist_name,user.phone,user.country,user.role,user.id]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 /* GESTION MUSICALE */
 
 async function loadReleases() {
+
   const releasesDiv = document.getElementById("releases");
   releasesDiv.innerHTML = "Chargement des projets...";
 
   const {data:releases,error} = await db.from("releases").select("*").order("created_at",{ascending:false});
 
   if(error) {
+
     releasesDiv.innerHTML = '<p class="error">Erreur : '+escapeHTML(error.message)+'</p>';
+
     return;
   }
 
   if(!releases || releases.length === 0) {
+
     releasesDiv.innerHTML = "Aucun projet reçu pour le moment.";
+
     return;
   }
 
   const {data:profiles} = await db.from("profiles").select("id,full_name,artist_name");
+
   const profileMap = {};
 
   (profiles || []).forEach(p => profileMap[p.id] = p);
@@ -991,23 +1287,32 @@ async function loadReleases() {
   releasesDiv.innerHTML = "";
 
   for(const release of releases) {
+
     const profile = profileMap[release.user_id] || {};
+
     const artist = profile.artist_name || release.artist_name || profile.full_name || "Artiste";
 
     let audioHTML = "Audio non disponible";
     let coverHTML = "";
 
     if(release.audio_path) {
+
       const {data} = await db.storage.from("releases-audio").createSignedUrl(release.audio_path,3600);
+
       if(data?.signedUrl) audioHTML = '<audio controls src="'+escapeHTML(data.signedUrl)+'"></audio>';
+
     }
 
     if(release.cover_path) {
+
       const {data} = await db.storage.from("releases-covers").createSignedUrl(release.cover_path,3600);
+
       if(data?.signedUrl) coverHTML = '<img class="cover" src="'+escapeHTML(data.signedUrl)+'" alt="Pochette">';
+
     }
 
     const card = document.createElement("div");
+
     card.className = "release";
 
     card.innerHTML = `
@@ -1031,51 +1336,69 @@ async function loadReleases() {
 
     const select = card.querySelector("select");
     const saveButton = card.querySelector("button");
+
     select.value = release.status || "pending";
 
     saveButton.addEventListener("click",async () => {
+
       saveButton.disabled = true;
       saveButton.textContent = "Enregistrement...";
 
       const {error:updateError} = await db.from("releases").update({status:select.value}).eq("id",release.id);
 
       if(updateError) {
+
         showMessage("Erreur : "+updateError.message,"error");
+
       } else {
+
         showMessage("Statut du projet mis à jour !");
+
         card.querySelector(".status").textContent = select.value;
+
       }
 
       saveButton.disabled = false;
       saveButton.textContent = "Enregistrer le statut";
+
     });
 
     releasesDiv.appendChild(card);
+
   }
+
 }
 
 /* MARKETPLACE */
 
 async function loadMarketplace() {
+
   showMessage("Chargement des données de la marketplace...");
 
   const [sellersResult,salesResult] = await Promise.all([
+
     db.from("public_seller_profiles").select("id,shop_name,whatsapp,physical_address"),
     db.from("seller_sales").select("*").order("created_at",{ascending:false})
+
   ]);
 
   if(sellersResult.error) {
+
     showMessage("Erreur vendeurs : "+sellersResult.error.message,"error");
+
     return;
   }
 
   if(salesResult.error) {
+
     showMessage("Erreur ventes : "+salesResult.error.message,"error");
+
     return;
   }
 
   const sellers = sellersResult.data || [];
   const sales = salesResult.data || [];
+
   const sellerMap = {};
 
   sellers.forEach(s => sellerMap[s.id] = s);
@@ -1084,6 +1407,7 @@ async function loadMarketplace() {
   document.getElementById("salesCount").textContent = sales.length;
 
   document.getElementById("sellersTable").innerHTML = sellers.length
+
     ? sellers.map(s => `
       <tr>
         <td>${escapeHTML(s.shop_name || "Sans nom")}</td>
@@ -1091,9 +1415,11 @@ async function loadMarketplace() {
         <td>${escapeHTML(s.physical_address || "Non renseignée")}</td>
       </tr>
     `).join("")
+
     : '<tr><td colspan="3">Aucun vendeur inscrit.</td></tr>';
 
   const revenue = sales.reduce((sum,s) => sum + Number(s.sale_amount || 0),0);
+
   const commission = sales.reduce((sum,s) => sum + Number(s.commission || 0),0);
 
   const paid = sales.filter(s => s.payment_status === "paid")
@@ -1108,7 +1434,9 @@ async function loadMarketplace() {
   document.getElementById("unpaidCommission").textContent = money(unpaid);
 
   document.getElementById("salesTable").innerHTML = sales.length
+
     ? sales.map(s => {
+
       const seller = sellerMap[s.seller_id] || {};
       const isPaid = s.payment_status === "paid";
 
@@ -1125,14 +1453,19 @@ async function loadMarketplace() {
           <td>${isPaid ? "—" : `<button class="pay-button" onclick="markAsPaid('${escapeHTML(s.id)}')">Marquer payée</button>`}</td>
         </tr>
       `;
+
     }).join("")
+
     : '<tr><td colspan="9">Aucune vente déclarée.</td></tr>';
 
   showMessage("Données de la marketplace actualisées.");
+
 }
 
 async function markAsPaid(saleId) {
+
   const confirmed = confirm("Confirmer que Moonlight Digital a réellement reçu cette commission ?");
+
   if(!confirmed) return;
 
   const {error} = await db.from("seller_sales")
@@ -1141,12 +1474,16 @@ async function markAsPaid(saleId) {
     .eq("payment_status","unpaid");
 
   if(error) {
+
     showMessage("Erreur : "+error.message,"error");
+
     return;
   }
 
   showMessage("Commission marquée comme payée.");
+
   await loadMarketplace();
+
 }
 
 /* =================================
@@ -1154,28 +1491,37 @@ async function markAsPaid(saleId) {
 ================================= */
 
 function serviceStatusOptions(current,values) {
+
   return values.map(value =>
     `<option value="${value}" ${current === value ? "selected" : ""}>${value}</option>`
   ).join("");
+
 }
 
 async function loadMoonlightServices() {
+
   showMessage("Chargement de Moonlight Services...");
 
   const results = await Promise.all([
+
     db.from("service_categories").select("*").order("created_at",{ascending:false}),
     db.from("service_providers").select("*").order("created_at",{ascending:false}),
     db.from("services").select("*").order("created_at",{ascending:false}),
     db.from("service_orders").select("*").order("created_at",{ascending:false})
+
   ]);
 
   const names = ["catégories","prestataires","services","commandes"];
 
   for(let i=0;i<results.length;i++) {
+
     if(results[i].error) {
+
       showMessage("Erreur de chargement des "+names[i]+" : "+results[i].error.message,"error");
+
       return;
     }
+
   }
 
   serviceCategoriesCache = results[0].data || [];
@@ -1194,16 +1540,19 @@ async function loadMoonlightServices() {
   renderServiceCommissionStats();
 
   showMessage("Moonlight Services actualisé.");
+
 }
 
 /* COMMISSIONS PAR DEVISE */
 
 function renderServiceCommissionStats() {
+
   const total = {};
   const paid = {};
   const unpaid = {};
 
   serviceOrdersCache.forEach(order => {
+
     const currency = order.currency || "USD";
     const amount = Number(order.commission_amount || 0);
 
@@ -1216,27 +1565,35 @@ function renderServiceCommissionStats() {
     if(order.payment_status === "unpaid") {
       unpaid[currency] = (unpaid[currency] || 0) + amount;
     }
+
   });
 
   function formatTotals(object) {
+
     const entries = Object.entries(object);
+
     return entries.length
       ? entries.map(([currency,amount]) => serviceMoney(amount,currency)).join(" / ")
       : "0";
+
   }
 
   document.getElementById("serviceCommissionTotal").textContent = formatTotals(total);
   document.getElementById("serviceCommissionPaid").textContent = formatTotals(paid);
   document.getElementById("serviceCommissionUnpaid").textContent = formatTotals(unpaid);
+
 }
 
 /* CATÉGORIES */
 
 function renderServiceCategories() {
+
   const container = document.getElementById("serviceCategoriesList");
 
   if(!serviceCategoriesCache.length) {
+
     container.innerHTML = emptyMessage("Aucune catégorie enregistrée.");
+
     return;
   }
 
@@ -1253,11 +1610,15 @@ function renderServiceCategories() {
   `).join("");
 
   container.querySelectorAll("[data-category-toggle]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const category = serviceCategoriesCache.find(item => item.id === button.dataset.categoryToggle);
+
       if(!category) return;
 
       const confirmed = confirm("Voulez-vous "+(category.is_active ? "désactiver" : "activer")+" cette catégorie ?");
+
       if(!confirmed) return;
 
       button.disabled = true;
@@ -1269,23 +1630,32 @@ function renderServiceCategories() {
       button.disabled = false;
 
       if(error) {
+
         showMessage("Erreur : "+error.message,"error");
+
         return;
       }
 
       showMessage("Catégorie mise à jour.");
+
       await loadMoonlightServices();
+
     });
+
   });
+
 }
 
 /* PRESTATAIRES */
 
 function renderServiceProviders(list = serviceProvidersCache) {
+
   const container = document.getElementById("serviceProvidersList");
 
   if(!list.length) {
+
     container.innerHTML = emptyMessage("Aucun prestataire enregistré.");
+
     return;
   }
 
@@ -1307,9 +1677,12 @@ function renderServiceProviders(list = serviceProvidersCache) {
   `).join("");
 
   container.querySelectorAll("[data-save-provider]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.saveProvider;
       const select = container.querySelector(`[data-provider-status="${id}"]`);
+
       if(!select) return;
 
       button.disabled = true;
@@ -1321,30 +1694,41 @@ function renderServiceProviders(list = serviceProvidersCache) {
       button.disabled = false;
 
       if(error) {
+
         showMessage("Erreur : "+error.message,"error");
+
         return;
       }
 
       showMessage("Statut du prestataire mis à jour.");
+
       await loadMoonlightServices();
+
     });
+
   });
+
 }
 
 /* SERVICES PROPOSÉS */
 
 function renderServices(list = servicesCache) {
+
   const container = document.getElementById("servicesList");
 
   if(!list.length) {
+
     container.innerHTML = emptyMessage("Aucun service enregistré.");
+
     return;
   }
 
   const providerMap = {};
+
   serviceProvidersCache.forEach(provider => providerMap[provider.id] = provider.display_name);
 
   const categoryMap = {};
+
   serviceCategoriesCache.forEach(category => categoryMap[category.id] = category.name);
 
   container.innerHTML = list.map(service => `
@@ -1366,9 +1750,12 @@ function renderServices(list = servicesCache) {
   `).join("");
 
   container.querySelectorAll("[data-save-service]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.saveService;
       const select = container.querySelector(`[data-service-status="${id}"]`);
+
       if(!select) return;
 
       button.disabled = true;
@@ -1380,30 +1767,41 @@ function renderServices(list = servicesCache) {
       button.disabled = false;
 
       if(error) {
+
         showMessage("Erreur : "+error.message,"error");
+
         return;
       }
 
       showMessage("Statut du service mis à jour.");
+
       await loadMoonlightServices();
+
     });
+
   });
+
 }
 
 /* COMMANDES SERVICES */
 
 function renderServiceOrders(list = serviceOrdersCache) {
+
   const container = document.getElementById("serviceOrdersList");
 
   if(!list.length) {
+
     container.innerHTML = emptyMessage("Aucune commande de service enregistrée.");
+
     return;
   }
 
   const serviceMap = {};
+
   servicesCache.forEach(service => serviceMap[service.id] = service.title);
 
   const providerMap = {};
+
   serviceProvidersCache.forEach(provider => providerMap[provider.id] = provider.display_name);
 
   container.innerHTML = list.map(order => `
@@ -1421,6 +1819,7 @@ function renderServiceOrders(list = serviceOrdersCache) {
       <p><strong>Date :</strong> ${escapeHTML(order.created_at ? new Date(order.created_at).toLocaleString("fr-FR") : "Non précisée")}</p>
 
       <label>Statut de la commande</label>
+
       <div class="actions">
         <select data-order-status="${escapeHTML(order.id)}">
           ${serviceStatusOptions(order.status,["pending","accepted","in_progress","completed","cancelled"])}
@@ -1428,6 +1827,7 @@ function renderServiceOrders(list = serviceOrdersCache) {
       </div>
 
       <label>Statut du paiement</label>
+
       <div class="actions">
         <select data-payment-status="${escapeHTML(order.id)}">
           ${serviceStatusOptions(order.payment_status,["unpaid","paid","refunded"])}
@@ -1438,7 +1838,9 @@ function renderServiceOrders(list = serviceOrdersCache) {
   `).join("");
 
   container.querySelectorAll("[data-save-order]").forEach(button => {
+
     button.addEventListener("click",async () => {
+
       const id = button.dataset.saveOrder;
 
       const statusSelect = container.querySelector(`[data-order-status="${id}"]`);
@@ -1450,13 +1852,19 @@ function renderServiceOrders(list = serviceOrdersCache) {
       const paymentStatus = paymentSelect.value;
 
       if(paymentStatus === "paid") {
+
         const confirmed = confirm("Confirmer que le paiement de cette commande a réellement été reçu ?");
+
         if(!confirmed) return;
+
       }
 
       if(paymentStatus === "refunded") {
+
         const confirmed = confirm("Confirmer que cette commande a réellement été remboursée ?");
+
         if(!confirmed) return;
+
       }
 
       button.disabled = true;
@@ -1471,25 +1879,35 @@ function renderServiceOrders(list = serviceOrdersCache) {
       button.disabled = false;
 
       if(error) {
+
         showMessage("Erreur : "+error.message,"error");
+
         return;
       }
 
       showMessage("Commande mise à jour.");
+
       await loadMoonlightServices();
+
     });
+
   });
+
 }
 
 /* NAVIGATION SERVICES */
 
 function showServiceSection(section) {
+
   const sections = ["serviceCategories","serviceProviders","servicesOffers","serviceOrders"];
 
   sections.forEach(name => {
+
     document.getElementById(name+"Section").classList.toggle("hidden",name !== section);
     document.getElementById(name+"Tab").classList.toggle("active",name === section);
+
   });
+
 }
 
 document.getElementById("serviceCategoriesTab").addEventListener("click",() => showServiceSection("serviceCategories"));
@@ -1500,30 +1918,36 @@ document.getElementById("serviceOrdersTab").addEventListener("click",() => showS
 /* RECHERCHE SERVICES */
 
 document.getElementById("serviceProvidersSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
 
   renderServiceProviders(serviceProvidersCache.filter(provider =>
     [provider.display_name,provider.city,provider.status,provider.bio]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 document.getElementById("servicesSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
 
   renderServices(servicesCache.filter(service =>
     [service.title,service.description,service.status]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 document.getElementById("serviceOrdersSearch").addEventListener("input",event => {
+
   const term = event.target.value.toLowerCase();
 
   renderServiceOrders(serviceOrdersCache.filter(order =>
     [order.id,order.customer_id,order.provider_id,order.status,order.payment_status]
       .some(value => String(value || "").toLowerCase().includes(term))
   ));
+
 });
 
 /* LANCEMENT */
