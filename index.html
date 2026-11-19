@@ -49,6 +49,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -191,8 +192,6 @@ header {
   font-size: 11px;
   letter-spacing: 1px;
 }
-
-/* NAVIGATION */
 
 .desktop-nav {
   display: flex;
@@ -441,7 +440,7 @@ header {
 }
 
 /* =================================
-   ACCESS SHORTCUTS
+   ACCES RAPIDES
 ================================= */
 
 .quick-access {
@@ -986,22 +985,104 @@ footer {
 }
 
 /* =================================
-   ANIMATIONS
+   ANIMATIONS MOONLIGHT DIGITAL
 ================================= */
 
-.reveal {
-  animation: fadeUp .8s ease both;
-}
+/* Animation générale */
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(35px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Animation du premier écran */
+
+.hero-content {
+  animation: fadeUp 1s ease both;
+}
+
+/* Animation au défilement */
+
+.js-motion .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(45px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.65,.3,1);
+  will-change: opacity, transform;
+}
+
+.js-motion .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Apparition progressive des cartes */
+
+.js-motion .reveal-on-scroll:nth-child(2) {
+  transition-delay: .10s;
+}
+
+.js-motion .reveal-on-scroll:nth-child(3) {
+  transition-delay: .18s;
+}
+
+.js-motion .reveal-on-scroll:nth-child(4) {
+  transition-delay: .26s;
+}
+
+.js-motion .reveal-on-scroll:nth-child(5) {
+  transition-delay: .34s;
+}
+
+.js-motion .reveal-on-scroll:nth-child(6) {
+  transition-delay: .42s;
+}
+
+/* Animation des cercles décoratifs */
+
+.about-visual::before {
+  animation: rotateMoon 18s linear infinite;
+}
+
+.about-visual::after {
+  animation: rotateMoon 25s linear infinite reverse;
+}
+
+@keyframes rotateMoon {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibilité */
+
+@media(prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+
+  .js-motion .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
 }
 
 /* =================================
@@ -1138,16 +1219,6 @@ footer {
 
 }
 
-@media(prefers-reduced-motion:reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-}
-
 </style>
 </head>
 
@@ -1162,6 +1233,7 @@ footer {
 <div class="header-inner">
 
 <a href="#" class="brand">
+
   <img
     src="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png"
     alt="Logo Moonlight Digital">
@@ -1170,6 +1242,7 @@ footer {
     <strong>MOONLIGHT DIGITAL</strong>
     <span>CONNECTER. INNOVER. DÉVELOPPER.</span>
   </div>
+
 </a>
 
 <nav class="desktop-nav">
@@ -1221,6 +1294,7 @@ footer {
   </a>
 
   <div class="language-selector">
+
     <label for="languageSelect">🌍 Choisir la langue</label>
 
     <select id="languageSelect">
@@ -1228,6 +1302,7 @@ footer {
       <option value="en">🇬🇧 English</option>
       <option value="ln">🇨🇩 Lingála</option>
     </select>
+
   </div>
 
 </nav>
@@ -1236,10 +1311,12 @@ footer {
 </header>
 
 <!-- =================================
-     HERO
+     CONTENU PRINCIPAL
 ================================= -->
 
 <main>
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1286,19 +1363,21 @@ footer {
 </p>
 
 <div class="install-box" id="installBox">
+
   <strong>📲 Installer Moonlight Digital</strong>
+
   <br><br>
+
   Sur iPhone : ouvrez le menu Partager de Safari,
   puis choisissez Ajouter à l’écran d’accueil.
+
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- =================================
-     ACCES RAPIDES
-================================= -->
+<!-- ACCES RAPIDES -->
 
 <section class="quick-access">
 <div class="container">
@@ -1341,9 +1420,7 @@ footer {
 </div>
 </section>
 
-<!-- =================================
-     PRESENTATION
-================================= -->
+<!-- PRESENTATION -->
 
 <section class="section" id="about">
 <div class="container">
@@ -1397,9 +1474,7 @@ footer {
 </div>
 </section>
 
-<!-- =================================
-     NOS ACTIVITES
-================================= -->
+<!-- NOS ACTIVITES -->
 
 <section class="section poles-section" id="poles">
 <div class="container">
@@ -1504,9 +1579,7 @@ footer {
 </div>
 </section>
 
-<!-- =================================
-     SERVICES
-================================= -->
+<!-- SERVICES -->
 
 <section class="section" id="services">
 <div class="container">
@@ -1584,9 +1657,7 @@ footer {
 </div>
 </section>
 
-<!-- =================================
-     DETAILS DES SERVICES
-================================= -->
+<!-- DETAILS DES SERVICES -->
 
 <section class="section service-details">
 <div class="container">
@@ -1762,9 +1833,7 @@ Découvrir la marketplace
 </div>
 </section>
 
-<!-- =================================
-     MISSION ET VISION
-================================= -->
+<!-- MISSION ET VISION -->
 
 <section class="section" id="mission">
 <div class="container">
@@ -1811,9 +1880,7 @@ Découvrir la marketplace
 </div>
 </section>
 
-<!-- =================================
-     POURQUOI NOUS
-================================= -->
+<!-- POURQUOI NOUS -->
 
 <section class="section why-section" id="pourquoi">
 <div class="container">
@@ -1862,9 +1929,7 @@ Découvrir la marketplace
 </div>
 </section>
 
-<!-- =================================
-     PARTENARIATS
-================================= -->
+<!-- PARTENARIATS -->
 
 <section class="partnership" id="partenariats">
 
@@ -1894,9 +1959,7 @@ Proposer un partenariat →
 </div>
 </section>
 
-<!-- =================================
-     RESEAUX SOCIAUX
-================================= -->
+<!-- RESEAUX SOCIAUX -->
 
 <section class="section social-section" id="nos-reseaux">
 <div class="container">
@@ -1948,9 +2011,7 @@ rel="noopener noreferrer">
 </div>
 </section>
 
-<!-- =================================
-     CONTACT
-================================= -->
+<!-- CONTACT -->
 
 <section class="contact-section" id="contact">
 
@@ -2036,6 +2097,83 @@ Conçu avec ambition en République démocratique du Congo.
 </footer>
 
 <script>
+
+/* =================================
+   ANIMATIONS AU DEFILEMENT
+================================= */
+
+(function () {
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  // Respecte les préférences d'accessibilité
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  // Active les animations uniquement si JavaScript fonctionne
+  document.documentElement.classList.add("js-motion");
+
+  const selectors = [
+    ".section-heading",
+    ".about-content",
+    ".about-visual",
+    ".quick-card",
+    ".pole-card",
+    ".service-card",
+    ".service-detail",
+    ".mission-card",
+    ".why-card",
+    ".partnership-content",
+    ".social-links a",
+    ".contact-box",
+    ".footer-grid > div"
+  ];
+
+  const elements = document.querySelectorAll(
+    selectors.join(",")
+  );
+
+  elements.forEach(function (element) {
+    element.classList.add("reveal-on-scroll");
+  });
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+
+      entries.forEach(function (entry) {
+
+        if (entry.isIntersecting) {
+
+          // L'élément entre dans l'écran
+          entry.target.classList.add("is-visible");
+
+        } else {
+
+          // L'élément quitte l'écran :
+          // il pourra rejouer son animation
+          // lors du prochain passage.
+
+          entry.target.classList.remove("is-visible");
+
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -45px 0px"
+    }
+  );
+
+  elements.forEach(function (element) {
+    observer.observe(element);
+  });
+
+})();
 
 /* =================================
    ESPACE ADMINISTRATION
@@ -2183,9 +2321,7 @@ en: {
 
 "Contactez Moonlight Digital": "Contact Moonlight Digital",
 
-"Tous droits réservés.": "All rights reserved.",
-
-"À propos": "About us"
+"Tous droits réservés.": "All rights reserved."
 
 },
 
