@@ -15,8 +15,8 @@ header h1{margin:0;font-size:23px;color:#d4af37}
 header p{color:#cbd5e1}
 main{max-width:1200px;margin:25px auto;padding:15px}
 .panel{background:white;padding:20px;border-radius:12px;margin-bottom:20px}
-input,button,select{padding:12px;border-radius:7px;border:1px solid #ddd}
-input{max-width:100%}
+input,button,select,textarea{padding:12px;border-radius:7px;border:1px solid #ddd;font-family:inherit}
+input,select,textarea{max-width:100%}
 button{background:#172b4d;color:white;border:0;cursor:pointer}
 button:disabled{opacity:.6;cursor:not-allowed}
 .release,.item-card{border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin:15px 0;background:white}
@@ -73,6 +73,75 @@ th{background:#f8fafc}
 .login-logo{text-align:center;font-size:45px}
 .login-footer{text-align:center;font-size:12px;color:#888;margin-top:25px}
 
+/* MOONLIGHT VISIBILITÉ */
+.visibility-button{
+  width:100%;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+}
+.visibility-button strong{color:#b68b27}
+.visibility-panel{
+  border:1px solid #e7d5a3;
+  background:linear-gradient(145deg,#fff,#fffaf0);
+}
+.visibility-panel h2{color:#172b4d}
+.visibility-intro{line-height:1.7;color:#667085}
+.visibility-form{
+  display:grid;
+  gap:15px;
+  margin-top:20px;
+}
+.visibility-form label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
+  color:#172b4d;
+}
+.visibility-form input,
+.visibility-form select,
+.visibility-form textarea{
+  width:100%;
+  background:white;
+}
+.visibility-form textarea{
+  min-height:110px;
+  resize:vertical;
+}
+.visibility-whatsapp{
+  background:#15803d;
+  color:white;
+  padding:15px;
+  font-weight:bold;
+  border-radius:8px;
+}
+.visibility-back{
+  background:#172b4d;
+  padding:12px;
+}
+.visibility-note{
+  background:#fff8e7;
+  border:1px solid #f3dfaa;
+  padding:12px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.6;
+}
+.site-footer{
+  text-align:center;
+  padding:25px 15px;
+  margin-top:30px;
+  background:#101827;
+  color:#cbd5e1;
+  font-size:13px;
+}
+.site-footer a{
+  color:#d4af37;
+  font-weight:bold;
+  text-decoration:none;
+}
+.site-footer a:hover{text-decoration:underline}
+
 @media(max-width:600px){
 header{padding:18px}
 main{padding:10px}
@@ -125,7 +194,6 @@ Vérification de votre accès...
 <p>Suivez les principales activités de votre plateforme.</p>
 
 <div class="stats">
-
 <div class="stat"><p>Utilisateurs inscrits</p><strong id="statUsers">Chargement...</strong><small>Profils enregistrés</small></div>
 <div class="stat"><p>Artistes inscrits</p><strong id="statArtists">Chargement...</strong><small>Profils artistes</small></div>
 <div class="stat"><p>Projets musicaux</p><strong id="statReleases">Chargement...</strong><small>Sorties reçues</small></div>
@@ -138,7 +206,6 @@ Vérification de votre accès...
 <div class="stat"><p>Prestataires Services</p><strong id="statServiceProviders">Chargement...</strong><small>Prestataires enregistrés</small></div>
 <div class="stat"><p>Services proposés</p><strong id="statServices">Chargement...</strong><small>Offres enregistrées</small></div>
 <div class="stat"><p>Commandes Services</p><strong id="statServiceOrders">Chargement...</strong><small>Commandes enregistrées</small></div>
-
 </div>
 
 <p class="message" id="statsMessage"></p>
@@ -174,6 +241,77 @@ Vérification de votre accès...
 <strong>🏠 Site officiel</strong>
 <span>Voir la page d'accueil de Moonlight Digital.</span>
 </a>
+
+<button type="button" class="quick-link visibility-button" onclick="openVisibility()">
+<strong>🚀 MOONLIGHT VISIBILITÉ</strong>
+<span>Publicité, promotion sponsorisée, abonnés, vues et likes.</span>
+</button>
+
+</div>
+</div>
+
+<!-- ESPACE VISIBILITÉ -->
+<div id="visibilityPanel" class="panel visibility-panel hidden">
+<h2>🚀 MOONLIGHT DIGITAL – VISIBILITÉ</h2>
+
+<p class="visibility-intro">
+Développez votre présence sur les réseaux sociaux avec les services de visibilité et de promotion de Moonlight Digital.
+Sélectionnez le service qui vous intéresse et contactez directement notre équipe.
+</p>
+
+<div class="visibility-note">
+<strong>Information :</strong><br>
+Les offres, tarifs et conditions sont communiqués directement par WhatsApp après réception de votre demande.
+</div>
+
+<div class="visibility-form">
+
+<div>
+<label for="visibilityCategory">1. Choisissez une catégorie</label>
+<select id="visibilityCategory">
+<option value="">-- Choisir une catégorie --</option>
+<option value="Publicité et promotion sponsorisée">Publicité et promotion sponsorisée</option>
+<option value="Packs de visibilité">Packs de visibilité</option>
+</select>
+</div>
+
+<div>
+<label for="visibilityService">2. Choisissez votre service</label>
+<select id="visibilityService">
+<option value="">-- Choisir d'abord une catégorie --</option>
+</select>
+</div>
+
+<div>
+<label for="visibilityNetwork">3. Choisissez votre réseau social</label>
+<select id="visibilityNetwork">
+<option value="">-- Choisir un réseau --</option>
+<option value="Facebook">Facebook</option>
+<option value="Instagram">Instagram</option>
+<option value="TikTok">TikTok</option>
+<option value="YouTube">YouTube</option>
+</select>
+</div>
+
+<div>
+<label for="visibilityLink">4. Lien de votre page ou publication (facultatif)</label>
+<input type="url" id="visibilityLink" placeholder="https://...">
+</div>
+
+<div>
+<label for="visibilityDetails">5. Informations complémentaires</label>
+<textarea id="visibilityDetails" placeholder="Décrivez votre besoin, votre objectif ou votre projet..."></textarea>
+</div>
+
+<button type="button" class="visibility-whatsapp" id="visibilityWhatsApp">
+📲 Envoyer ma demande sur WhatsApp
+</button>
+
+<button type="button" class="visibility-back" onclick="closeVisibility()">
+Retour au Centre de contrôle
+</button>
+
+<p id="visibilityMessage" class="message"></p>
 
 </div>
 </div>
@@ -375,6 +513,17 @@ Cliquez sur « Publier un article » pour ouvrir votre interface de gestion.
 </section>
 </main>
 
+<footer class="site-footer">
+Conçu avec ambition par
+<a
+  href="https://wa.me/243890385429?text=Bonjour%20Chris%20Tawamba%20%21%20Je%20souhaite%20que%20vous%20me%20cr%C3%A9iez%20un%20site%20web.%20Pouvez-vous%20me%20pr%C3%A9senter%20vos%20services%20et%20vos%20conditions%20%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+Chris Tawamba
+</a>.
+</footer>
+
 <script>
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
@@ -459,10 +608,111 @@ async function countTable(table, column = "id", filters = []) {
 }
 
 /* =========================================
+   MOONLIGHT VISIBILITÉ
+========================================= */
+
+function openVisibility(){
+  const panel = document.getElementById("visibilityPanel");
+  panel.classList.remove("hidden");
+  panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function closeVisibility(){
+  document.getElementById("visibilityPanel").classList.add("hidden");
+}
+
+const visibilityCategory = document.getElementById("visibilityCategory");
+const visibilityService = document.getElementById("visibilityService");
+
+const visibilityOptions = {
+  "Publicité et promotion sponsorisée":[
+    "Promotion d'une publication",
+    "Promotion d'un clip musical",
+    "Promotion d'une vidéo",
+    "Campagne publicitaire pour une entreprise",
+    "Campagne de lancement musical",
+    "Campagne de notoriété",
+    "Recherche de clients"
+  ],
+  "Packs de visibilité":[
+    "Abonnés",
+    "Vues",
+    "Likes"
+  ]
+};
+
+visibilityCategory.addEventListener("change",function(){
+
+  const category = this.value;
+
+  visibilityService.innerHTML =
+    '<option value="">-- Choisir un service --</option>';
+
+  (visibilityOptions[category] || []).forEach(service => {
+
+    const option = document.createElement("option");
+    option.value = service;
+    option.textContent = service;
+
+    visibilityService.appendChild(option);
+
+  });
+
+});
+
+document.getElementById("visibilityWhatsApp").addEventListener("click",function(){
+
+  const category = visibilityCategory.value;
+  const service = visibilityService.value;
+  const network = document.getElementById("visibilityNetwork").value;
+  const link = document.getElementById("visibilityLink").value.trim();
+  const details = document.getElementById("visibilityDetails").value.trim();
+
+  const feedback = document.getElementById("visibilityMessage");
+
+  if(!category || !service || !network){
+
+    feedback.className = "message error";
+    feedback.textContent = "Veuillez choisir une catégorie, un service et un réseau social.";
+
+    return;
+  }
+
+  if(link && !/^https?:\/\//i.test(link)){
+
+    feedback.className = "message error";
+    feedback.textContent = "Veuillez entrer un lien commençant par https:// ou http://.";
+
+    return;
+  }
+
+  const text = `Bonjour Moonlight Digital !
+
+Je souhaite obtenir des informations et votre grille tarifaire pour un service de visibilité.
+
+CATÉGORIE : ${category}
+SERVICE : ${service}
+RÉSEAU SOCIAL : ${network}
+LIEN : ${link || "Non renseigné"}
+
+INFORMATIONS COMPLÉMENTAIRES :
+${details || "Aucune précision pour le moment."}
+
+Merci de m'envoyer vos différentes offres, tarifs et conditions.`;
+
+  const whatsappURL =
+    "https://wa.me/243890385429?text=" + encodeURIComponent(text);
+
+  window.open(whatsappURL,"_blank");
+
+});
+
+/* =========================================
    CONNEXION DIRECTE ADMINISTRATEUR GÉNÉRAL
 ========================================= */
 
 function showAdminLogin(errorText = "") {
+
   dashboard.classList.add("hidden");
   loading.classList.remove("hidden");
 
