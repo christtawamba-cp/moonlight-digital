@@ -127,7 +127,11 @@ h2 {
 .tabs button.active {
   background:linear-gradient(135deg,#d4af37,#f5dc91);
   color:#050505;
+  box-shadow:0 4px 15px rgba(212,175,55,.2);
 }
+
+.tabs button:hover { color:white; }
+.tabs button.active:hover { color:#050505; }
 
 .form { display:none; }
 
@@ -190,6 +194,7 @@ textarea {
 .submit:hover {
   background:white;
   transform:translateY(-3px);
+  box-shadow:0 8px 22px rgba(212,175,55,.2);
 }
 
 .submit:disabled {
@@ -222,6 +227,12 @@ textarea {
   text-decoration:none;
   font-weight:bold;
   text-align:center;
+  transition:.3s;
+}
+
+.dashboard-link:hover {
+  background:white;
+  transform:translateY(-2px);
 }
 
 .back {
@@ -231,7 +242,10 @@ textarea {
   color:var(--gold);
   text-decoration:none;
   font-size:14px;
+  transition:.3s;
 }
+
+.back:hover { color:white; }
 
 .section-title {
   color:var(--gold);
@@ -269,7 +283,10 @@ textarea {
   border-radius:9px;
   font-size:13px;
   cursor:pointer;
+  transition:.25s;
 }
+
+.platform:hover { border-color:var(--gold); }
 
 .platform input {
   width:17px;
@@ -388,7 +405,9 @@ footer {
       placeholder="Votre mot de passe"
       autocomplete="current-password" required>
 
-    <button type="submit" class="submit">Se connecter</button>
+    <button type="submit" class="submit">
+      Se connecter
+    </button>
 
   </form>
 
@@ -402,11 +421,13 @@ footer {
 
     <label>Nom complet</label>
     <input type="text" id="fullName"
-      placeholder="Votre nom complet" required>
+      placeholder="Votre nom complet"
+      autocomplete="name" required>
 
     <label>Adresse e-mail</label>
     <input type="email" id="registerEmail"
-      placeholder="Votre adresse e-mail" required>
+      placeholder="Votre adresse e-mail"
+      autocomplete="email" required>
 
     <label>Numéro WhatsApp</label>
     <input type="tel" id="phone"
@@ -429,18 +450,20 @@ footer {
     <label>Mot de passe</label>
     <input type="password" id="registerPassword"
       placeholder="Créer un mot de passe"
-      minlength="8" required>
+      minlength="8" autocomplete="new-password" required>
 
     <label>Confirmer le mot de passe</label>
     <input type="password" id="confirmPassword"
       placeholder="Confirmer le mot de passe"
-      minlength="8" required>
+      minlength="8" autocomplete="new-password" required>
 
-    <button type="submit" class="submit">Créer mon compte</button>
+    <button type="submit" class="submit">
+      Créer mon compte
+    </button>
 
   </form>
 
-  <!-- DISTRIBUTION -->
+  <!-- DEMANDE DE DISTRIBUTION -->
 
   <form id="distributionForm" class="form">
 
@@ -455,8 +478,6 @@ footer {
       Votre demande sera préparée dans WhatsApp pour être transmise
       à notre équipe.
     </div>
-
-    <!-- 01 ARTISTE -->
 
     <h3 class="section-title">01 — Informations de l'artiste</h3>
 
@@ -485,8 +506,6 @@ footer {
       <option value="Belgique">Belgique</option>
       <option value="Autre">Autre</option>
     </select>
-
-    <!-- 02 MORCEAU -->
 
     <h3 class="section-title">02 — Informations sur le morceau</h3>
 
@@ -529,19 +548,16 @@ footer {
     </select>
 
     <label>Durée du morceau</label>
-    <input type="text" id="trackDuration"
-      placeholder="Exemple : 3 min 25 sec">
+    <input type="text" id="trackDuration" placeholder="Exemple : 3 min 25 sec">
 
     <label>Date de sortie souhaitée</label>
     <input type="date" id="releaseDate" required>
 
     <label>Artiste(s) en collaboration (Featuring)</label>
-    <input type="text" id="featuredArtists"
-      placeholder="Nom des artistes invités">
+    <input type="text" id="featuredArtists" placeholder="Nom des artistes invités">
 
     <label>Nom du producteur (facultatif)</label>
-    <input type="text" id="producer"
-      placeholder="Nom du producteur">
+    <input type="text" id="producer" placeholder="Nom du producteur">
 
     <label>Les paroles du morceau sont-elles disponibles ?</label>
     <select id="lyricsAvailable" required>
@@ -577,8 +593,6 @@ footer {
     <label>Code UPC/EAN (si disponible)</label>
     <input type="text" id="upcCode" placeholder="Votre code UPC/EAN">
 
-    <!-- 03 PLATEFORMES -->
-
     <h3 class="section-title">03 — Plateformes de diffusion</h3>
 
     <p class="small-note">
@@ -586,7 +600,6 @@ footer {
     </p>
 
     <div class="platforms">
-
       <label class="platform"><input type="checkbox" name="platform" value="Spotify"> Spotify</label>
       <label class="platform"><input type="checkbox" name="platform" value="Apple Music"> Apple Music</label>
       <label class="platform"><input type="checkbox" name="platform" value="YouTube Music"> YouTube Music</label>
@@ -595,10 +608,7 @@ footer {
       <label class="platform"><input type="checkbox" name="platform" value="Audiomack"> Audiomack</label>
       <label class="platform"><input type="checkbox" name="platform" value="Amazon Music"> Amazon Music</label>
       <label class="platform"><input type="checkbox" name="platform" value="Toutes les plateformes disponibles"> Toutes les plateformes disponibles</label>
-
     </div>
-
-    <!-- 04 SERVICES AUDIO -->
 
     <h3 class="section-title">04 — Services audio</h3>
 
@@ -640,14 +650,10 @@ footer {
     </select>
 
     <label>Qui a réalisé le mixage ? (facultatif)</label>
-    <input type="text" id="mixingEngineer"
-      placeholder="Nom de l'ingénieur de mixage">
+    <input type="text" id="mixingEngineer" placeholder="Nom de l'ingénieur de mixage">
 
     <label>Qui a réalisé le mastering ? (facultatif)</label>
-    <input type="text" id="masteringEngineer"
-      placeholder="Nom de l'ingénieur de mastering">
-
-    <!-- 05 POCHETTE -->
+    <input type="text" id="masteringEngineer" placeholder="Nom de l'ingénieur de mastering">
 
     <h3 class="section-title">05 — Pochette et identité visuelle</h3>
 
@@ -686,8 +692,6 @@ footer {
       <option value="Non">Non</option>
     </select>
 
-    <!-- 06 PROMOTION -->
-
     <h3 class="section-title">06 — Promotion et visibilité</h3>
 
     <label>Souhaites-tu une campagne promotionnelle ?</label>
@@ -725,16 +729,13 @@ footer {
       <option value="Non">Non</option>
     </select>
 
-    <!-- 07 CONFIRMATION -->
-
     <h3 class="section-title">07 — Confirmation et informations supplémentaires</h3>
 
     <label>Liens de tes réseaux sociaux (facultatif)</label>
     <input type="url" id="socialLink" placeholder="https://...">
 
     <label>Informations complémentaires</label>
-    <textarea id="extraInfo"
-      placeholder="Ajoute ici tes précisions concernant le projet..."></textarea>
+    <textarea id="extraInfo" placeholder="Ajoute ici tes précisions concernant le projet..."></textarea>
 
     <label class="check-row">
       <input type="checkbox" id="rightsConfirmation" required>
@@ -809,16 +810,25 @@ function hideNotice() {
   notice.textContent = "";
 }
 
-/* ONGLETS */
+/* GESTION DES ONGLETS — CORRIGÉE */
 
 function activateTab(tabName) {
 
   hideNotice();
 
   const tabs = {
-    login: {button:loginTab,form:loginForm},
-    register: {button:registerTab,form:registerForm},
-    distribution: {button:distributionTab,form:distributionForm}
+    login: {
+      button:loginTab,
+      form:loginForm
+    },
+    register: {
+      button:registerTab,
+      form:registerForm
+    },
+    distribution: {
+      button:distributionTab,
+      form:distributionForm
+    }
   };
 
   Object.values(tabs).forEach(function(item) {
@@ -827,7 +837,7 @@ function activateTab(tabName) {
   });
 
   tabs[tabName].button.classList.add("active");
-  tabs[tabName].form.classList.add("active');
+  tabs[tabName].form.classList.add("active");
 }
 
 loginTab.addEventListener("click",function() {
@@ -842,7 +852,7 @@ distributionTab.addEventListener("click",function() {
   activateTab("distribution");
 });
 
-/* SUCCES CONNEXION */
+/* SUCCES CONNEXION ARTISTE */
 
 function showLoginSuccess(artistName) {
 
@@ -855,7 +865,8 @@ function showLoginSuccess(artistName) {
   title.style.marginBottom = "10px";
 
   const message = document.createElement("p");
-  message.textContent = "Votre connexion à Moonlight Digital est réussie.";
+  message.textContent =
+    "Votre connexion à Moonlight Digital est réussie.";
 
   const link = document.createElement("a");
   link.href = "dashboard.html";
@@ -920,14 +931,24 @@ registerForm.addEventListener("submit",async function(e) {
     registerForm.reset();
 
     if(data.session) {
-      showNotice("Félicitations ! Votre compte a été créé. Vous pouvez maintenant vous connecter.");
+
+      showNotice(
+        "Félicitations ! Votre compte a été créé. Vous pouvez maintenant vous connecter."
+      );
+
     } else {
-      showNotice("Votre inscription a été enregistrée ! Consultez votre boîte e-mail pour confirmer votre adresse.");
+
+      showNotice(
+        "Votre inscription a été enregistrée ! Consultez votre boîte e-mail pour confirmer votre adresse avant de vous connecter."
+      );
+
     }
 
   } catch(error) {
 
-    showNotice("Erreur lors de l'inscription : " + error.message);
+    showNotice(
+      "Erreur lors de l'inscription : " + error.message
+    );
 
   } finally {
 
@@ -968,20 +989,25 @@ loginForm.addEventListener("submit",async function(e) {
 
     if(data.user.id === ADMIN_ID) {
 
-      showNotice("Connexion administrateur réussie. Ouverture de l'administration...");
+      showNotice(
+        "Connexion administrateur réussie. Ouverture de l'administration..."
+      );
 
       window.location.replace("admin.html");
       return;
 
     }
 
-    const artistName = data.user.user_metadata?.artist_name || "Artiste";
+    const artistName =
+      data.user.user_metadata?.artist_name || "Artiste";
 
     showLoginSuccess(artistName);
 
   } catch(error) {
 
-    showNotice("Erreur de connexion : " + error.message);
+    showNotice(
+      "Erreur de connexion : " + error.message
+    );
 
   } finally {
 
@@ -992,7 +1018,7 @@ loginForm.addEventListener("submit",async function(e) {
 
 });
 
-/* DATE MINIMALE */
+/* DATE MINIMALE DE SORTIE */
 
 const releaseDateInput = document.getElementById("releaseDate");
 
@@ -1006,9 +1032,11 @@ const localToday = [
 
 releaseDateInput.min = localToday;
 
-/* PLATEFORMES : OPTION TOUTES */
+/* OPTION TOUTES LES PLATEFORMES */
 
-const platformCheckboxes = document.querySelectorAll('input[name="platform"]');
+const platformCheckboxes = document.querySelectorAll(
+  'input[name="platform"]'
+);
 
 platformCheckboxes.forEach(function(checkbox) {
 
@@ -1021,7 +1049,9 @@ platformCheckboxes.forEach(function(checkbox) {
     if(checkbox === allOption && checkbox.checked) {
 
       platformCheckboxes.forEach(function(other) {
-        if(other !== allOption) other.checked = false;
+        if(other !== allOption) {
+          other.checked = false;
+        }
       });
 
     } else if(checkbox.checked && allOption.checked) {
@@ -1034,7 +1064,7 @@ platformCheckboxes.forEach(function(checkbox) {
 
 });
 
-/* FONCTION POUR RECUPERER UNE VALEUR */
+/* RECUPERATION DES VALEURS */
 
 function getValue(id) {
 
@@ -1046,7 +1076,7 @@ function getValue(id) {
 
 }
 
-/* DEMANDE WHATSAPP */
+/* DEMANDE DE DISTRIBUTION WHATSAPP */
 
 distributionForm.addEventListener("submit",function(e) {
 
@@ -1081,12 +1111,6 @@ distributionForm.addEventListener("submit",function(e) {
   button.disabled = true;
   button.textContent = "Préparation de votre demande...";
 
-  const artist = getValue("distArtist");
-  const fullName = getValue("distFullName");
-  const email = getValue("distEmail");
-  const phone = getValue("distPhone");
-  const country = getValue("distCountry");
-
   const message = `
 🌙 *NOUVELLE DEMANDE DE DISTRIBUTION*
 ━━━━━━━━━━━━━━━━━━
@@ -1096,11 +1120,11 @@ distributionForm.addEventListener("submit",function(e) {
 
 👤 *01 — INFORMATIONS DE L'ARTISTE*
 
-Nom d'artiste : ${artist}
-Nom complet : ${fullName}
-E-mail : ${email}
-WhatsApp : ${phone}
-Pays : ${country}
+Nom d'artiste : ${getValue("distArtist")}
+Nom complet : ${getValue("distFullName")}
+E-mail : ${getValue("distEmail")}
+WhatsApp : ${getValue("distPhone")}
+Pays : ${getValue("distCountry")}
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -1126,7 +1150,9 @@ Code UPC/EAN : ${getValue("upcCode")}
 
 🌍 *03 — PLATEFORMES DE DIFFUSION*
 
-${platforms.map(p => "• " + p).join("\n")}
+${platforms.map(function(p) {
+  return "• " + p;
+}).join("\n")}
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -1219,17 +1245,26 @@ L'artiste transmettra les fichiers directement dans cette conversation WhatsApp.
     "header,.container,footer,.logo,.section-title,.info-box,.back"
   );
 
-  const observer = new IntersectionObserver(function(entries) {
+  const observer = new IntersectionObserver(
 
-    entries.forEach(function(entry) {
+    function(entries) {
 
-      if(entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-      }
+      entries.forEach(function(entry) {
 
-    });
+        if(entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
 
-  },{threshold:0.12});
+      });
+
+    },
+
+    {
+      threshold:0.12,
+      rootMargin:"0px 0px -25px 0px"
+    }
+
+  );
 
   elements.forEach(function(element) {
     observer.observe(element);
