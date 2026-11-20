@@ -43,8 +43,7 @@ body::before {
   inset:0;
   pointer-events:none;
   z-index:-1;
-  background-image:
-    radial-gradient(rgba(212,175,55,.22) 1px,transparent 1px);
+  background-image:radial-gradient(rgba(212,175,55,.22) 1px,transparent 1px);
   background-size:35px 35px;
   opacity:.16;
 }
@@ -69,7 +68,7 @@ header p {
 }
 
 .container {
-  max-width:520px;
+  max-width:560px;
   margin:25px auto;
   background:rgba(15,15,15,.94);
   border:1px solid rgba(212,175,55,.3);
@@ -128,14 +127,7 @@ h2 {
 .tabs button.active {
   background:linear-gradient(135deg,#d4af37,#f5dc91);
   color:#050505;
-  box-shadow:0 4px 15px rgba(212,175,55,.2);
 }
-
-.tabs button:hover {
-  color:white;
-}
-
-.tabs button.active:hover { color:#050505; }
 
 .form { display:none; }
 
@@ -198,7 +190,6 @@ textarea {
 .submit:hover {
   background:white;
   transform:translateY(-3px);
-  box-shadow:0 8px 22px rgba(212,175,55,.2);
 }
 
 .submit:disabled {
@@ -231,12 +222,6 @@ textarea {
   text-decoration:none;
   font-weight:bold;
   text-align:center;
-  transition:.3s;
-}
-
-.dashboard-link:hover {
-  background:white;
-  transform:translateY(-2px);
 }
 
 .back {
@@ -246,15 +231,12 @@ textarea {
   color:var(--gold);
   text-decoration:none;
   font-size:14px;
-  transition:.3s;
 }
-
-.back:hover { color:white; }
 
 .section-title {
   color:var(--gold);
   font-size:15px;
-  margin:22px 0 15px;
+  margin:25px 0 15px;
   padding-bottom:9px;
   border-bottom:1px solid #333;
 }
@@ -287,11 +269,6 @@ textarea {
   border-radius:9px;
   font-size:13px;
   cursor:pointer;
-  transition:.25s;
-}
-
-.platform:hover {
-  border-color:var(--gold);
 }
 
 .platform input {
@@ -337,31 +314,31 @@ footer {
 }
 
 @keyframes fadeDown {
-  from { opacity:0; transform:translateY(-25px); }
-  to { opacity:1; transform:translateY(0); }
+  from {opacity:0;transform:translateY(-25px);}
+  to {opacity:1;transform:translateY(0);}
 }
 
 @keyframes fadeUp {
-  from { opacity:0; transform:translateY(30px); }
-  to { opacity:1; transform:translateY(0); }
+  from {opacity:0;transform:translateY(30px);}
+  to {opacity:1;transform:translateY(0);}
 }
 
 @keyframes formAppear {
-  from { opacity:0; transform:translateY(12px); }
-  to { opacity:1; transform:translateY(0); }
+  from {opacity:0;transform:translateY(12px);}
+  to {opacity:1;transform:translateY(0);}
 }
 
 @keyframes moonFloat {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-8px); }
+  0%,100% {transform:translateY(0);}
+  50% {transform:translateY(-8px);}
 }
 
 @media(max-width:400px) {
-  body { padding:12px; }
-  .container { padding:20px; }
-  header h1 { font-size:23px; }
-  .tabs button { font-size:11px; }
-  .platforms { grid-template-columns:1fr; }
+  body {padding:12px;}
+  .container {padding:20px;}
+  header h1 {font-size:23px;}
+  .tabs button {font-size:11px;}
+  .platforms {grid-template-columns:1fr;}
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -392,19 +369,9 @@ footer {
   </p>
 
   <div class="tabs">
-
-    <button id="loginTab" class="active" type="button">
-      Connexion
-    </button>
-
-    <button id="registerTab" type="button">
-      Inscription
-    </button>
-
-    <button id="distributionTab" type="button">
-      Distribuer
-    </button>
-
+    <button id="loginTab" class="active" type="button">Connexion</button>
+    <button id="registerTab" type="button">Inscription</button>
+    <button id="distributionTab" type="button">Distribuer</button>
   </div>
 
   <!-- CONNEXION -->
@@ -412,20 +379,16 @@ footer {
   <form id="loginForm" class="form active">
 
     <label>Adresse e-mail</label>
-
     <input type="email" id="loginEmail"
       placeholder="Votre adresse e-mail"
       autocomplete="email" required>
 
     <label>Mot de passe</label>
-
     <input type="password" id="loginPassword"
       placeholder="Votre mot de passe"
       autocomplete="current-password" required>
 
-    <button type="submit" class="submit">
-      Se connecter
-    </button>
+    <button type="submit" class="submit">Se connecter</button>
 
   </form>
 
@@ -434,29 +397,22 @@ footer {
   <form id="registerForm" class="form">
 
     <label>Nom de l'artiste</label>
-
     <input type="text" id="artistName"
       placeholder="Votre nom d'artiste" required>
 
     <label>Nom complet</label>
-
     <input type="text" id="fullName"
-      placeholder="Votre nom complet"
-      autocomplete="name" required>
+      placeholder="Votre nom complet" required>
 
     <label>Adresse e-mail</label>
-
     <input type="email" id="registerEmail"
-      placeholder="Votre adresse e-mail"
-      autocomplete="email" required>
+      placeholder="Votre adresse e-mail" required>
 
     <label>Numéro WhatsApp</label>
-
     <input type="tel" id="phone"
       placeholder="+243..." required>
 
     <label>Pays</label>
-
     <select id="country" required>
       <option value="">Choisir votre pays</option>
       <option value="République démocratique du Congo">République démocratique du Congo</option>
@@ -471,24 +427,20 @@ footer {
     </select>
 
     <label>Mot de passe</label>
-
     <input type="password" id="registerPassword"
       placeholder="Créer un mot de passe"
-      minlength="8" autocomplete="new-password" required>
+      minlength="8" required>
 
     <label>Confirmer le mot de passe</label>
-
     <input type="password" id="confirmPassword"
       placeholder="Confirmer le mot de passe"
-      minlength="8" autocomplete="new-password" required>
+      minlength="8" required>
 
-    <button type="submit" class="submit">
-      Créer mon compte
-    </button>
+    <button type="submit" class="submit">Créer mon compte</button>
 
   </form>
 
-  <!-- DEMANDE DE DISTRIBUTION -->
+  <!-- DISTRIBUTION -->
 
   <form id="distributionForm" class="form">
 
@@ -499,28 +451,26 @@ footer {
     </p>
 
     <div class="info-box">
-      Remplissez les informations de votre sortie musicale.
-      Après validation, WhatsApp s'ouvrira pour transmettre
-      votre demande à notre équipe.
+      Remplissez les informations demandées.
+      Votre demande sera préparée dans WhatsApp pour être transmise
+      à notre équipe.
     </div>
+
+    <!-- 01 ARTISTE -->
 
     <h3 class="section-title">01 — Informations de l'artiste</h3>
 
     <label>Nom d'artiste</label>
-    <input type="text" id="distArtist"
-      placeholder="Nom d'artiste" required>
+    <input type="text" id="distArtist" placeholder="Nom d'artiste" required>
 
     <label>Nom complet</label>
-    <input type="text" id="distFullName"
-      placeholder="Votre nom complet" required>
+    <input type="text" id="distFullName" placeholder="Votre nom complet" required>
 
     <label>Adresse e-mail</label>
-    <input type="email" id="distEmail"
-      placeholder="Votre adresse e-mail" required>
+    <input type="email" id="distEmail" placeholder="Votre adresse e-mail" required>
 
     <label>Numéro WhatsApp</label>
-    <input type="tel" id="distPhone"
-      placeholder="+243..." required>
+    <input type="tel" id="distPhone" placeholder="+243..." required>
 
     <label>Pays</label>
     <select id="distCountry" required>
@@ -536,11 +486,12 @@ footer {
       <option value="Autre">Autre</option>
     </select>
 
-    <h3 class="section-title">02 — Informations du morceau</h3>
+    <!-- 02 MORCEAU -->
+
+    <h3 class="section-title">02 — Informations sur le morceau</h3>
 
     <label>Titre du morceau</label>
-    <input type="text" id="trackTitle"
-      placeholder="Titre officiel du morceau" required>
+    <input type="text" id="trackTitle" placeholder="Titre officiel" required>
 
     <label>Type de sortie</label>
     <select id="releaseType" required>
@@ -577,10 +528,14 @@ footer {
       <option value="Autre">Autre</option>
     </select>
 
+    <label>Durée du morceau</label>
+    <input type="text" id="trackDuration"
+      placeholder="Exemple : 3 min 25 sec">
+
     <label>Date de sortie souhaitée</label>
     <input type="date" id="releaseDate" required>
 
-    <label>Artiste(s) en collaboration (facultatif)</label>
+    <label>Artiste(s) en collaboration (Featuring)</label>
     <input type="text" id="featuredArtists"
       placeholder="Nom des artistes invités">
 
@@ -588,80 +543,212 @@ footer {
     <input type="text" id="producer"
       placeholder="Nom du producteur">
 
+    <label>Les paroles du morceau sont-elles disponibles ?</label>
+    <select id="lyricsAvailable" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Le morceau contient-il des paroles explicites ?</label>
+    <select id="explicitContent" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Non">Non</option>
+      <option value="Oui">Oui</option>
+    </select>
+
+    <label>Possèdes-tu déjà un code ISRC ?</label>
+    <select id="isrcStatus" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Code ISRC (si disponible)</label>
+    <input type="text" id="isrcCode" placeholder="Votre code ISRC">
+
+    <label>Possèdes-tu déjà un code UPC/EAN ?</label>
+    <select id="upcStatus" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Code UPC/EAN (si disponible)</label>
+    <input type="text" id="upcCode" placeholder="Votre code UPC/EAN">
+
+    <!-- 03 PLATEFORMES -->
+
     <h3 class="section-title">03 — Plateformes de diffusion</h3>
 
     <p class="small-note">
-      Sélectionnez les plateformes sur lesquelles vous souhaitez
-      diffuser votre musique.
+      Sélectionnez les plateformes souhaitées.
     </p>
 
     <div class="platforms">
 
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Spotify">
-        Spotify
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Apple Music">
-        Apple Music
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="YouTube Music">
-        YouTube Music
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Deezer">
-        Deezer
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Boomplay">
-        Boomplay
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Audiomack">
-        Audiomack
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Amazon Music">
-        Amazon Music
-      </label>
-
-      <label class="platform">
-        <input type="checkbox" name="platform" value="Toutes les plateformes disponibles">
-        Toutes les plateformes disponibles
-      </label>
+      <label class="platform"><input type="checkbox" name="platform" value="Spotify"> Spotify</label>
+      <label class="platform"><input type="checkbox" name="platform" value="Apple Music"> Apple Music</label>
+      <label class="platform"><input type="checkbox" name="platform" value="YouTube Music"> YouTube Music</label>
+      <label class="platform"><input type="checkbox" name="platform" value="Deezer"> Deezer</label>
+      <label class="platform"><input type="checkbox" name="platform" value="Boomplay"> Boomplay</label>
+      <label class="platform"><input type="checkbox" name="platform" value="Audiomack"> Audiomack</label>
+      <label class="platform"><input type="checkbox" name="platform" value="Amazon Music"> Amazon Music</label>
+      <label class="platform"><input type="checkbox" name="platform" value="Toutes les plateformes disponibles"> Toutes les plateformes disponibles</label>
 
     </div>
 
-    <h3 class="section-title">04 — Confirmation et informations supplémentaires</h3>
+    <!-- 04 SERVICES AUDIO -->
 
-    <label>Liens de vos réseaux sociaux (facultatif)</label>
-    <input type="url" id="socialLink"
-      placeholder="https://...">
+    <h3 class="section-title">04 — Services audio</h3>
+
+    <label>Le morceau est-il déjà enregistré ?</label>
+    <select id="audioRecorded" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin d'un ingénieur de son ?</label>
+    <select id="soundEngineer" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin du mixage ?</label>
+    <select id="mixingNeeded" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin du mastering ?</label>
+    <select id="masteringNeeded" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Le morceau est-il déjà mixé et masterisé ?</label>
+    <select id="audioFinished" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui, mixé et masterisé">Oui, mixé et masterisé</option>
+      <option value="Mixé uniquement">Mixé uniquement</option>
+      <option value="Masterisé uniquement">Masterisé uniquement</option>
+      <option value="Non, aucun des deux">Non, aucun des deux</option>
+    </select>
+
+    <label>Qui a réalisé le mixage ? (facultatif)</label>
+    <input type="text" id="mixingEngineer"
+      placeholder="Nom de l'ingénieur de mixage">
+
+    <label>Qui a réalisé le mastering ? (facultatif)</label>
+    <input type="text" id="masteringEngineer"
+      placeholder="Nom de l'ingénieur de mastering">
+
+    <!-- 05 POCHETTE -->
+
+    <h3 class="section-title">05 — Pochette et identité visuelle</h3>
+
+    <label>Possèdes-tu déjà une pochette officielle ?</label>
+    <select id="coverAvailable" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin que Moonlight Digital crée ta pochette ?</label>
+    <select id="coverCreation" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin d'un visualizer ?</label>
+    <select id="visualizerNeeded" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin d'une vidéo promotionnelle ?</label>
+    <select id="promoVideo" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin d'une animation pour annoncer la sortie ?</label>
+    <select id="releaseAnimation" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <!-- 06 PROMOTION -->
+
+    <h3 class="section-title">06 — Promotion et visibilité</h3>
+
+    <label>Souhaites-tu une campagne promotionnelle ?</label>
+    <select id="promoCampaign" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Souhaites-tu une publication sur les réseaux sociaux de Moonlight Digital ?</label>
+    <select id="socialPublication" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Souhaites-tu une interview sur Moonlight Digital ?</label>
+    <select id="interviewNeeded" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>As-tu besoin d'une stratégie de lancement ?</label>
+    <select id="launchStrategy" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <label>Souhaites-tu une campagne de précommande ou de pré-enregistrement ?</label>
+    <select id="preSaveCampaign" required>
+      <option value="">Choisir une réponse</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+
+    <!-- 07 CONFIRMATION -->
+
+    <h3 class="section-title">07 — Confirmation et informations supplémentaires</h3>
+
+    <label>Liens de tes réseaux sociaux (facultatif)</label>
+    <input type="url" id="socialLink" placeholder="https://...">
 
     <label>Informations complémentaires</label>
     <textarea id="extraInfo"
-      placeholder="Ajoutez ici vos précisions concernant le projet..."></textarea>
+      placeholder="Ajoute ici tes précisions concernant le projet..."></textarea>
 
     <label class="check-row">
       <input type="checkbox" id="rightsConfirmation" required>
       <span>
-        Je confirme être autorisé à distribuer ce morceau
-        et disposer des droits ou autorisations nécessaires.
+        Je confirme être autorisé à distribuer ce morceau et disposer
+        des droits ou autorisations nécessaires.
       </span>
     </label>
 
     <div class="info-box">
-      <strong>Important :</strong> après l'envoi de votre demande,
-      vous devrez transmettre directement votre fichier audio
-      et votre pochette à Moonlight Digital dans la conversation
-      WhatsApp qui va s'ouvrir.
+      <strong>Important :</strong> après l'ouverture de WhatsApp,
+      tu devras appuyer sur Envoyer pour transmettre ta demande.
+      Tu devras également joindre ton fichier audio et ta pochette
+      directement dans cette conversation.
     </div>
 
     <button type="submit" class="submit" id="distributionSubmit">
@@ -672,9 +759,7 @@ footer {
 
   <div class="notice" id="notice" role="status"></div>
 
-  <a href="index.html" class="back">
-    ← Retour à l'accueil
-  </a>
+  <a href="index.html" class="back">← Retour à l'accueil</a>
 
 </div>
 
@@ -687,9 +772,7 @@ footer {
 
 <script>
 
-/* =================================
-   CONFIGURATION SUPABASE
-================================= */
+/* CONFIGURATION SUPABASE */
 
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 
@@ -702,9 +785,7 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_KEY
 );
 
-/* =================================
-   ELEMENTS
-================================= */
+/* ELEMENTS */
 
 const loginTab = document.getElementById("loginTab");
 const registerTab = document.getElementById("registerTab");
@@ -716,9 +797,7 @@ const distributionForm = document.getElementById("distributionForm");
 
 const notice = document.getElementById("notice");
 
-/* =================================
-   NOTIFICATIONS
-================================= */
+/* NOTIFICATIONS */
 
 function showNotice(message) {
   notice.style.display = "block";
@@ -730,27 +809,16 @@ function hideNotice() {
   notice.textContent = "";
 }
 
-/* =================================
-   GESTION DES ONGLETS
-================================= */
+/* ONGLETS */
 
 function activateTab(tabName) {
 
   hideNotice();
 
   const tabs = {
-    login: {
-      button: loginTab,
-      form: loginForm
-    },
-    register: {
-      button: registerTab,
-      form: registerForm
-    },
-    distribution: {
-      button: distributionTab,
-      form: distributionForm
-    }
+    login: {button:loginTab,form:loginForm},
+    register: {button:registerTab,form:registerForm},
+    distribution: {button:distributionTab,form:distributionForm}
   };
 
   Object.values(tabs).forEach(function(item) {
@@ -759,24 +827,22 @@ function activateTab(tabName) {
   });
 
   tabs[tabName].button.classList.add("active");
-  tabs[tabName].form.classList.add("active");
+  tabs[tabName].form.classList.add("active');
 }
 
-loginTab.addEventListener("click", function() {
+loginTab.addEventListener("click",function() {
   activateTab("login");
 });
 
-registerTab.addEventListener("click", function() {
+registerTab.addEventListener("click",function() {
   activateTab("register");
 });
 
-distributionTab.addEventListener("click", function() {
+distributionTab.addEventListener("click",function() {
   activateTab("distribution");
 });
 
-/* =================================
-   SUCCES CONNEXION ARTISTE
-================================= */
+/* SUCCES CONNEXION */
 
 function showLoginSuccess(artistName) {
 
@@ -789,8 +855,7 @@ function showLoginSuccess(artistName) {
   title.style.marginBottom = "10px";
 
   const message = document.createElement("p");
-  message.textContent =
-    "Votre connexion à Moonlight Digital est réussie.";
+  message.textContent = "Votre connexion à Moonlight Digital est réussie.";
 
   const link = document.createElement("a");
   link.href = "dashboard.html";
@@ -802,42 +867,27 @@ function showLoginSuccess(artistName) {
   notice.appendChild(link);
 }
 
-/* =================================
-   INSCRIPTION
-================================= */
+/* INSCRIPTION */
 
-registerForm.addEventListener("submit", async function(e) {
+registerForm.addEventListener("submit",async function(e) {
 
   e.preventDefault();
   hideNotice();
 
-  const artistName =
-    document.getElementById("artistName").value.trim();
+  const artistName = document.getElementById("artistName").value.trim();
+  const fullName = document.getElementById("fullName").value.trim();
+  const email = document.getElementById("registerEmail").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const country = document.getElementById("country").value;
+  const password = document.getElementById("registerPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-  const fullName =
-    document.getElementById("fullName").value.trim();
-
-  const email =
-    document.getElementById("registerEmail").value.trim();
-
-  const phone =
-    document.getElementById("phone").value.trim();
-
-  const country =
-    document.getElementById("country").value;
-
-  const password =
-    document.getElementById("registerPassword").value;
-
-  const confirmPassword =
-    document.getElementById("confirmPassword").value;
-
-  if (password !== confirmPassword) {
+  if(password !== confirmPassword) {
     showNotice("Les deux mots de passe ne correspondent pas.");
     return;
   }
 
-  if (password.length < 8) {
+  if(password.length < 8) {
     showNotice("Le mot de passe doit contenir au moins 8 caractères.");
     return;
   }
@@ -849,46 +899,35 @@ registerForm.addEventListener("submit", async function(e) {
 
   try {
 
-    const { data, error } =
-      await supabaseClient.auth.signUp({
+    const {data,error} = await supabaseClient.auth.signUp({
 
-        email:email,
-        password:password,
+      email:email,
+      password:password,
 
-        options:{
-          data:{
-            artist_name:artistName,
-            full_name:fullName,
-            phone:phone,
-            country:country
-          }
+      options:{
+        data:{
+          artist_name:artistName,
+          full_name:fullName,
+          phone:phone,
+          country:country
         }
+      }
 
-      });
+    });
 
-    if (error) throw error;
+    if(error) throw error;
 
     registerForm.reset();
 
-    if (data.session) {
-
-      showNotice(
-        "Félicitations ! Votre compte a été créé. Vous pouvez maintenant vous connecter."
-      );
-
+    if(data.session) {
+      showNotice("Félicitations ! Votre compte a été créé. Vous pouvez maintenant vous connecter.");
     } else {
-
-      showNotice(
-        "Votre inscription a été enregistrée ! Consultez votre boîte e-mail pour confirmer votre adresse avant de vous connecter."
-      );
-
+      showNotice("Votre inscription a été enregistrée ! Consultez votre boîte e-mail pour confirmer votre adresse.");
     }
 
   } catch(error) {
 
-    showNotice(
-      "Erreur lors de l'inscription : " + error.message
-    );
+    showNotice("Erreur lors de l'inscription : " + error.message);
 
   } finally {
 
@@ -899,20 +938,15 @@ registerForm.addEventListener("submit", async function(e) {
 
 });
 
-/* =================================
-   CONNEXION
-================================= */
+/* CONNEXION */
 
-loginForm.addEventListener("submit", async function(e) {
+loginForm.addEventListener("submit",async function(e) {
 
   e.preventDefault();
   hideNotice();
 
-  const email =
-    document.getElementById("loginEmail").value.trim();
-
-  const password =
-    document.getElementById("loginPassword").value;
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
 
   const button = loginForm.querySelector(".submit");
 
@@ -921,39 +955,33 @@ loginForm.addEventListener("submit", async function(e) {
 
   try {
 
-    const { data, error } =
-      await supabaseClient.auth.signInWithPassword({
-        email:email,
-        password:password
-      });
+    const {data,error} = await supabaseClient.auth.signInWithPassword({
+      email:email,
+      password:password
+    });
 
-    if (error) throw error;
+    if(error) throw error;
 
-    if (!data.user) {
+    if(!data.user) {
       throw new Error("Utilisateur introuvable.");
     }
 
-    if (data.user.id === ADMIN_ID) {
+    if(data.user.id === ADMIN_ID) {
 
-      showNotice(
-        "Connexion administrateur réussie. Ouverture de l'administration..."
-      );
+      showNotice("Connexion administrateur réussie. Ouverture de l'administration...");
 
       window.location.replace("admin.html");
       return;
 
     }
 
-    const artistName =
-      data.user.user_metadata?.artist_name || "Artiste";
+    const artistName = data.user.user_metadata?.artist_name || "Artiste";
 
     showLoginSuccess(artistName);
 
   } catch(error) {
 
-    showNotice(
-      "Erreur de connexion : " + error.message
-    );
+    showNotice("Erreur de connexion : " + error.message);
 
   } finally {
 
@@ -964,9 +992,7 @@ loginForm.addEventListener("submit", async function(e) {
 
 });
 
-/* =================================
-   DATE MINIMALE DE SORTIE
-================================= */
+/* DATE MINIMALE */
 
 const releaseDateInput = document.getElementById("releaseDate");
 
@@ -974,40 +1000,58 @@ const today = new Date();
 
 const localToday = [
   today.getFullYear(),
-  String(today.getMonth() + 1).padStart(2,"0"),
+  String(today.getMonth()+1).padStart(2,"0"),
   String(today.getDate()).padStart(2,"0")
 ].join("-");
 
 releaseDateInput.min = localToday;
 
-/* =================================
-   DEMANDE DE DISTRIBUTION WHATSAPP
-================================= */
+/* PLATEFORMES : OPTION TOUTES */
 
-distributionForm.addEventListener("submit", function(e) {
+const platformCheckboxes = document.querySelectorAll('input[name="platform"]');
+
+platformCheckboxes.forEach(function(checkbox) {
+
+  checkbox.addEventListener("change",function() {
+
+    const allOption = document.querySelector(
+      'input[name="platform"][value="Toutes les plateformes disponibles"]'
+    );
+
+    if(checkbox === allOption && checkbox.checked) {
+
+      platformCheckboxes.forEach(function(other) {
+        if(other !== allOption) other.checked = false;
+      });
+
+    } else if(checkbox.checked && allOption.checked) {
+
+      allOption.checked = false;
+
+    }
+
+  });
+
+});
+
+/* FONCTION POUR RECUPERER UNE VALEUR */
+
+function getValue(id) {
+
+  const element = document.getElementById(id);
+
+  if(!element) return "Non renseigné";
+
+  return element.value.trim() || "Non renseigné";
+
+}
+
+/* DEMANDE WHATSAPP */
+
+distributionForm.addEventListener("submit",function(e) {
 
   e.preventDefault();
   hideNotice();
-
-  const artist = document.getElementById("distArtist").value.trim();
-  const fullName = document.getElementById("distFullName").value.trim();
-  const email = document.getElementById("distEmail").value.trim();
-  const phone = document.getElementById("distPhone").value.trim();
-  const country = document.getElementById("distCountry").value;
-
-  const title = document.getElementById("trackTitle").value.trim();
-  const type = document.getElementById("releaseType").value;
-  const genre = document.getElementById("musicGenre").value;
-  const language = document.getElementById("musicLanguage").value;
-  const date = document.getElementById("releaseDate").value;
-
-  const featured = document.getElementById("featuredArtists").value.trim();
-  const producer = document.getElementById("producer").value.trim();
-  const social = document.getElementById("socialLink").value.trim();
-  const extra = document.getElementById("extraInfo").value.trim();
-
-  const rightsConfirmed =
-    document.getElementById("rightsConfirmation").checked;
 
   const platforms = Array.from(
     document.querySelectorAll('input[name="platform"]:checked')
@@ -1015,17 +1059,19 @@ distributionForm.addEventListener("submit", function(e) {
     return input.value;
   });
 
-  if (platforms.length === 0) {
+  if(platforms.length === 0) {
     showNotice("Veuillez sélectionner au moins une plateforme.");
     return;
   }
 
-  if (!rightsConfirmed) {
+  if(!document.getElementById("rightsConfirmation").checked) {
     showNotice("Veuillez confirmer vos droits sur le morceau.");
     return;
   }
 
-  if (date < localToday) {
+  const date = getValue("releaseDate");
+
+  if(date < localToday) {
     showNotice("La date de sortie doit être aujourd'hui ou dans le futur.");
     return;
   }
@@ -1035,6 +1081,12 @@ distributionForm.addEventListener("submit", function(e) {
   button.disabled = true;
   button.textContent = "Préparation de votre demande...";
 
+  const artist = getValue("distArtist");
+  const fullName = getValue("distFullName");
+  const email = getValue("distEmail");
+  const phone = getValue("distPhone");
+  const country = getValue("distCountry");
+
   const message = `
 🌙 *NOUVELLE DEMANDE DE DISTRIBUTION*
 ━━━━━━━━━━━━━━━━━━
@@ -1042,7 +1094,7 @@ distributionForm.addEventListener("submit", function(e) {
 🏢 *MOONLIGHT DIGITAL*
 🎵 Moonlight Distribution
 
-👤 *INFORMATIONS DE L'ARTISTE*
+👤 *01 — INFORMATIONS DE L'ARTISTE*
 
 Nom d'artiste : ${artist}
 Nom complet : ${fullName}
@@ -1052,34 +1104,71 @@ Pays : ${country}
 
 ━━━━━━━━━━━━━━━━━━
 
-🎼 *INFORMATIONS DU PROJET*
+🎼 *02 — INFORMATIONS SUR LE MORCEAU*
 
-Titre : ${title}
-Type de sortie : ${type}
-Genre musical : ${genre}
-Langue : ${language}
-Date souhaitée : ${date}
+Titre : ${getValue("trackTitle")}
+Type de sortie : ${getValue("releaseType")}
+Genre musical : ${getValue("musicGenre")}
+Langue : ${getValue("musicLanguage")}
+Durée : ${getValue("trackDuration")}
+Date de sortie : ${date}
+Featuring : ${getValue("featuredArtists")}
+Producteur : ${getValue("producer")}
 
-Artiste(s) invité(s) : ${featured || "Non renseigné"}
-Producteur : ${producer || "Non renseigné"}
+Paroles disponibles : ${getValue("lyricsAvailable")}
+Paroles explicites : ${getValue("explicitContent")}
+Possède un ISRC : ${getValue("isrcStatus")}
+Code ISRC : ${getValue("isrcCode")}
+Possède un UPC/EAN : ${getValue("upcStatus")}
+Code UPC/EAN : ${getValue("upcCode")}
 
 ━━━━━━━━━━━━━━━━━━
 
-🌍 *PLATEFORMES DEMANDÉES*
+🌍 *03 — PLATEFORMES DE DIFFUSION*
 
-${platforms.map(function(p) {
-  return "• " + p;
-}).join("\n")}
+${platforms.map(p => "• " + p).join("\n")}
 
 ━━━━━━━━━━━━━━━━━━
 
-🔗 *RÉSEAUX SOCIAUX*
+🎧 *04 — SERVICES AUDIO*
 
-${social || "Non renseigné"}
+Morceau déjà enregistré : ${getValue("audioRecorded")}
+Besoin d'un ingénieur de son : ${getValue("soundEngineer")}
+Besoin de mixage : ${getValue("mixingNeeded")}
+Besoin de mastering : ${getValue("masteringNeeded")}
+État du mixage/mastering : ${getValue("audioFinished")}
+Ingénieur de mixage : ${getValue("mixingEngineer")}
+Ingénieur de mastering : ${getValue("masteringEngineer")}
+
+━━━━━━━━━━━━━━━━━━
+
+🎨 *05 — POCHETTE ET IDENTITÉ VISUELLE*
+
+Pochette déjà disponible : ${getValue("coverAvailable")}
+Création de pochette : ${getValue("coverCreation")}
+Visualizer : ${getValue("visualizerNeeded")}
+Vidéo promotionnelle : ${getValue("promoVideo")}
+Animation de sortie : ${getValue("releaseAnimation")}
+
+━━━━━━━━━━━━━━━━━━
+
+📢 *06 — PROMOTION ET VISIBILITÉ*
+
+Campagne promotionnelle : ${getValue("promoCampaign")}
+Publication sur Moonlight Digital : ${getValue("socialPublication")}
+Interview : ${getValue("interviewNeeded")}
+Stratégie de lancement : ${getValue("launchStrategy")}
+Précommande / pré-enregistrement : ${getValue("preSaveCampaign")}
+
+━━━━━━━━━━━━━━━━━━
+
+🔗 *07 — RÉSEAUX SOCIAUX*
+
+${getValue("socialLink")}
 
 📝 *INFORMATIONS COMPLÉMENTAIRES*
 
-${extra || "Aucune"}
+${getValue("extraInfo")}
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -1087,14 +1176,14 @@ ${extra || "Aucune"}
 
 📁 *FICHIERS À TRANSMETTRE*
 
-L'artiste doit envoyer dans cette conversation :
-
 1. Le fichier audio du morceau.
-2. La pochette officielle du projet.
+2. La pochette officielle du projet, si disponible.
+
+L'artiste transmettra les fichiers directement dans cette conversation WhatsApp.
 
 ━━━━━━━━━━━━━━━━━━
 
-📩 Demande envoyée depuis le site officiel de Moonlight Digital.
+📩 Demande préparée depuis le site officiel de Moonlight Digital.
 `;
 
   const whatsappNumber = "243890385429";
@@ -1103,20 +1192,18 @@ L'artiste doit envoyer dans cette conversation :
     "https://wa.me/" + whatsappNumber +
     "?text=" + encodeURIComponent(message);
 
-  showNotice(
-    "Votre demande est prête ! WhatsApp va s'ouvrir. Appuyez sur Envoyer pour transmettre votre demande, puis joignez votre audio et votre pochette dans la conversation."
-  );
-
   button.disabled = false;
   button.textContent = "Envoyer ma demande sur WhatsApp";
+
+  showNotice(
+    "Votre demande est prête ! WhatsApp va s'ouvrir. Appuyez sur Envoyer pour transmettre votre demande, puis joignez votre audio et votre pochette."
+  );
 
   window.location.href = whatsappURL;
 
 });
 
-/* =================================
-   ANIMATIONS MOONLIGHT DIGITAL
-================================= */
+/* ANIMATIONS */
 
 (function() {
 
@@ -1124,37 +1211,25 @@ L'artiste doit envoyer dans cette conversation :
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  if (
-    reduceMotion ||
-    !("IntersectionObserver" in window)
-  ) {
+  if(reduceMotion || !("IntersectionObserver" in window)) {
     return;
   }
 
   const elements = document.querySelectorAll(
-    "header, .container, footer, .logo, .section-title, .info-box, .back"
+    "header,.container,footer,.logo,.section-title,.info-box,.back"
   );
 
-  const observer = new IntersectionObserver(
+  const observer = new IntersectionObserver(function(entries) {
 
-    function(entries) {
+    entries.forEach(function(entry) {
 
-      entries.forEach(function(entry) {
+      if(entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
 
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-        }
+    });
 
-      });
-
-    },
-
-    {
-      threshold:0.12,
-      rootMargin:"0px 0px -25px 0px"
-    }
-
-  );
+  },{threshold:0.12});
 
   elements.forEach(function(element) {
     observer.observe(element);
