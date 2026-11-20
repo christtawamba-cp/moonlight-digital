@@ -7,271 +7,368 @@
 <title>Espace Artiste | Moonlight Digital</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+:root {
+  --gold:#d4af37;
+  --gold-light:#f5dc91;
+  --black:#050505;
+  --card:#101010;
+  --muted:#999;
+  --border:#292929;
 }
 
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+html { scroll-behavior:smooth; }
+
 body {
-  background: #050505;
-  color: white;
-  min-height: 100vh;
-  padding: 20px;
+  background:
+    radial-gradient(ellipse at 10% 10%,rgba(212,175,55,.13),transparent 35%),
+    radial-gradient(ellipse at 90% 45%,rgba(212,175,55,.08),transparent 40%),
+    radial-gradient(ellipse at 50% 100%,rgba(212,175,55,.06),transparent 45%),
+    linear-gradient(135deg,#030303,#101010 55%,#050505);
+  color:white;
+  min-height:100vh;
+  padding:20px;
+  overflow-x:hidden;
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background-image:
+    radial-gradient(rgba(212,175,55,.22) 1px,transparent 1px);
+  background-size:35px 35px;
+  opacity:.16;
 }
 
 header {
-  text-align: center;
-  padding: 30px 10px;
+  text-align:center;
+  padding:30px 10px;
+  animation:fadeDown .9s ease both;
 }
 
 header h1 {
-  font-size: 28px;
-  letter-spacing: 2px;
+  font-size:28px;
+  letter-spacing:3px;
 }
 
-header h1 span {
-  color: #d4af37;
-}
+header h1 span { color:var(--gold); }
 
 header p {
-  color: #999;
-  margin-top: 10px;
-  font-size: 14px;
+  color:var(--muted);
+  margin-top:10px;
+  font-size:14px;
 }
 
 .container {
-  max-width: 480px;
-  margin: 25px auto;
-  background: #101010;
-  border: 1px solid #292929;
-  border-radius: 18px;
-  padding: 28px;
+  max-width:520px;
+  margin:25px auto;
+  background:rgba(15,15,15,.94);
+  border:1px solid rgba(212,175,55,.3);
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 15px 60px rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);
+  animation:fadeUp .9s ease both;
 }
 
 .logo {
-  text-align: center;
-  font-size: 45px;
-  margin-bottom: 10px;
+  text-align:center;
+  font-size:48px;
+  margin-bottom:12px;
+  animation:moonFloat 3s ease-in-out infinite;
 }
 
 h2 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 10px;
+  text-align:center;
+  font-size:24px;
+  margin-bottom:10px;
 }
 
 .subtitle {
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  margin-bottom: 25px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:25px;
 }
 
 .tabs {
-  display: flex;
-  background: #080808;
-  padding: 5px;
-  border-radius: 10px;
-  margin-bottom: 25px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  background:#080808;
+  padding:5px;
+  border-radius:12px;
+  margin-bottom:25px;
 }
 
 .tabs button {
-  flex: 1;
-  padding: 13px 5px;
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  color: #aaa;
-  font-weight: bold;
-  cursor: pointer;
+  flex:1 1 30%;
+  min-width:90px;
+  padding:13px 5px;
+  border:none;
+  border-radius:9px;
+  background:transparent;
+  color:#aaa;
+  font-size:12px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
 }
 
 .tabs button.active {
-  background: #d4af37;
-  color: #050505;
+  background:linear-gradient(135deg,#d4af37,#f5dc91);
+  color:#050505;
+  box-shadow:0 4px 15px rgba(212,175,55,.2);
 }
 
-.form {
-  display: none;
+.tabs button:hover {
+  color:white;
 }
+
+.tabs button.active:hover { color:#050505; }
+
+.form { display:none; }
 
 .form.active {
-  display: block;
+  display:block;
+  animation:formAppear .45s ease both;
 }
 
 label {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 8px;
-  color: #ddd;
+  display:block;
+  font-size:13px;
+  margin-bottom:8px;
+  color:#ddd;
 }
 
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 18px;
-  background: #080808;
-  border: 1px solid #333;
-  border-radius: 9px;
-  color: white;
-  font-size: 15px;
+input,select,textarea {
+  width:100%;
+  padding:14px;
+  margin-bottom:18px;
+  background:#080808;
+  border:1px solid #333;
+  border-radius:9px;
+  color:white;
+  font-size:15px;
+  transition:border-color .3s,box-shadow .3s;
 }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: #d4af37;
+input:focus,select:focus,textarea:focus {
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(212,175,55,.1);
+}
+
+input::placeholder,textarea::placeholder { color:#777; }
+
+select option {
+  background:#101010;
+  color:white;
+}
+
+textarea {
+  resize:vertical;
+  min-height:90px;
 }
 
 .submit {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 30px;
-  background: #d4af37;
-  color: #050505;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-  transition: .3s;
+  width:100%;
+  min-height:48px;
+  padding:15px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#d4af37,#f5dc91);
+  color:#050505;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  transition:.3s;
 }
 
 .submit:hover {
-  background: white;
-  transform: translateY(-2px);
+  background:white;
+  transform:translateY(-3px);
+  box-shadow:0 8px 22px rgba(212,175,55,.2);
 }
 
 .submit:disabled {
-  opacity: 0.6;
-  cursor: wait;
-  transform: none;
+  opacity:.6;
+  cursor:wait;
+  transform:none;
 }
 
 .notice {
-  display: none;
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 8px;
-  background: #24200e;
-  border: 1px solid #d4af37;
-  color: #f1d98a;
-  font-size: 14px;
-  line-height: 1.6;
-  overflow-wrap: anywhere;
-  text-align: center;
+  display:none;
+  margin-top:18px;
+  padding:18px;
+  border-radius:10px;
+  background:#24200e;
+  border:1px solid var(--gold);
+  color:#f1d98a;
+  font-size:14px;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+  text-align:center;
 }
 
 .dashboard-link {
-  display: block;
-  margin-top: 18px;
-  padding: 15px 12px;
-  background: #d4af37;
-  color: #050505;
-  border-radius: 9px;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
-  transition: .3s;
+  display:block;
+  margin-top:18px;
+  padding:15px 12px;
+  background:var(--gold);
+  color:#050505;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+  transition:.3s;
 }
 
 .dashboard-link:hover {
-  background: white;
-  transform: translateY(-2px);
+  background:white;
+  transform:translateY(-2px);
 }
 
 .back {
-  display: block;
-  text-align: center;
-  margin-top: 25px;
-  color: #d4af37;
-  text-decoration: none;
-  font-size: 14px;
-  transition: .3s;
+  display:block;
+  text-align:center;
+  margin-top:25px;
+  color:var(--gold);
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
 }
 
-.back:hover {
-  color: white;
-  transform: translateY(-2px);
+.back:hover { color:white; }
+
+.section-title {
+  color:var(--gold);
+  font-size:15px;
+  margin:22px 0 15px;
+  padding-bottom:9px;
+  border-bottom:1px solid #333;
+}
+
+.info-box {
+  background:rgba(212,175,55,.08);
+  border:1px solid rgba(212,175,55,.3);
+  color:#e8d69e;
+  padding:14px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.platforms {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.platform {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:11px;
+  background:#080808;
+  border:1px solid #333;
+  border-radius:9px;
+  font-size:13px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.platform:hover {
+  border-color:var(--gold);
+}
+
+.platform input {
+  width:17px;
+  height:17px;
+  margin:0;
+  accent-color:var(--gold);
+  flex-shrink:0;
+}
+
+.check-row {
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:13px;
+  line-height:1.6;
+  color:#ddd;
+  margin:10px 0 20px;
+}
+
+.check-row input {
+  width:18px;
+  height:18px;
+  margin:2px 0 0;
+  accent-color:var(--gold);
+  flex-shrink:0;
+}
+
+.small-note {
+  font-size:12px;
+  color:#999;
+  line-height:1.6;
+  margin-top:-8px;
+  margin-bottom:18px;
 }
 
 footer {
-  text-align: center;
-  color: #666;
-  font-size: 12px;
-  padding: 30px 10px;
+  text-align:center;
+  color:#666;
+  font-size:12px;
+  line-height:1.8;
+  padding:30px 10px;
 }
 
-@media(max-width: 400px) {
-  .container {
-    padding: 20px;
-  }
-
-  header h1 {
-    font-size: 24px;
-  }
+@keyframes fadeDown {
+  from { opacity:0; transform:translateY(-25px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-/* =================================
-   ANIMATIONS MOONLIGHT DIGITAL
-================================= */
-
-.js-motion .reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity .7s ease,
-    transform .7s cubic-bezier(.2,.65,.3,1);
-  will-change: opacity, transform;
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-.js-motion .reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes formAppear {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-/* Animation du logo */
-
-.js-motion .logo {
-  transition:
-    transform .8s ease,
-    opacity .8s ease;
+@keyframes moonFloat {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-8px); }
 }
 
-.js-motion .logo.is-visible {
-  animation: moonlightFloat 3s ease-in-out infinite;
+@media(max-width:400px) {
+  body { padding:12px; }
+  .container { padding:20px; }
+  header h1 { font-size:23px; }
+  .tabs button { font-size:11px; }
+  .platforms { grid-template-columns:1fr; }
 }
 
-@keyframes moonlightFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-/* Animation des boutons */
-
-.tabs button,
-.submit,
-.dashboard-link,
-.back {
-  transition: all .3s ease;
-}
-
-/* Respect des préférences d'accessibilité */
-
-@media (prefers-reduced-motion: reduce) {
-  .js-motion .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .js-motion .logo.is-visible {
-    animation: none !important;
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
   }
 }
 </style>
@@ -304,6 +401,10 @@ footer {
       Inscription
     </button>
 
+    <button id="distributionTab" type="button">
+      Distribuer
+    </button>
+
   </div>
 
   <!-- CONNEXION -->
@@ -312,23 +413,15 @@ footer {
 
     <label>Adresse e-mail</label>
 
-    <input
-      type="email"
-      id="loginEmail"
+    <input type="email" id="loginEmail"
       placeholder="Votre adresse e-mail"
-      autocomplete="email"
-      required
-    >
+      autocomplete="email" required>
 
     <label>Mot de passe</label>
 
-    <input
-      type="password"
-      id="loginPassword"
+    <input type="password" id="loginPassword"
       placeholder="Votre mot de passe"
-      autocomplete="current-password"
-      required
-    >
+      autocomplete="current-password" required>
 
     <button type="submit" class="submit">
       Se connecter
@@ -342,98 +435,237 @@ footer {
 
     <label>Nom de l'artiste</label>
 
-    <input
-      type="text"
-      id="artistName"
-      placeholder="Votre nom d'artiste"
-      required
-    >
+    <input type="text" id="artistName"
+      placeholder="Votre nom d'artiste" required>
 
     <label>Nom complet</label>
 
-    <input
-      type="text"
-      id="fullName"
+    <input type="text" id="fullName"
       placeholder="Votre nom complet"
-      autocomplete="name"
-      required
-    >
+      autocomplete="name" required>
 
     <label>Adresse e-mail</label>
 
-    <input
-      type="email"
-      id="registerEmail"
+    <input type="email" id="registerEmail"
       placeholder="Votre adresse e-mail"
-      autocomplete="email"
-      required
-    >
+      autocomplete="email" required>
 
     <label>Numéro WhatsApp</label>
 
-    <input
-      type="tel"
-      id="phone"
-      placeholder="+243..."
-      required
-    >
+    <input type="tel" id="phone"
+      placeholder="+243..." required>
 
     <label>Pays</label>
 
     <select id="country" required>
-
       <option value="">Choisir votre pays</option>
-
-      <option value="République démocratique du Congo">
-        République démocratique du Congo
-      </option>
-
-      <option value="Congo-Brazzaville">
-        Congo-Brazzaville
-      </option>
-
+      <option value="République démocratique du Congo">République démocratique du Congo</option>
+      <option value="Congo-Brazzaville">Congo-Brazzaville</option>
       <option value="Angola">Angola</option>
-
-      <option value="Côte d'Ivoire">
-        Côte d'Ivoire
-      </option>
-
+      <option value="Côte d'Ivoire">Côte d'Ivoire</option>
       <option value="Cameroun">Cameroun</option>
-
       <option value="Sénégal">Sénégal</option>
-
       <option value="France">France</option>
-
       <option value="Belgique">Belgique</option>
-
       <option value="Autre">Autre</option>
-
     </select>
 
     <label>Mot de passe</label>
 
-    <input
-      type="password"
-      id="registerPassword"
+    <input type="password" id="registerPassword"
       placeholder="Créer un mot de passe"
-      minlength="8"
-      autocomplete="new-password"
-      required
-    >
+      minlength="8" autocomplete="new-password" required>
 
     <label>Confirmer le mot de passe</label>
 
-    <input
-      type="password"
-      id="confirmPassword"
+    <input type="password" id="confirmPassword"
       placeholder="Confirmer le mot de passe"
-      minlength="8"
-      autocomplete="new-password"
-      required
-    >
+      minlength="8" autocomplete="new-password" required>
 
     <button type="submit" class="submit">
       Créer mon compte
+    </button>
+
+  </form>
+
+  <!-- DEMANDE DE DISTRIBUTION -->
+
+  <form id="distributionForm" class="form">
+
+    <h2>Distribution musicale</h2>
+
+    <p class="subtitle">
+      Soumettez votre projet à Moonlight Distribution.
+    </p>
+
+    <div class="info-box">
+      Remplissez les informations de votre sortie musicale.
+      Après validation, WhatsApp s'ouvrira pour transmettre
+      votre demande à notre équipe.
+    </div>
+
+    <h3 class="section-title">01 — Informations de l'artiste</h3>
+
+    <label>Nom d'artiste</label>
+    <input type="text" id="distArtist"
+      placeholder="Nom d'artiste" required>
+
+    <label>Nom complet</label>
+    <input type="text" id="distFullName"
+      placeholder="Votre nom complet" required>
+
+    <label>Adresse e-mail</label>
+    <input type="email" id="distEmail"
+      placeholder="Votre adresse e-mail" required>
+
+    <label>Numéro WhatsApp</label>
+    <input type="tel" id="distPhone"
+      placeholder="+243..." required>
+
+    <label>Pays</label>
+    <select id="distCountry" required>
+      <option value="">Choisir votre pays</option>
+      <option value="République démocratique du Congo">République démocratique du Congo</option>
+      <option value="Congo-Brazzaville">Congo-Brazzaville</option>
+      <option value="Angola">Angola</option>
+      <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+      <option value="Cameroun">Cameroun</option>
+      <option value="Sénégal">Sénégal</option>
+      <option value="France">France</option>
+      <option value="Belgique">Belgique</option>
+      <option value="Autre">Autre</option>
+    </select>
+
+    <h3 class="section-title">02 — Informations du morceau</h3>
+
+    <label>Titre du morceau</label>
+    <input type="text" id="trackTitle"
+      placeholder="Titre officiel du morceau" required>
+
+    <label>Type de sortie</label>
+    <select id="releaseType" required>
+      <option value="">Choisir le type de sortie</option>
+      <option value="Single">Single</option>
+      <option value="EP">EP</option>
+      <option value="Album">Album</option>
+      <option value="Mixtape">Mixtape</option>
+    </select>
+
+    <label>Genre musical</label>
+    <select id="musicGenre" required>
+      <option value="">Choisir le genre</option>
+      <option value="Afrobeat">Afrobeat</option>
+      <option value="Rap / Hip-hop">Rap / Hip-hop</option>
+      <option value="R&B">R&B</option>
+      <option value="Afropop">Afropop</option>
+      <option value="Gospel">Gospel</option>
+      <option value="Ndombolo">Ndombolo</option>
+      <option value="Amapiano">Amapiano</option>
+      <option value="Dancehall">Dancehall</option>
+      <option value="Autre">Autre</option>
+    </select>
+
+    <label>Langue du morceau</label>
+    <select id="musicLanguage" required>
+      <option value="">Choisir la langue</option>
+      <option value="Français">Français</option>
+      <option value="Lingala">Lingala</option>
+      <option value="Anglais">Anglais</option>
+      <option value="Swahili">Swahili</option>
+      <option value="Kikongo">Kikongo</option>
+      <option value="Tshiluba">Tshiluba</option>
+      <option value="Autre">Autre</option>
+    </select>
+
+    <label>Date de sortie souhaitée</label>
+    <input type="date" id="releaseDate" required>
+
+    <label>Artiste(s) en collaboration (facultatif)</label>
+    <input type="text" id="featuredArtists"
+      placeholder="Nom des artistes invités">
+
+    <label>Nom du producteur (facultatif)</label>
+    <input type="text" id="producer"
+      placeholder="Nom du producteur">
+
+    <h3 class="section-title">03 — Plateformes de diffusion</h3>
+
+    <p class="small-note">
+      Sélectionnez les plateformes sur lesquelles vous souhaitez
+      diffuser votre musique.
+    </p>
+
+    <div class="platforms">
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Spotify">
+        Spotify
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Apple Music">
+        Apple Music
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="YouTube Music">
+        YouTube Music
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Deezer">
+        Deezer
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Boomplay">
+        Boomplay
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Audiomack">
+        Audiomack
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Amazon Music">
+        Amazon Music
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" name="platform" value="Toutes les plateformes disponibles">
+        Toutes les plateformes disponibles
+      </label>
+
+    </div>
+
+    <h3 class="section-title">04 — Confirmation et informations supplémentaires</h3>
+
+    <label>Liens de vos réseaux sociaux (facultatif)</label>
+    <input type="url" id="socialLink"
+      placeholder="https://...">
+
+    <label>Informations complémentaires</label>
+    <textarea id="extraInfo"
+      placeholder="Ajoutez ici vos précisions concernant le projet..."></textarea>
+
+    <label class="check-row">
+      <input type="checkbox" id="rightsConfirmation" required>
+      <span>
+        Je confirme être autorisé à distribuer ce morceau
+        et disposer des droits ou autorisations nécessaires.
+      </span>
+    </label>
+
+    <div class="info-box">
+      <strong>Important :</strong> après l'envoi de votre demande,
+      vous devrez transmettre directement votre fichier audio
+      et votre pochette à Moonlight Digital dans la conversation
+      WhatsApp qui va s'ouvrir.
+    </div>
+
+    <button type="submit" class="submit" id="distributionSubmit">
+      Envoyer ma demande sur WhatsApp
     </button>
 
   </form>
@@ -463,14 +695,6 @@ const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
 
-/*
-IDENTIFIANT ADMINISTRATEUR
-IMPORTANT :
-Remplacer cette valeur par l'UUID vérifié
-du compte administrateur général dans Supabase.
-Ne pas utiliser un UUID supposé.
-*/
-
 const ADMIN_ID = "fe4ef189-b4ad-454b-aa06-10ed47028254";
 
 const supabaseClient = window.supabase.createClient(
@@ -478,115 +702,105 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_KEY
 );
 
-
 /* =================================
    ELEMENTS
 ================================= */
 
 const loginTab = document.getElementById("loginTab");
-
 const registerTab = document.getElementById("registerTab");
+const distributionTab = document.getElementById("distributionTab");
 
 const loginForm = document.getElementById("loginForm");
-
 const registerForm = document.getElementById("registerForm");
+const distributionForm = document.getElementById("distributionForm");
 
 const notice = document.getElementById("notice");
-
 
 /* =================================
    NOTIFICATIONS
 ================================= */
 
 function showNotice(message) {
-
   notice.style.display = "block";
-
   notice.textContent = message;
-
 }
 
 function hideNotice() {
-
   notice.style.display = "none";
-
   notice.textContent = "";
-
 }
 
+/* =================================
+   GESTION DES ONGLETS
+================================= */
+
+function activateTab(tabName) {
+
+  hideNotice();
+
+  const tabs = {
+    login: {
+      button: loginTab,
+      form: loginForm
+    },
+    register: {
+      button: registerTab,
+      form: registerForm
+    },
+    distribution: {
+      button: distributionTab,
+      form: distributionForm
+    }
+  };
+
+  Object.values(tabs).forEach(function(item) {
+    item.button.classList.remove("active");
+    item.form.classList.remove("active");
+  });
+
+  tabs[tabName].button.classList.add("active");
+  tabs[tabName].form.classList.add("active");
+}
+
+loginTab.addEventListener("click", function() {
+  activateTab("login");
+});
+
+registerTab.addEventListener("click", function() {
+  activateTab("register");
+});
+
+distributionTab.addEventListener("click", function() {
+  activateTab("distribution");
+});
 
 /* =================================
-   AFFICHAGE DU SUCCES ARTISTE
+   SUCCES CONNEXION ARTISTE
 ================================= */
 
 function showLoginSuccess(artistName) {
 
   notice.style.display = "block";
-
   notice.innerHTML = "";
 
   const title = document.createElement("h3");
-
   title.textContent = "Bienvenue " + artistName + " !";
-
   title.style.color = "#d4af37";
-
   title.style.marginBottom = "10px";
 
   const message = document.createElement("p");
-
   message.textContent =
     "Votre connexion à Moonlight Digital est réussie.";
 
   const link = document.createElement("a");
-
   link.href = "dashboard.html";
-
   link.className = "dashboard-link";
-
   link.textContent = "Accéder à mon tableau de bord";
 
   notice.appendChild(title);
-
   notice.appendChild(message);
-
   notice.appendChild(link);
-
 }
-
-
-/* =================================
-   CHANGEMENT DES FORMULAIRES
-================================= */
-
-loginTab.addEventListener("click", function() {
-
-  loginTab.classList.add("active");
-
-  registerTab.classList.remove("active");
-
-  loginForm.classList.add("active");
-
-  registerForm.classList.remove("active");
-
-  hideNotice();
-
-});
-
-registerTab.addEventListener("click", function() {
-
-  registerTab.classList.add("active");
-
-  loginTab.classList.remove("active");
-
-  registerForm.classList.add("active");
-
-  loginForm.classList.remove("active");
-
-  hideNotice();
-
-});
-
 
 /* =================================
    INSCRIPTION
@@ -595,7 +809,6 @@ registerTab.addEventListener("click", function() {
 registerForm.addEventListener("submit", async function(e) {
 
   e.preventDefault();
-
   hideNotice();
 
   const artistName =
@@ -619,27 +832,19 @@ registerForm.addEventListener("submit", async function(e) {
   const confirmPassword =
     document.getElementById("confirmPassword").value;
 
-
   if (password !== confirmPassword) {
-
     showNotice("Les deux mots de passe ne correspondent pas.");
-
     return;
-
   }
 
   if (password.length < 8) {
-
     showNotice("Le mot de passe doit contenir au moins 8 caractères.");
-
     return;
-
   }
 
   const button = registerForm.querySelector(".submit");
 
   button.disabled = true;
-
   button.textContent = "Création du compte...";
 
   try {
@@ -647,24 +852,16 @@ registerForm.addEventListener("submit", async function(e) {
     const { data, error } =
       await supabaseClient.auth.signUp({
 
-        email: email,
+        email:email,
+        password:password,
 
-        password: password,
-
-        options: {
-
-          data: {
-
-            artist_name: artistName,
-
-            full_name: fullName,
-
-            phone: phone,
-
-            country: country
-
+        options:{
+          data:{
+            artist_name:artistName,
+            full_name:fullName,
+            phone:phone,
+            country:country
           }
-
         }
 
       });
@@ -687,7 +884,7 @@ registerForm.addEventListener("submit", async function(e) {
 
     }
 
-  } catch (error) {
+  } catch(error) {
 
     showNotice(
       "Erreur lors de l'inscription : " + error.message
@@ -696,13 +893,11 @@ registerForm.addEventListener("submit", async function(e) {
   } finally {
 
     button.disabled = false;
-
     button.textContent = "Créer mon compte";
 
   }
 
 });
-
 
 /* =================================
    CONNEXION
@@ -711,7 +906,6 @@ registerForm.addEventListener("submit", async function(e) {
 loginForm.addEventListener("submit", async function(e) {
 
   e.preventDefault();
-
   hideNotice();
 
   const email =
@@ -723,29 +917,21 @@ loginForm.addEventListener("submit", async function(e) {
   const button = loginForm.querySelector(".submit");
 
   button.disabled = true;
-
   button.textContent = "Connexion...";
 
   try {
 
     const { data, error } =
       await supabaseClient.auth.signInWithPassword({
-
-        email: email,
-
-        password: password
-
+        email:email,
+        password:password
       });
 
     if (error) throw error;
 
     if (!data.user) {
-
       throw new Error("Utilisateur introuvable.");
-
     }
-
-    /* ADMINISTRATEUR GENERAL */
 
     if (data.user.id === ADMIN_ID) {
 
@@ -754,19 +940,16 @@ loginForm.addEventListener("submit", async function(e) {
       );
 
       window.location.replace("admin.html");
-
       return;
 
     }
-
-    /* COMPTE ARTISTE */
 
     const artistName =
       data.user.user_metadata?.artist_name || "Artiste";
 
     showLoginSuccess(artistName);
 
-  } catch (error) {
+  } catch(error) {
 
     showNotice(
       "Erreur de connexion : " + error.message
@@ -775,17 +958,164 @@ loginForm.addEventListener("submit", async function(e) {
   } finally {
 
     button.disabled = false;
-
     button.textContent = "Se connecter";
 
   }
 
 });
 
+/* =================================
+   DATE MINIMALE DE SORTIE
+================================= */
+
+const releaseDateInput = document.getElementById("releaseDate");
+
+const today = new Date();
+
+const localToday = [
+  today.getFullYear(),
+  String(today.getMonth() + 1).padStart(2,"0"),
+  String(today.getDate()).padStart(2,"0")
+].join("-");
+
+releaseDateInput.min = localToday;
 
 /* =================================
-   ANIMATIONS AU DÉFILEMENT
-   MOONLIGHT DIGITAL
+   DEMANDE DE DISTRIBUTION WHATSAPP
+================================= */
+
+distributionForm.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+  hideNotice();
+
+  const artist = document.getElementById("distArtist").value.trim();
+  const fullName = document.getElementById("distFullName").value.trim();
+  const email = document.getElementById("distEmail").value.trim();
+  const phone = document.getElementById("distPhone").value.trim();
+  const country = document.getElementById("distCountry").value;
+
+  const title = document.getElementById("trackTitle").value.trim();
+  const type = document.getElementById("releaseType").value;
+  const genre = document.getElementById("musicGenre").value;
+  const language = document.getElementById("musicLanguage").value;
+  const date = document.getElementById("releaseDate").value;
+
+  const featured = document.getElementById("featuredArtists").value.trim();
+  const producer = document.getElementById("producer").value.trim();
+  const social = document.getElementById("socialLink").value.trim();
+  const extra = document.getElementById("extraInfo").value.trim();
+
+  const rightsConfirmed =
+    document.getElementById("rightsConfirmation").checked;
+
+  const platforms = Array.from(
+    document.querySelectorAll('input[name="platform"]:checked')
+  ).map(function(input) {
+    return input.value;
+  });
+
+  if (platforms.length === 0) {
+    showNotice("Veuillez sélectionner au moins une plateforme.");
+    return;
+  }
+
+  if (!rightsConfirmed) {
+    showNotice("Veuillez confirmer vos droits sur le morceau.");
+    return;
+  }
+
+  if (date < localToday) {
+    showNotice("La date de sortie doit être aujourd'hui ou dans le futur.");
+    return;
+  }
+
+  const button = document.getElementById("distributionSubmit");
+
+  button.disabled = true;
+  button.textContent = "Préparation de votre demande...";
+
+  const message = `
+🌙 *NOUVELLE DEMANDE DE DISTRIBUTION*
+━━━━━━━━━━━━━━━━━━
+
+🏢 *MOONLIGHT DIGITAL*
+🎵 Moonlight Distribution
+
+👤 *INFORMATIONS DE L'ARTISTE*
+
+Nom d'artiste : ${artist}
+Nom complet : ${fullName}
+E-mail : ${email}
+WhatsApp : ${phone}
+Pays : ${country}
+
+━━━━━━━━━━━━━━━━━━
+
+🎼 *INFORMATIONS DU PROJET*
+
+Titre : ${title}
+Type de sortie : ${type}
+Genre musical : ${genre}
+Langue : ${language}
+Date souhaitée : ${date}
+
+Artiste(s) invité(s) : ${featured || "Non renseigné"}
+Producteur : ${producer || "Non renseigné"}
+
+━━━━━━━━━━━━━━━━━━
+
+🌍 *PLATEFORMES DEMANDÉES*
+
+${platforms.map(function(p) {
+  return "• " + p;
+}).join("\n")}
+
+━━━━━━━━━━━━━━━━━━
+
+🔗 *RÉSEAUX SOCIAUX*
+
+${social || "Non renseigné"}
+
+📝 *INFORMATIONS COMPLÉMENTAIRES*
+
+${extra || "Aucune"}
+
+━━━━━━━━━━━━━━━━━━
+
+✅ L'artiste confirme disposer des droits ou autorisations nécessaires pour distribuer ce morceau.
+
+📁 *FICHIERS À TRANSMETTRE*
+
+L'artiste doit envoyer dans cette conversation :
+
+1. Le fichier audio du morceau.
+2. La pochette officielle du projet.
+
+━━━━━━━━━━━━━━━━━━
+
+📩 Demande envoyée depuis le site officiel de Moonlight Digital.
+`;
+
+  const whatsappNumber = "243890385429";
+
+  const whatsappURL =
+    "https://wa.me/" + whatsappNumber +
+    "?text=" + encodeURIComponent(message);
+
+  showNotice(
+    "Votre demande est prête ! WhatsApp va s'ouvrir. Appuyez sur Envoyer pour transmettre votre demande, puis joignez votre audio et votre pochette dans la conversation."
+  );
+
+  button.disabled = false;
+  button.textContent = "Envoyer ma demande sur WhatsApp";
+
+  window.location.href = whatsappURL;
+
+});
+
+/* =================================
+   ANIMATIONS MOONLIGHT DIGITAL
 ================================= */
 
 (function() {
@@ -801,17 +1131,9 @@ loginForm.addEventListener("submit", async function(e) {
     return;
   }
 
-  document.documentElement.classList.add("js-motion");
-
   const elements = document.querySelectorAll(
-    "header, .container, footer, .logo, .container h2, .subtitle, .tabs, .form, .notice, .back"
+    "header, .container, footer, .logo, .section-title, .info-box, .back"
   );
-
-  elements.forEach(function(element) {
-
-    element.classList.add("reveal-on-scroll");
-
-  });
 
   const observer = new IntersectionObserver(
 
@@ -820,13 +1142,7 @@ loginForm.addEventListener("submit", async function(e) {
       entries.forEach(function(entry) {
 
         if (entry.isIntersecting) {
-
           entry.target.classList.add("is-visible");
-
-        } else {
-
-          entry.target.classList.remove("is-visible");
-
         }
 
       });
@@ -834,16 +1150,14 @@ loginForm.addEventListener("submit", async function(e) {
     },
 
     {
-      threshold: 0.12,
-      rootMargin: "0px 0px -35px 0px"
+      threshold:0.12,
+      rootMargin:"0px 0px -25px 0px"
     }
 
   );
 
   elements.forEach(function(element) {
-
     observer.observe(element);
-
   });
 
 })();
