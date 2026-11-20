@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090d">
+
+<title>Moonlight Visibilité | Publicité et promotion digitale</title>
+
+<meta name="description" content="Découvrez les solutions de publicité, de promotion sponsorisée et les packs de visibilité de Moonlight Digital.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --background: #08090d;
+  --surface: #141720;
+  --gold: #d8b45a;
+  --gold-light: #f0d58e;
+  --white: #ffffff;
+  --muted: #a5a9b4;
+  --border: rgba(255,255,255,.09);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.7;
+}
+
+.container {
+  width: min(100% - 35px, 1150px);
+  margin: auto;
+}
+
+/* HEADER */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8,9,13,.96);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1200px;
+  min-height: 78px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: white;
+}
+
+.brand img {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+
+.brand strong {
+  display: block;
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.back-button {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* HERO */
+
+.hero {
+  padding: 105px 0 90px;
+  background:
+    radial-gradient(ellipse at 80% 40%,rgba(216,180,90,.17),transparent 45%),
+    linear-gradient(135deg,#08090d,#151925);
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 17px;
+  border: 1px solid rgba(216,180,90,.4);
+  border-radius: 30px;
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(35px,6vw,65px);
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  max-width: 720px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.hero-actions {
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 30px;
+  background: var(--gold);
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.button:hover {
+  background: var(--gold-light);
+  transform: translateY(-3px);
+}
+
+/* SECTIONS */
+
+.section {
+  padding: 85px 0;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 45px;
+}
+
+.section-label {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(27px,4vw,40px);
+  line-height: 1.2;
+  margin: 13px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* CATEGORY CARDS */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 22px;
+}
+
+.category-card {
+  padding: 35px;
+  background: linear-gradient(145deg,#191d28,#101219);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  transition: .3s;
+}
+
+.category-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--gold);
+}
+
+.category-icon {
+  width: 65px;
+  height: 65px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(216,180,90,.12);
+  font-size: 32px;
+  margin-bottom: 23px;
+}
+
+.category-card h3 {
+  color: var(--gold);
+  font-family: "Manrope", sans-serif;
+  font-size: 22px;
+  margin-bottom: 13px;
+}
+
+.category-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 23px;
+}
+
+.category-card ul {
+  margin: 0 0 25px 20px;
+}
+
+.category-card li {
+  color: #c2c5ce;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.category-card .button {
+  margin-top: 5px;
+}
+
+/* CONTACT */
+
+.contact {
+  padding: 75px 20px;
+  text-align: center;
+  background: #11141c;
+  border-top: 1px solid var(--border);
+}
+
+.contact h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: 30px;
+  margin-bottom: 13px;
+}
+
+.contact p {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  color: var(--muted);
+}
+
+/* FOOTER */
+
+footer {
+  padding: 30px 20px;
+  text-align: center;
+  background: #07080b;
+  border-top: 1px solid var(--border);
+  color: #858995;
+  font-size: 11px;
+}
+
+footer strong {
+  color: var(--gold);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px) {
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .category-card {
+    padding: 25px;
+  }
+
+  .section {
+    padding: 65px 0;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+<a href="index.html" class="brand">
+
+<img src="https://christtawamba-cp.github.io/moonlight-digital/White%20Blue%20Minimalist%20Digital%20Studio%20Logo.png" alt="Moonlight Digital">
+
+<div>
+<strong>MOONLIGHT DIGITAL</strong>
+<small>MOONLIGHT VISIBILITÉ</small>
+</div>
+
+</a>
+
+<a href="index.html" class="back-button">
+← Retour à l'accueil
+</a>
+
+</div>
+</header>
+
+<main>
+
+<!-- PRESENTATION -->
+
+<section class="hero">
+
+<div class="container">
+
+<span class="badge">🌙 MOONLIGHT VISIBILITÉ</span>
+
+<h1>
+Faites briller votre<br>
+<span>visibilité digitale.</span>
+</h1>
+
+<p>
+Vous êtes artiste, entrepreneur, commerçant,
+entreprise ou créateur de contenu ?
+Moonlight Visibilité vous accompagne pour promouvoir
+vos activités, développer votre audience et faire connaître
+vos projets auprès de votre public.
+</p>
+
+<div class="hero-actions">
+
+<a href="#offres" class="button">
+Découvrir nos solutions →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NOS SOLUTIONS -->
+
+<section class="section" id="offres">
+
+<div class="container">
+
+<div class="section-heading">
+
+<span class="section-label">NOS SOLUTIONS</span>
+
+<h2>Comment souhaitez-vous développer votre visibilité ?</h2>
+
+<p>
+Choisissez la solution qui correspond à vos objectifs
+et découvrez nos services de promotion digitale.
+</p>
+
+</div>
+
+<div class="category-grid">
+
+<!-- PUBLICITE -->
+
+<article class="category-card">
+
+<div class="category-icon">🚀</div>
+
+<h3>Publicité et promotion sponsorisée</h3>
+
+<p>
+Donnez plus de visibilité à vos publications,
+vos produits, vos services, vos événements
+et vos projets grâce à nos solutions de promotion.
+</p>
+
+<ul>
+<li>Promotion de publications sur les réseaux sociaux</li>
+<li>Publicité pour entreprises et marques</li>
+<li>Promotion musicale et artistique</li>
+<li>Publicité pour produits et services</li>
+<li>Promotion d'événements et d'activités</li>
+<li>Campagnes sponsorisées selon vos objectifs</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20demander%20une%20publicit%C3%A9%20ou%20une%20promotion%20sponsoris%C3%A9e."
+target="_blank"
+rel="noopener noreferrer">
+
+Demander une promotion →
+
+</a>
+
+</article>
+
+<!-- PACKS -->
+
+<article class="category-card">
+
+<div class="category-icon">📈</div>
+
+<h3>Packs de visibilité</h3>
+
+<p>
+Découvrez nos différentes formules d'accompagnement
+pour améliorer votre présence sur les réseaux sociaux
+et développer la visibilité de votre activité.
+</p>
+
+<ul>
+<li>Packs de visibilité pour artistes</li>
+<li>Packs de visibilité pour entrepreneurs</li>
+<li>Packs de visibilité pour entreprises et marques</li>
+<li>Packs de promotion de publications</li>
+<li>Packs de communication digitale</li>
+<li>Solutions adaptées à vos objectifs</li>
+</ul>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20d%C3%A9couvrir%20vos%20packs%20de%20visibilit%C3%A9."
+target="_blank"
+rel="noopener noreferrer">
+
+Découvrir les packs →
+
+</a>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+<h2>Votre visibilité commence ici.</h2>
+
+<p>
+Parlez-nous de votre projet. Notre équipe vous aidera
+à choisir la solution de promotion ou le pack adapté
+à vos besoins.
+</p>
+
+<a class="button"
+href="https://wa.me/243890385429?text=Bonjour%20Moonlight%20Digital%2C%20je%20souhaite%20d%C3%A9velopper%20ma%20visibilit%C3%A9."
+target="_blank"
+rel="noopener noreferrer">
+
+💬 Contacter Moonlight Visibilité
+
+</a>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>© 2026 Moonlight Digital — Tous droits réservés.</p>
+
+<p>Conçu avec ambition en République démocratique du Congo.</p>
+
+<p><strong>Conçue par Chris Tawamba</strong></p>
+
+</footer>
+
+</body>
+</html>
