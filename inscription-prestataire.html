@@ -557,7 +557,7 @@ registerForm.addEventListener("submit", async function(e) {
 
       showMessage(
         message,
-        "Votre compte est créé. Vérification de votre profil...",
+        "Votre compte est créé. Votre profil prestataire est en cours de préparation...",
         "success"
       );
 
@@ -573,7 +573,7 @@ registerForm.addEventListener("submit", async function(e) {
 
     showMessage(
       message,
-      "Félicitations ! Votre compte a été créé. Un e-mail de confirmation vient de vous être envoyé. Consultez votre boîte de réception, ouvrez le message de Supabase et confirmez votre adresse e-mail. Votre profil sera activé automatiquement.",
+      "Félicitations ! Votre compte a été créé. Un e-mail de confirmation vient de vous être envoyé. Consultez votre boîte de réception, ouvrez le message de Supabase et confirmez votre adresse e-mail. Votre profil prestataire est enregistré et attend la validation de l'administration.",
       "success"
     );
 
@@ -674,7 +674,7 @@ loginForm.addEventListener("submit", async function(e) {
 
     /* VÉRIFIER LE TYPE DE COMPTE */
 
-    if (user.user_metadata.account_type !== "provider") {
+    if (user.user_metadata?.account_type !== "provider") {
 
       await db.auth.signOut();
 
@@ -719,6 +719,8 @@ loginForm.addEventListener("submit", async function(e) {
 
     if (!provider) {
 
+      await db.auth.signOut();
+
       throw new Error(
         "Votre profil prestataire est introuvable. Contactez Moonlight Digital."
       );
@@ -728,12 +730,12 @@ loginForm.addEventListener("submit", async function(e) {
 
     /* VÉRIFIER LE STATUT */
 
-    if (provider.status !== "active") {
+    if (provider.status !== "active" && provider.status !== "pending") {
 
       await db.auth.signOut();
 
       throw new Error(
-        "Votre compte n'est pas actif. Veuillez contacter Moonlight Digital."
+        "Votre compte possède un statut non reconnu. Contactez Moonlight Digital."
       );
 
     }
@@ -741,18 +743,31 @@ loginForm.addEventListener("submit", async function(e) {
 
     /* CONNEXION RÉUSSIE */
 
-    showMessage(
-      loginMessage,
-      "Connexion réussie ! Bienvenue sur Moonlight Services.",
-      "success"
-    );
+    if (provider.status === "pending") {
+
+      showMessage(
+        loginMessage,
+        "Connexion réussie ! Votre profil est en attente de validation par l'administration Moonlight Digital.",
+        "info"
+      );
+
+    } else {
+
+      showMessage(
+        loginMessage,
+        "Connexion réussie ! Bienvenue sur Moonlight Services.",
+        "success"
+      );
+
+    }
+
 
     setTimeout(function() {
 
       window.location.href =
       "espace-prestataire.html";
 
-    }, 700);
+    }, 1000);
 
   }
 
