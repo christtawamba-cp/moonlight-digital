@@ -714,6 +714,135 @@ header{
 .tiktok{background:#242424}
 .youtube{background:#e60000}
 
+/* AUDIENCE MOONLIGHT DIGITAL — BENTO GRID */
+
+.audience-section{
+  padding:85px 0;
+  background:transparent;
+}
+
+.audience-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.audience-total-card{
+  grid-column:span 4;
+  position:relative;
+  overflow:hidden;
+  padding:35px;
+  border:1px solid rgba(216,180,90,.4);
+  border-radius:22px;
+  background:linear-gradient(135deg,#171a23,#101219);
+  text-align:center;
+}
+
+.audience-total-card::before{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border:1px solid rgba(216,180,90,.12);
+  border-radius:50%;
+  top:-150px;
+  right:-60px;
+  box-shadow:0 0 0 35px rgba(216,180,90,.025),
+             0 0 0 70px rgba(216,180,90,.02);
+}
+
+.audience-total-label{
+  color:var(--gold-light);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.audience-total-number{
+  display:block;
+  position:relative;
+  z-index:1;
+  margin:12px 0;
+  color:var(--gold);
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(45px,8vw,75px);
+  font-weight:800;
+  line-height:1.2;
+}
+
+.audience-total-description{
+  color:var(--muted);
+  font-size:13px;
+  max-width:600px;
+  margin:auto;
+}
+
+.audience-card{
+  position:relative;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:23px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(145deg,#171a23,#101219);
+  transition:.3s;
+  overflow:hidden;
+}
+
+.audience-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+.audience-platform{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  font-weight:800;
+}
+
+.audience-platform-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(216,180,90,.12);
+  font-size:21px;
+}
+
+.audience-count{
+  display:block;
+  margin:15px 0 3px;
+  color:var(--gold-light);
+  font-family:"Manrope",sans-serif;
+  font-size:32px;
+  font-weight:800;
+  line-height:1.2;
+}
+
+.audience-card small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.audience-visit{
+  display:inline-block;
+  margin-top:17px;
+  color:var(--gold);
+  font-size:12px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.audience-visit:hover{
+  color:var(--gold-light);
+}
+
 /* CONTACT */
 
 .contact-section{padding:85px 20px;background:#0e1016;text-align:center}
@@ -847,6 +976,14 @@ footer{
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:repeat(2,1fr)}
   .visibility-grid{grid-template-columns:repeat(2,1fr)}
+
+  .audience-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .audience-total-card{
+    grid-column:span 2;
+  }
 }
 
 @media(max-width:700px){
@@ -872,11 +1009,52 @@ footer{
   .pole-card{padding:25px}
   .footer-grid{grid-template-columns:1fr;gap:25px}
   .contact-box h2{font-size:26px}
+
+  .audience-section{
+    padding:65px 0;
+  }
+
+  .audience-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .audience-total-card{
+    grid-column:span 2;
+    padding:28px 17px;
+  }
+
+  .audience-card{
+    min-height:175px;
+    padding:16px 13px;
+  }
+
+  .audience-platform{
+    font-size:12px;
+  }
+
+  .audience-platform-icon{
+    width:35px;
+    height:35px;
+    font-size:18px;
+  }
+
+  .audience-count{
+    font-size:27px;
+  }
 }
 
 @media(max-width:380px){
   .quick-grid{grid-template-columns:1fr}
   .hero-actions .button{width:100%}
+
+  .audience-grid{
+    grid-template-columns:1fr;
+  }
+
+  .audience-total-card{
+    grid-column:span 1;
+  }
 }
 </style>
 </head>
@@ -1143,6 +1321,7 @@ footer{
 </div>
 </div>
 </section>
+
 <!-- SERVICES GENERAUX -->
 
 <section class="section" id="services">
@@ -1443,6 +1622,7 @@ et les opportunités au monde entier.
 </div>
 </div>
 </section>
+
 <!-- PARTENARIATS -->
 
 <section class="partnership" id="partenariats">
@@ -1486,6 +1666,126 @@ Proposer un partenariat →
 <a class="tiktok" href="https://www.tiktok.com/@moonlightdigital1" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
 
 <a class="youtube" href="https://www.youtube.com/@Moonlightdigital01" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+
+</div>
+</div>
+</section>
+
+<!-- AUDIENCE MOONLIGHT DIGITAL -->
+
+<section class="audience-section" id="audience">
+<div class="container">
+
+<div class="section-heading">
+<span class="section-label">NOTRE COMMUNAUTÉ DIGITALE</span>
+<h2>Audience — <span class="gold">Moonlight Digital</span></h2>
+<p>
+Notre communauté, notre force.
+Notre visibilité, notre ambition.
+</p>
+</div>
+
+<div class="audience-grid">
+
+<!-- TOTAL GENERAL -->
+
+<div class="audience-total-card">
+<span class="audience-total-label">
+NOTRE COMMUNAUTÉ SUR LES RÉSEAUX SOCIAUX
+</span>
+
+<strong class="audience-total-number">6 145</strong>
+
+<p class="audience-total-description">
+Abonnements cumulés sur nos quatre plateformes.
+Une même personne peut suivre plusieurs de nos comptes.
+Merci de faire partie de l'aventure Moonlight Digital.
+</p>
+</div>
+
+<!-- FACEBOOK -->
+
+<div class="audience-card">
+<div>
+<div class="audience-platform">
+<span class="audience-platform-icon">📘</span>
+Facebook
+</div>
+
+<strong class="audience-count">200</strong>
+<small>Abonnés</small>
+</div>
+
+<a class="audience-visit"
+href="https://www.facebook.com/share/1FnwP5DnDg/?mibextid=wwXIfr"
+target="_blank"
+rel="noopener noreferrer">
+Visiter notre page →
+</a>
+</div>
+
+<!-- INSTAGRAM -->
+
+<div class="audience-card">
+<div>
+<div class="audience-platform">
+<span class="audience-platform-icon">📸</span>
+Instagram
+</div>
+
+<strong class="audience-count">2 460</strong>
+<small>Abonnés</small>
+</div>
+
+<a class="audience-visit"
+href="https://www.instagram.com/moonlight_digital_01?dlrf=YXZzZHpjNTJjb3A5&utm_source=qr"
+target="_blank"
+rel="noopener noreferrer">
+Visiter notre profil →
+</a>
+</div>
+
+<!-- TIKTOK -->
+
+<div class="audience-card">
+<div>
+<div class="audience-platform">
+<span class="audience-platform-icon">🎵</span>
+TikTok
+</div>
+
+<strong class="audience-count">3 470</strong>
+<small>Abonnés</small>
+</div>
+
+<a class="audience-visit"
+href="https://www.tiktok.com/@moonlightdigital1"
+target="_blank"
+rel="noopener noreferrer">
+Visiter notre profil →
+</a>
+</div>
+
+<!-- YOUTUBE -->
+
+<div class="audience-card">
+<div>
+<div class="audience-platform">
+<span class="audience-platform-icon">▶️</span>
+YouTube
+</div>
+
+<strong class="audience-count">15</strong>
+<small>Abonnés</small>
+</div>
+
+<a class="audience-visit"
+href="https://www.youtube.com/@Moonlightdigital01"
+target="_blank"
+rel="noopener noreferrer">
+Visiter notre chaîne →
+</a>
+</div>
 
 </div>
 </div>
@@ -1586,6 +1886,8 @@ Conçu avec ambition en République démocratique du Congo.
     ".why-card",
     ".partnership-content",
     ".social-links a",
+    ".audience-total-card",
+    ".audience-card",
     ".contact-box",
     ".footer-grid > div"
   ];
