@@ -73,6 +73,33 @@ th{background:#f8fafc}
 .login-logo{text-align:center;font-size:45px}
 .login-footer{text-align:center;font-size:12px;color:#888;margin-top:25px}
 
+/* GESTION DES PRESTATAIRES */
+.provider-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+.provider-actions button{
+  padding:10px 14px;
+  font-weight:bold;
+}
+.provider-accept{background:#15803d;color:white}
+.provider-reject{background:#b91c1c;color:white}
+.provider-suspend{background:#d97706;color:white}
+.provider-reactivate{background:#172b4d;color:white}
+.provider-status{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+.provider-pending{background:#fef3c7;color:#92400e}
+.provider-active{background:#dcfce7;color:#166534}
+.provider-suspended{background:#ffedd5;color:#9a3412}
+.provider-rejected{background:#fee2e2;color:#991b1b}
+
 /* MOONLIGHT VISIBILITÉ */
 .visibility-button{
   width:100%;
@@ -1895,7 +1922,22 @@ function renderServiceCategories() {
 
 }
 
-/* PRESTATAIRES */
+/* =========================================
+   PRESTATAIRES : NOUVELLE GESTION
+========================================= */
+
+function getProviderStatusLabel(status) {
+
+  const labels = {
+    pending:"En attente",
+    active:"Actif",
+    suspended:"Suspendu",
+    rejected:"Refusé"
+  };
+
+  return labels[status] || status || "Non défini";
+
+}
 
 function renderServiceProviders(list = serviceProvidersCache) {
 
@@ -1908,50 +1950,181 @@ function renderServiceProviders(list = serviceProvidersCache) {
     return;
   }
 
-  container.innerHTML = list.map(provider => `
-    <div class="item-card">
-      <h3>👤 ${escapeHTML(provider.display_name || "Prestataire sans nom")}</h3>
-      <p><strong>Ville :</strong> ${escapeHTML(provider.city || "Non renseignée")}</p>
-      <p><strong>Présentation :</strong> ${escapeHTML(provider.bio || "Aucune présentation")}</p>
-      <p><strong>ID utilisateur :</strong> ${escapeHTML(provider.user_id)}</p>
-      <p><strong>Statut :</strong> <span class="badge">${escapeHTML(provider.status)}</span></p>
-      ${provider.avatar_url ? `<img class="cover" src="${escapeHTML(provider.avatar_url)}" alt="Photo du prestataire">` : ""}
-      <div class="actions">
-        <select data-provider-status="${escapeHTML(provider.id)}">
-          ${serviceStatusOptions(provider.status,["pending","active","suspended"])}
-        </select>
-        <button data-save-provider="${escapeHTML(provider.id)}">Enregistrer</button>
-      </div>
-    </div>
-  `).join("");
+  container.innerHTML = list.map(provider => {
 
-  container.querySelectorAll("[data-save-provider]").forEach(button => {
+    const status = provider.status || "pending";
+
+    let statusClass = "provider-pending";
+
+    if(status === "active") statusClass = "provider-active";
+    if(status === "suspended") statusClass = "provider-suspended";
+    if(status === "rejected") statusClass = "provider-rejected";
+
+    let buttons = "";
+
+    if(status === "pending") {
+
+      buttons = `
+        <button class="provider-accept"
+          data-provider-action="active"
+          data-provider-id="${escapeHTML(provider.id)}">
+          ✅ Accepter
+        </button>
+
+        <button class="provider-reject"
+          data-provider-action="rejected"
+          data-provider-id="${escapeHTML(provider.id)}">
+          ❌ Refuser
+        </button>
+      `;
+
+    } else if(status === "active") {
+
+      buttons = `
+        <button class="provider-suspend"
+          data-provider-action="suspended"
+          data-provider-id="${escapeHTML(provider.id)}">
+          ⏸️ Suspendre
+        </button>
+
+        <button class="provider-reject"
+          data-provider-action="rejected"
+          data-provider-id="${escapeHTML(provider.id)}">
+          ❌ Refuser
+        </button>
+      `;
+
+    } else if(status === "suspended" || status === "rejected") {
+
+      buttons = `
+        <button class="provider-reactivate"
+          data-provider-action="active"
+          data-provider-id="${escapeHTML(provider.id)}">
+          🔄 Réactiver
+        </button>
+      `;
+
+    }
+
+    return `
+      <div class="item-card">
+
+        <h3>👤 ${escapeHTML(provider.display_name || "Prestataire sans nom")}</h3>
+
+        <p><strong>Ville :</strong>
+          ${escapeHTML(provider.city || "Non renseignée")}
+        </p>
+
+        <p><strong>Présentation :</strong>
+          ${escapeHTML(provider.bio || "Aucune présentation")}
+        </p>
+
+        <p><strong>ID utilisateur :</strong>
+          ${escapeHTML(provider.user_id)}
+        </p>
+
+        <p><strong>Statut :</strong>
+          <span class="provider-status ${statusClass}">
+            ${escapeHTML(getProviderStatusLabel(status))}
+          </span>
+        </p>
+
+        ${provider.avatar_url ? `
+          <img
+            class="cover"
+            src="${escapeHTML(provider.avatar_url)}"
+            alt="Photo du prestataire"
+          >
+        ` : ""}
+
+        <div class="provider-actions">
+          ${buttons}
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+  /* ACTIONS SUR LES PRESTATAIRES */
+
+  container.querySelectorAll("[data-provider-action]").forEach(button => {
 
     button.addEventListener("click",async () => {
 
-      const id = button.dataset.saveProvider;
-      const select = container.querySelector(`[data-provider-status="${id}"]`);
+      if(!currentAdminId || currentAdminId !== ADMIN_ID) {
 
-      if(!select) return;
-
-      button.disabled = true;
-
-      const {error} = await db.from("service_providers")
-        .update({status:select.value})
-        .eq("id",id);
-
-      button.disabled = false;
-
-      if(error) {
-
-        showMessage("Erreur : "+error.message,"error");
+        showMessage("Accès administrateur non autorisé.","error");
 
         return;
       }
 
-      showMessage("Statut du prestataire mis à jour.");
+      const id = button.dataset.providerId;
+      const newStatus = button.dataset.providerAction;
+
+      const provider = serviceProvidersCache.find(item => item.id === id);
+
+      if(!provider) return;
+
+      const actionMessages = {
+
+        active:{
+          question:"Voulez-vous accepter ou réactiver ce prestataire ?",
+          success:"Le prestataire est maintenant actif."
+        },
+
+        rejected:{
+          question:"Voulez-vous vraiment refuser ce prestataire ?",
+          success:"Le prestataire a été refusé."
+        },
+
+        suspended:{
+          question:"Voulez-vous vraiment suspendre ce prestataire ?",
+          success:"Le prestataire a été suspendu."
+        }
+
+      };
+
+      const action = actionMessages[newStatus];
+
+      if(!action) return;
+
+      const confirmed = confirm(
+        action.question +
+        "\n\nPrestataire : " +
+        (provider.display_name || "Sans nom")
+      );
+
+      if(!confirmed) return;
+
+      button.disabled = true;
+
+      const originalText = button.textContent;
+
+      button.textContent = "Traitement...";
+
+      const {error} = await db.from("service_providers")
+        .update({status:newStatus})
+        .eq("id",id);
+
+      if(error) {
+
+        button.disabled = false;
+        button.textContent = originalText;
+
+        showMessage(
+          "Impossible de modifier le statut : " + error.message,
+          "error"
+        );
+
+        return;
+      }
+
+      showMessage(action.success);
 
       await loadMoonlightServices();
+
+      await loadDashboardStats();
 
     });
 
