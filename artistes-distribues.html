@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+
+<title>Artistes distribués | Moonlight Digital</title>
+
+<meta name="description" content="Découvrez les artistes et projets musicaux distribués par Moonlight Digital.">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+    --bg: #080808;
+    --card: #151515;
+    --gold: #d4af37;
+    --text: #ffffff;
+    --muted: #aaaaaa;
+    --border: #292929;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    background: #0b0b0b;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav {
+    max-width: 1150px;
+    margin: auto;
+    padding: 17px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gold);
+}
+
+.logo small {
+    display: block;
+    color: white;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 4px;
+}
+
+.back {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 20px 45px;
+    background: linear-gradient(145deg, #201a0c, #080808 75%);
+}
+
+.hero span {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 35px;
+    margin: 17px 0 12px;
+}
+
+.hero p {
+    max-width: 620px;
+    margin: auto;
+    color: #bbb;
+    line-height: 1.7;
+}
+
+.catalogue {
+    max-width: 1150px;
+    margin: auto;
+    padding: 40px 20px 70px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.section-title h2 {
+    font-size: 23px;
+    margin: 0;
+}
+
+.section-title span {
+    color: var(--gold);
+    font-size: 13px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #202020;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder {
+    color: var(--gold);
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.card-content {
+    padding: 19px;
+}
+
+.badge {
+    display: inline-block;
+    background: #302713;
+    color: var(--gold);
+    font-size: 10px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.card h3 {
+    margin: 0 0 7px;
+    font-size: 19px;
+}
+
+.project {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 13px;
+}
+
+.distributor {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 18px;
+}
+
+.listen {
+    display: block;
+    text-align: center;
+    background: var(--gold);
+    color: #080808;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.listen:hover {
+    background: #f0cf65;
+}
+
+.loading,
+.empty,
+.error {
+    text-align: center;
+    padding: 45px 15px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.error {
+    color: #ff8585;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 25px 15px;
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+}
+
+@media(max-width: 800px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 520px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .hero {
+        padding: 50px 17px 35px;
+    }
+
+    .section-title h2 {
+        font-size: 19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+
+        <a href="index.html" class="logo">
+            MOONLIGHT DIGITAL
+            <small>MUSIC DISTRIBUTION</small>
+        </a>
+
+        <a href="index.html" class="back">
+            ← Accueil
+        </a>
+
+    </div>
+</header>
+
+<section class="hero">
+
+    <span>MOONLIGHT DIGITAL PRESENTS</span>
+
+    <h1>ARTISTES DISTRIBUÉS</h1>
+
+    <p>
+        Découvrez les artistes et les projets musicaux
+        qui font confiance à Moonlight Digital pour
+        leur distribution musicale.
+    </p>
+
+</section>
+
+<main class="catalogue">
+
+    <div class="section-title">
+        <h2>Notre catalogue musical</h2>
+        <span id="total">Chargement...</span>
+    </div>
+
+    <div id="catalogue" class="grid">
+
+        <div class="loading">
+            Chargement des artistes...
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © <span id="year"></span> Moonlight Digital.
+    Tous droits réservés.
+</footer>
+
+<script>
+
+// =====================================
+// CONFIGURATION SUPABASE
+// =====================================
+
+const SUPABASE_URL =
+"https://lmyefbevtukmtoijjlja.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+
+const client = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+// =====================================
+// ELEMENTS
+// =====================================
+
+const catalogue = document.getElementById("catalogue");
+const total = document.getElementById("total");
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+// =====================================
+// SECURISER LE TEXTE
+// =====================================
+
+function safeText(value) {
+    return String(value ?? "").replace(
+        /[&<>"']/g,
+        char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]
+    );
+}
+
+// =====================================
+// VERIFIER LES LIENS
+// =====================================
+
+function validHttpUrl(value) {
+    try {
+        const url = new URL(value);
+
+        return (
+            url.protocol === "https:" ||
+            url.protocol === "http:"
+        ) ? url.href : null;
+
+    } catch {
+        return null;
+    }
+}
+
+// =====================================
+// AFFICHER LES PROJETS
+// =====================================
+
+function displayProjects(projects) {
+
+    catalogue.innerHTML = "";
+
+    if (!projects || projects.length === 0) {
+
+        total.textContent = "0 projet";
+
+        catalogue.innerHTML = `
+            <div class="empty">
+                <h3>Aucun projet disponible</h3>
+                <p>
+                    Notre catalogue musical sera bientôt enrichi.
+                    Revenez prochainement !
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    total.textContent =
+        projects.length +
+        (projects.length > 1 ? " projets" : " projet");
+
+    projects.forEach(project => {
+
+        const cover = validHttpUrl(project.cover_url);
+        const listen = validHttpUrl(project.streaming_url);
+
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const coverContent = cover
+            ? `<img src="${safeText(cover)}"
+                    alt="Pochette de ${safeText(project.project_title)}"
+                    loading="lazy">`
+            : `<div class="placeholder">MD</div>`;
+
+        card.innerHTML = `
+
+            <div class="cover">
+                ${coverContent}
+            </div>
+
+            <div class="card-content">
+
+                <span class="badge">
+                    ${safeText(project.release_type)}
+                </span>
+
+                <h3>
+                    ${safeText(project.artist_name)}
+                </h3>
+
+                <div class="project">
+                    ${safeText(project.project_title)}
+                </div>
+
+                <div class="distributor">
+                    Distribué par Moonlight Digital
+                </div>
+
+                ${
+                    listen
+                    ? `<a class="listen"
+                         href="${safeText(listen)}"
+                         target="_blank"
+                         rel="noopener noreferrer">
+                         ÉCOUTER LE PROJET ↗
+                       </a>`
+                    : `<span class="listen">Lien indisponible</span>`
+                }
+
+            </div>
+        `;
+
+        catalogue.appendChild(card);
+
+    });
+
+}
+
+// =====================================
+// CHARGER DEPUIS SUPABASE
+// =====================================
+
+async function loadProjects() {
+
+    catalogue.innerHTML = `
+        <div class="loading">
+            Chargement du catalogue musical...
+        </div>
+    `;
+
+    const { data, error } = await client
+        .from("distributed_artists")
+        .select(`
+            id,
+            artist_name,
+            project_title,
+            release_type,
+            distributor_name,
+            streaming_url,
+            cover_url,
+            release_date,
+            status
+        `)
+        .eq("status", "distributed")
+        .order("created_at", {
+            ascending: false
+        });
+
+    if (error) {
+
+        console.error("Erreur Supabase :", error);
+
+        total.textContent = "";
+
+        catalogue.innerHTML = `
+            <div class="error">
+                Impossible de charger le catalogue.
+                <br>
+                Veuillez réessayer ultérieurement.
+            </div>
+        `;
+
+        return;
+    }
+
+    displayProjects(data);
+
+}
+
+// =====================================
+// INITIALISATION
+// =====================================
+
+loadProjects();
+
+</script>
+
+</body>
+</html>
