@@ -121,7 +121,7 @@ header{
   display:flex;align-items:center;justify-content:center;transition:.3s;
 }
 .menu-dots:hover{background:var(--gold);color:#08090d}
-.dropdown-menu{
+  .dropdown-menu{
   display:none;
   position:absolute;
   top:55px;
@@ -140,8 +140,11 @@ header{
   touch-action:pan-y;
   box-shadow:0 15px 45px rgba(0,0,0,.5);
 }
+
+.dropdown-menu.active{
+  display:block;
+  animation:menuAppear .2s ease;
 }
-.dropdown-menu.active{display:block;animation:menuAppear .2s ease}
 .dropdown-menu a{
   display:block;padding:13px 17px;color:white;text-decoration:none;
   font-size:13px;border-bottom:1px solid var(--border);transition:.2s;
