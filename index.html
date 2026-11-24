@@ -48,6 +48,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 :root {
   --background:#08090d;
@@ -546,6 +549,112 @@ header{
 
 .pole-link:hover{text-decoration:underline}
 
+/* ARTISTES DISTRIBUÉS */
+
+.distributed-section{
+  background:
+    radial-gradient(ellipse at 80% 10%,rgba(216,180,90,.09),transparent 45%),
+    #0d0f15;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.distributed-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.distributed-card{
+  overflow:hidden;
+  background:linear-gradient(145deg,#171a23,#101219);
+  border:1px solid var(--border);
+  border-radius:18px;
+  transition:.3s;
+}
+
+.distributed-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold);
+}
+
+.distributed-cover{
+  width:100%;
+  aspect-ratio:1/1;
+  background:#171a23;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.distributed-cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.distributed-placeholder{
+  color:var(--gold);
+  font-family:"Manrope",sans-serif;
+  font-size:55px;
+  font-weight:800;
+}
+
+.distributed-info{
+  padding:22px;
+}
+
+.distributed-info h3{
+  color:var(--gold-light);
+  font-size:19px;
+  margin-bottom:5px;
+}
+
+.distributed-info .project-title{
+  color:white;
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.distributed-info p{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:16px;
+}
+
+.distributed-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  padding:12px;
+  background:var(--gold);
+  color:#111;
+  border-radius:25px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+}
+
+.distributed-button:hover{
+  background:var(--gold-light);
+}
+
+.distributed-status{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:25px;
+  grid-column:1/-1;
+}
+
+.distributed-action{
+  text-align:center;
+  margin-top:35px;
+}
+
 /* SERVICES */
 
 .services-grid{
@@ -1004,6 +1113,10 @@ footer{
   .audience-total-card{
     grid-column:span 2;
   }
+
+  .distributed-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:700px){
@@ -1062,6 +1175,32 @@ footer{
   .audience-count{
     font-size:27px;
   }
+
+  .distributed-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .distributed-info{
+    padding:13px;
+  }
+
+  .distributed-info h3{
+    font-size:14px;
+  }
+
+  .distributed-info .project-title{
+    font-size:12px;
+  }
+
+  .distributed-info p{
+    font-size:10px;
+  }
+
+  .distributed-button{
+    font-size:10px;
+    padding:10px 5px;
+  }
 }
 
 @media(max-width:380px){
@@ -1074,6 +1213,10 @@ footer{
 
   .audience-total-card{
     grid-column:span 1;
+  }
+
+  .distributed-grid{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -1113,6 +1256,7 @@ footer{
   <a href="#services">💼 Nos services</a>
   <a href="visibilite.html">📢 Moonlight Visibilité</a>
   <a href="espace-artiste.html">🎵 Espace artiste</a>
+  <a href="artistes-distribues.html">🌟 Nos artistes distribués</a>
   <a href="marketplace.html">🛍️ Marketplace</a>
   <a href="media.html">📰 Moonlight Media</a>
   <a href="inscription.html">🌙 Moonlight Services</a>
@@ -1339,6 +1483,35 @@ footer{
 </article>
 
 </div>
+</div>
+</section>
+
+<!-- NOS ARTISTES DISTRIBUÉS -->
+
+<section class="section distributed-section" id="artistes-distribues">
+<div class="container">
+
+<div class="section-heading">
+<span class="section-label">MOONLIGHT DISTRIBUTION</span>
+<h2>Nos artistes <span class="gold">distribués</span></h2>
+<p>
+  Découvrez les artistes et les projets musicaux
+  accompagnés et distribués par Moonlight Digital.
+</p>
+</div>
+
+<div class="distributed-grid" id="distributedArtistsGrid">
+  <div class="distributed-status">
+    Chargement des projets musicaux...
+  </div>
+</div>
+
+<div class="distributed-action">
+  <a href="artistes-distribues.html" class="button">
+    Découvrir tous nos artistes →
+  </a>
+</div>
+
 </div>
 </section>
 
@@ -1739,8 +1912,6 @@ Notre visibilité, notre ambition.
 
 <div class="audience-grid">
 
-<!-- TOTAL GENERAL -->
-
 <div class="audience-total-card">
 <span class="audience-total-label">
 NOTRE COMMUNAUTÉ SUR LES RÉSEAUX SOCIAUX
@@ -1755,17 +1926,13 @@ Merci de faire partie de l'aventure Moonlight Digital.
 </p>
 </div>
 
-<!-- FACEBOOK -->
-
 <div class="audience-card">
 <div>
 <div class="audience-platform">
 <span class="audience-platform-icon">
-
 <svg viewBox="0 0 24 24" aria-hidden="true">
 <path fill="#1877F2" d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H7v3.2h2.8V21h3.7z"/>
 </svg>
-
 </span>
 Facebook
 </div>
@@ -1774,27 +1941,18 @@ Facebook
 <small>Abonnés</small>
 </div>
 
-<a class="audience-visit"
-href="https://www.facebook.com/share/1FnwP5DnDg/?mibextid=wwXIfr"
-target="_blank"
-rel="noopener noreferrer">
-Visiter notre page →
-</a>
+<a class="audience-visit" href="https://www.facebook.com/share/1FnwP5DnDg/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Visiter notre page →</a>
 </div>
-
-<!-- INSTAGRAM -->
 
 <div class="audience-card">
 <div>
 <div class="audience-platform">
 <span class="audience-platform-icon">
-
 <svg viewBox="0 0 24 24" aria-hidden="true">
 <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#E1306C" stroke-width="2"/>
 <circle cx="12" cy="12" r="4" fill="none" stroke="#E1306C" stroke-width="2"/>
 <circle cx="17.5" cy="6.8" r="1.2" fill="#E1306C"/>
 </svg>
-
 </span>
 Instagram
 </div>
@@ -1803,27 +1961,18 @@ Instagram
 <small>Abonnés</small>
 </div>
 
-<a class="audience-visit"
-href="https://www.instagram.com/moonlight_digital_01?dlrf=YXZzZHpjNTJjb3A5&utm_source=qr"
-target="_blank"
-rel="noopener noreferrer">
-Visiter notre profil →
-</a>
+<a class="audience-visit" href="https://www.instagram.com/moonlight_digital_01?dlrf=YXZzZHpjNTJjb3A5&utm_source=qr" target="_blank" rel="noopener noreferrer">Visiter notre profil →</a>
 </div>
-
-<!-- TIKTOK -->
 
 <div class="audience-card">
 <div>
 <div class="audience-platform">
 <span class="audience-platform-icon">
-
 <svg viewBox="0 0 24 24" aria-hidden="true">
 <path fill="#25F4EE" d="M14 3h3c.2 2 1.3 3.6 3.5 4.3v3.1c-1.4 0-2.7-.4-3.8-1.1v6.4a5.5 5.5 0 1 1-5.5-5.5c.4 0 .8 0 1.2.1v3.2a2.4 2.4 0 1 0 1.6 2.2V3z"/>
 <path fill="#FE2C55" d="M12.4 4.5h2.3v2.8c-1.1-.7-1.9-1.7-2.3-2.8z"/>
 <path fill="white" d="M13 3h3c.2 2 1.3 3.6 3.5 4.3v3.1c-1.4 0-2.7-.4-3.8-1.1v6.4a5.5 5.5 0 1 1-5.5-5.5c.4 0 .8 0 1.2.1v3.2a2.4 2.4 0 1 0 1.6 2.2V3z"/>
 </svg>
-
 </span>
 TikTok
 </div>
@@ -1832,25 +1981,16 @@ TikTok
 <small>Abonnés</small>
 </div>
 
-<a class="audience-visit"
-href="https://www.tiktok.com/@moonlightdigital1"
-target="_blank"
-rel="noopener noreferrer">
-Visiter notre profil →
-</a>
+<a class="audience-visit" href="https://www.tiktok.com/@moonlightdigital1" target="_blank" rel="noopener noreferrer">Visiter notre profil →</a>
 </div>
-
-<!-- YOUTUBE -->
 
 <div class="audience-card">
 <div>
 <div class="audience-platform">
 <span class="audience-platform-icon">
-
 <svg viewBox="0 0 24 24" aria-hidden="true">
 <path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>
 </svg>
-
 </span>
 YouTube
 </div>
@@ -1859,12 +1999,7 @@ YouTube
 <small>Abonnés</small>
 </div>
 
-<a class="audience-visit"
-href="https://www.youtube.com/@Moonlightdigital01"
-target="_blank"
-rel="noopener noreferrer">
-Visiter notre chaîne →
-</a>
+<a class="audience-visit" href="https://www.youtube.com/@Moonlightdigital01" target="_blank" rel="noopener noreferrer">Visiter notre chaîne →</a>
 </div>
 
 </div>
@@ -1920,6 +2055,7 @@ Depuis la RDC, avec une ambition mondiale.
 <div class="footer-column">
 <h4>Nos plateformes</h4>
 <a href="espace-artiste.html">Espace artiste</a>
+<a href="artistes-distribues.html">Nos artistes distribués</a>
 <a href="marketplace.html">Marketplace</a>
 <a href="media.html">Moonlight Media</a>
 <a href="inscription.html">Moonlight Services</a>
@@ -1962,13 +2098,13 @@ Conçu avec ambition en République démocratique du Congo.
     ".social-links a",
     ".audience-total-card",
     ".audience-card",
+    ".distributed-card",
     ".contact-box",
     ".footer-grid > div"
   ];
 
   const elements = document.querySelectorAll(selectors.join(","));
 
-  /* Si les animations sont désactivées, afficher directement les éléments */
   if(reduceMotion){
     return;
   }
@@ -1979,7 +2115,6 @@ Conçu avec ambition en République démocratique du Congo.
     element.classList.add("reveal-on-scroll");
   });
 
-  /* Compatibilité avec les navigateurs sans IntersectionObserver */
   if(!("IntersectionObserver" in window)){
     elements.forEach(function(element){
       element.classList.add("is-visible");
@@ -2036,13 +2171,11 @@ Conçu avec ambition en République démocratique du Congo.
 
   }
 
-  /* Affichage immédiat si l'utilisateur préfère réduire les animations */
   if(reduceMotion){
     displayFinalValues();
     return;
   }
 
-  /* Fonction d'animation */
   function animateCounter(counter){
 
     if(counter.dataset.animated === "true"){
@@ -2061,7 +2194,6 @@ Conçu avec ambition en République démocratique du Congo.
 
       const progress = Math.min(elapsed / duration,1);
 
-      /* Effet ease-out */
       const easedProgress = 1 - Math.pow(1 - progress,3);
 
       const currentValue = Math.floor(
@@ -2086,7 +2218,6 @@ Conçu avec ambition en République démocratique du Congo.
 
   }
 
-  /* Compatibilité avec les navigateurs sans IntersectionObserver */
   if(!("IntersectionObserver" in window)){
     counters.forEach(animateCounter);
     return;
@@ -2115,6 +2246,183 @@ Conçu avec ambition en République démocratique du Congo.
     counterObserver.observe(counter);
 
   });
+
+})();
+
+/* CHARGEMENT DES ARTISTES DISTRIBUÉS DEPUIS SUPABASE */
+
+(async function(){
+
+  const grid = document.getElementById("distributedArtistsGrid");
+
+  if(!grid || !window.supabase){
+    if(grid){
+      grid.textContent = "Le catalogue est momentanément indisponible.";
+    }
+    return;
+  }
+
+  const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
+
+  const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
+
+  const client = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  try{
+
+    const {data,error} = await client
+      .from("distributed_artists")
+      .select("artist_name,project_title,release_type,distributor_name,streaming_url,cover_url,release_date")
+      .eq("status","distributed")
+      .order("created_at",{ascending:false})
+      .limit(6);
+
+    if(error){
+      throw error;
+    }
+
+    grid.replaceChildren();
+
+    if(!data || data.length === 0){
+
+      const message = document.createElement("p");
+      message.className = "distributed-status";
+      message.textContent = "Nos prochains projets musicaux seront bientôt présentés ici.";
+
+      grid.appendChild(message);
+      return;
+    }
+
+    data.forEach(function(project){
+
+      const card = document.createElement("article");
+      card.className = "distributed-card";
+
+      const cover = document.createElement("div");
+      cover.className = "distributed-cover";
+
+      if(project.cover_url){
+
+        try{
+
+          const coverURL = new URL(project.cover_url);
+
+          if(
+            coverURL.protocol === "https:" ||
+            coverURL.protocol === "http:"
+          ){
+
+            const img = document.createElement("img");
+            img.src = coverURL.href;
+            img.alt = "Pochette de " + project.project_title;
+            img.loading = "lazy";
+
+            img.onerror = function(){
+
+              cover.replaceChildren();
+
+              const placeholder = document.createElement("span");
+              placeholder.className = "distributed-placeholder";
+              placeholder.textContent = "MD";
+
+              cover.appendChild(placeholder);
+            };
+
+            cover.appendChild(img);
+
+          }else{
+            throw new Error("URL invalide");
+          }
+
+        }catch(error){
+
+          const placeholder = document.createElement("span");
+          placeholder.className = "distributed-placeholder";
+          placeholder.textContent = "MD";
+
+          cover.appendChild(placeholder);
+        }
+
+      }else{
+
+        const placeholder = document.createElement("span");
+        placeholder.className = "distributed-placeholder";
+        placeholder.textContent = "MD";
+
+        cover.appendChild(placeholder);
+      }
+
+      const info = document.createElement("div");
+      info.className = "distributed-info";
+
+      const artist = document.createElement("h3");
+      artist.textContent = project.artist_name;
+
+      const title = document.createElement("div");
+      title.className = "project-title";
+      title.textContent = project.project_title;
+
+      const details = document.createElement("p");
+      details.textContent =
+        (project.release_type || "Projet musical") +
+        " • Distribué par Moonlight Digital";
+
+      const button = document.createElement("a");
+      button.className = "distributed-button";
+      button.textContent = "ÉCOUTER LE PROJET";
+
+      try{
+
+        const streamingURL = new URL(project.streaming_url);
+
+        if(
+          streamingURL.protocol === "https:" ||
+          streamingURL.protocol === "http:"
+        ){
+
+          button.href = streamingURL.href;
+          button.target = "_blank";
+          button.rel = "noopener noreferrer";
+
+        }else{
+          throw new Error("Lien invalide");
+        }
+
+      }catch(error){
+
+        button.textContent = "Lien indisponible";
+        button.removeAttribute("href");
+        button.style.opacity = ".5";
+      }
+
+      info.appendChild(artist);
+      info.appendChild(title);
+      info.appendChild(details);
+      info.appendChild(button);
+
+      card.appendChild(cover);
+      card.appendChild(info);
+
+      grid.appendChild(card);
+
+    });
+
+  }catch(error){
+
+    console.error("Erreur catalogue Moonlight Digital :",error);
+
+    grid.replaceChildren();
+
+    const message = document.createElement("p");
+    message.className = "distributed-status";
+    message.textContent = "Impossible de charger les projets pour le moment.";
+
+    grid.appendChild(message);
+
+  }
 
 })();
 
