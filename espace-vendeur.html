@@ -6,9 +6,7 @@
 <meta name="theme-color" content="#080808">
 <meta name="description" content="Gérez votre boutique et vos ventes sur Moonlight Digital.">
 <title>Espace vendeur | Moonlight Digital</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 :root {
     --gold:#d4af37;
@@ -21,15 +19,8 @@
     --border:rgba(212,175,55,.22);
     --red:#bd3434;
 }
-
-* {
-    box-sizing:border-box;
-}
-
-html {
-    scroll-behavior:smooth;
-}
-
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
@@ -43,7 +34,6 @@ body {
     min-height:100vh;
     overflow-x:hidden;
 }
-
 body::before {
     content:"";
     position:fixed;
@@ -56,9 +46,6 @@ body::before {
         linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:45px 45px;
 }
-
-/* HEADER */
-
 header {
     position:relative;
     padding:35px 18px;
@@ -70,7 +57,6 @@ header {
     box-shadow:0 8px 35px rgba(0,0,0,.35);
     overflow:hidden;
 }
-
 header::before {
     content:"";
     position:absolute;
@@ -82,7 +68,6 @@ header::before {
     top:-190px;
     left:calc(50% - 140px);
 }
-
 header h1 {
     position:relative;
     margin:0;
@@ -90,28 +75,22 @@ header h1 {
     font-size:clamp(23px,5vw,34px);
     letter-spacing:2px;
     text-shadow:0 0 20px rgba(212,175,55,.25);
+    animation:titleAppear .9s ease both;
 }
-
 header p {
     position:relative;
     color:var(--muted);
     margin-bottom:0;
     font-size:14px;
+    animation:titleAppear 1.1s ease both;
 }
-
-/* CONTENEUR */
-
 .container {
     max-width:850px;
     margin:35px auto;
     padding:15px;
 }
-
-/* CARTES */
-
 .card {
-    background:
-        linear-gradient(145deg,rgba(25,25,25,.97),rgba(13,13,13,.96));
+    background:linear-gradient(145deg,rgba(25,25,25,.97),rgba(13,13,13,.96));
     padding:24px;
     border-radius:17px;
     margin-bottom:22px;
@@ -121,26 +100,13 @@ header p {
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
 }
-
 .card:hover {
     border-color:rgba(212,175,55,.48);
     box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
-
-h2 {
-    color:var(--gold);
-    font-size:21px;
-    margin-top:0;
-}
-
-h3 {
-    color:var(--gold-light);
-}
-
-p {
-    line-height:1.6;
-}
-
+h2 { color:var(--gold); font-size:21px; margin-top:0; }
+h3 { color:var(--gold-light); }
+p { line-height:1.6; }
 label {
     display:block;
     font-weight:bold;
@@ -149,12 +115,7 @@ label {
     color:#e6e6e6;
     font-size:14px;
 }
-
-/* CHAMPS */
-
-input,
-textarea,
-select {
+input,textarea,select {
     width:100%;
     padding:14px;
     margin:8px 0 15px;
@@ -166,24 +127,12 @@ select {
     outline:none;
     transition:border-color .3s,box-shadow .3s;
 }
-
-input::placeholder,
-textarea::placeholder {
-    color:#858585;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
+input::placeholder,textarea::placeholder { color:#858585; }
+input:focus,textarea:focus,select:focus {
     border-color:var(--gold);
     box-shadow:0 0 0 3px rgba(212,175,55,.12);
 }
-
-input[type="file"] {
-    padding:10px;
-    cursor:pointer;
-}
-
+input[type="file"] { padding:10px; cursor:pointer; }
 input[type="file"]::file-selector-button {
     background:var(--gold);
     color:#17120a;
@@ -194,19 +143,8 @@ input[type="file"]::file-selector-button {
     cursor:pointer;
     font-weight:bold;
 }
-
-select option {
-    background:#111;
-    color:white;
-}
-
-textarea {
-    min-height:100px;
-    resize:vertical;
-}
-
-/* BOUTONS */
-
+select option { background:#111; color:white; }
+textarea { min-height:100px; resize:vertical; }
 button {
     background:linear-gradient(135deg,#e8c45c,#bd8b25);
     color:#17120a;
@@ -220,46 +158,33 @@ button {
     transition:transform .25s,box-shadow .25s,filter .25s;
     box-shadow:0 5px 15px rgba(212,175,55,.13);
 }
-
 button:hover {
     transform:translateY(-2px);
     box-shadow:0 8px 22px rgba(212,175,55,.25);
     filter:brightness(1.08);
 }
-
-button:active {
-    transform:scale(.98);
-}
-
+button:active { transform:scale(.98); }
 button:disabled {
     opacity:.6;
     cursor:not-allowed;
     transform:none;
 }
-
-/* BOUTONS SPÉCIAUX */
-
 .logout {
     background:linear-gradient(135deg,#bd3434,#8f2020);
     color:white;
     box-shadow:none;
 }
-
 .edit-button {
     background:linear-gradient(135deg,#16733a,#10552b);
     color:white;
     margin-bottom:8px;
     box-shadow:none;
 }
-
 .delete-button {
     background:linear-gradient(135deg,#bd3434,#8f2020);
     color:white;
     box-shadow:none;
 }
-
-/* PRODUITS */
-
 .product {
     background:rgba(8,8,8,.78);
     border:1px solid var(--border);
@@ -268,13 +193,11 @@ button:disabled {
     margin-top:16px;
     transition:transform .3s,border-color .3s,box-shadow .3s;
 }
-
 .product:hover {
     transform:translateY(-3px);
     border-color:var(--gold);
     box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
-
 .product img {
     width:100%;
     max-height:260px;
@@ -283,13 +206,7 @@ button:disabled {
     margin-bottom:10px;
     display:block;
 }
-
-/* ÉLÉMENTS GÉNÉRAUX */
-
-.hidden {
-    display:none !important;
-}
-
+.hidden { display:none !important; }
 #message {
     padding:12px;
     border-radius:8px;
@@ -300,7 +217,6 @@ button:disabled {
     border:1px solid rgba(212,175,55,.2);
     overflow-wrap:anywhere;
 }
-
 .logo-preview {
     width:110px;
     height:110px;
@@ -310,16 +226,12 @@ button:disabled {
     margin:10px 0;
     box-shadow:0 0 20px rgba(212,175,55,.2);
 }
-
 .help {
     font-size:13px;
     color:var(--muted);
     margin-top:-8px;
     margin-bottom:15px;
 }
-
-/* STATISTIQUES */
-
 .stats {
     background:rgba(212,175,55,.07);
     padding:18px;
@@ -327,17 +239,8 @@ button:disabled {
     margin-bottom:20px;
     border:1px solid var(--border);
 }
-
-.stats p {
-    margin:12px 0;
-    color:#e6e6e6;
-}
-
-.commission {
-    color:#ff7777;
-    font-weight:bold;
-}
-
+.stats p { margin:12px 0; color:#e6e6e6; }
+.commission { color:#ff7777; font-weight:bold; }
 .sale-status {
     display:inline-block;
     padding:7px 11px;
@@ -347,15 +250,11 @@ button:disabled {
     font-size:13px;
     font-weight:bold;
 }
-
 hr {
     border:none;
     border-top:1px solid var(--border);
     margin:25px 0;
 }
-
-/* FOOTER */
-
 footer {
     text-align:center;
     padding:30px 15px;
@@ -364,95 +263,44 @@ footer {
     border-top:1px solid var(--border);
     background:rgba(5,5,5,.65);
 }
-
-/* ANIMATIONS */
-
 @keyframes titleAppear {
-    from {
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
+    from { opacity:0; transform:translateY(15px); }
+    to { opacity:1; transform:translateY(0); }
 }
-
-header h1 {
-    animation:titleAppear .9s ease both;
-}
-
-header p {
-    animation:titleAppear 1.1s ease both;
-}
-
 .js-motion .reveal-on-scroll {
     opacity:0;
     transform:translateY(28px);
-    transition:
-        opacity .7s ease,
-        transform .7s cubic-bezier(.2,.7,.2,1);
+    transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);
 }
-
 .js-motion .reveal-on-scroll.is-visible {
     opacity:1;
     transform:translateY(0);
 }
-
-/* RESPONSIVE */
-
 @media(max-width:600px) {
-    .container {
-        margin:20px auto;
-        padding:12px;
-    }
-
-    .card {
-        padding:19px;
-        border-radius:14px;
-    }
-
-    header {
-        padding:27px 12px;
-    }
-
-    h2 {
-        font-size:19px;
-    }
-
-    button {
-        padding:14px 10px;
-    }
+    .container { margin:20px auto; padding:12px; }
+    .card { padding:19px; border-radius:14px; }
+    header { padding:27px 12px; }
+    h2 { font-size:19px; }
+    button { padding:14px 10px; }
 }
-
 @media(prefers-reduced-motion:reduce) {
-    html {
-        scroll-behavior:auto;
-    }
-
-    *,
-    *::before,
-    *::after {
+    html { scroll-behavior:auto; }
+    *,*::before,*::after {
         animation-duration:.01ms !important;
         transition-duration:.01ms !important;
     }
 }
 </style>
 </head>
-
 <body>
-
 <header>
     <h1>🌙 MOONLIGHT DIGITAL</h1>
     <p>Espace vendeur – Marketplace</p>
 </header>
-
 <div class="container">
-
 <div id="authSection" class="card">
 <h2>Bienvenue sur Moonlight Digital</h2>
 <div id="message"></div>
-
 <h3>Créer un compte vendeur</h3>
 <input id="signupName" placeholder="Votre nom complet">
 <input id="signupShop" placeholder="Nom de votre boutique">
@@ -460,23 +308,18 @@ header p {
 <input id="signupEmail" type="email" placeholder="Adresse email">
 <input id="signupPassword" type="password" placeholder="Mot de passe">
 <button onclick="signup()">Créer mon compte</button>
-
 <hr>
-
 <h3>Déjà vendeur ? Connectez-vous</h3>
 <input id="loginEmail" type="email" placeholder="Adresse email">
 <input id="loginPassword" type="password" placeholder="Mot de passe">
 <button onclick="login()">Se connecter</button>
 </div>
-
 <div id="dashboard" class="hidden">
-
 <div class="card">
 <h2>Bienvenue dans votre boutique ! 🛍️</h2>
 <p id="sellerInfo"></p>
 <button class="logout" onclick="logout()">Déconnexion</button>
 </div>
-
 <div id="profileSection" class="card hidden">
 <h2>Complétez votre profil vendeur</h2>
 <p>Ces informations permettront aux clients de vous contacter.</p>
@@ -485,54 +328,44 @@ header p {
 <input id="profileWhatsapp" placeholder="Numéro WhatsApp">
 <button onclick="completeProfile()">Enregistrer mon profil</button>
 </div>
-
 <div id="shopSettings" class="card hidden">
 <h2>🏪 Informations de ma boutique</h2>
 <p>Personnalisez votre boutique pour donner confiance aux clients.</p>
 
-<label>Nom de la boutique</label>
-<input id="editShopName" placeholder="Nom de votre boutique">
+Nom de la boutique
+Description de la boutique
 
-<label>Description de la boutique</label>
 <textarea id="shopDescription" placeholder="Présentez votre boutique et vos produits..."></textarea>
 
-<label>Adresse physique (facultatif)</label>
-<input id="physicalAddress" placeholder="Exemple : Kinshasa, Gombe">
-
-<label>Numéro WhatsApp</label>
-<input id="shopWhatsapp" placeholder="+243...">
-
-<label>Logo de la boutique</label>
-<input id="shopLogo" type="file" accept="image/jpeg,image/png,image/webp">
-<img id="logoPreview" class="logo-preview hidden" alt="Logo de la boutique">
+Adresse physique (facultatif)
+Numéro WhatsApp
+Logo de la boutique
 <p class="help">Formats JPG, PNG ou WEBP. Maximum 5 MB.</p>
-
 <hr>
-
 <h2>🌐 Réseaux sociaux de ma boutique</h2>
 
-<label>Facebook</label>
-<input id="facebookUrl" type="url" placeholder="https://facebook.com/votrepage">
+Facebook
+Instagram
+TikTok
+YouTube
+Enregistrer les informations de ma boutique
 
-<label>Instagram</label>
-<input id="instagramUrl" type="url" placeholder="https://instagram.com/votrepage">
-
-<label>TikTok</label>
-<input id="tiktokUrl" type="url" placeholder="https://tiktok.com/@votrecompte">
-
-<label>YouTube</label>
-<input id="youtubeUrl" type="url" placeholder="https://youtube.com/@votrechaine">
-
-<button onclick="saveShopSettings()">Enregistrer les informations de ma boutique</button>
 </div>
-
 <div id="productSection" class="card hidden">
 <h2>Publier un produit</h2>
-<input id="productName" placeholder="Nom du produit">
-<textarea id="productDescription" placeholder="Description du produit"></textarea>
-<input id="productPrice" type="number" min="0.01" step="0.01" placeholder="Prix en dollars ($)">
 
-<select id="productCategory">
+Type de produit
+<option value="physical">Produit physique</option>
+<option value="digital">Produit numérique (PDF)</option>
+</select>
+
+Nom du produit
+Description du produit
+
+<textarea id="productDescription" placeholder="Description du produit"></textarea>
+
+Prix en dollars ($)
+Catégorie
 <option value="">Choisir une catégorie</option>
 <option>Vêtements</option>
 <option>Chaussures</option>
@@ -542,33 +375,42 @@ header p {
 <option>Beauté</option>
 <option>Maison</option>
 <option>Alimentation</option>
+<option>Livres numériques</option>
+<option>Formations</option>
+<option>Documents PDF</option>
 <option>Autres</option>
 </select>
+<div id="physicalFields">
 
-<input id="productStock" type="number" min="1" value="1" placeholder="Quantité disponible">
-
-<label>Photo du produit</label>
-<input id="productImage" type="file" accept="image/jpeg,image/png,image/webp">
-
-<button onclick="publishProduct()">Publier mon produit</button>
+Quantité disponible
+Photo du produit
+<p class="help">Formats JPG, PNG ou WEBP. Maximum 5 MB.</p>
 </div>
+<div id="digitalFields" class="hidden">
 
+Fichier PDF à vendre
+<p class="help">
+PDF uniquement. Taille maximale : 20 MB.
+</p>
+
+Photo de couverture du produit
+<p class="help">Formats JPG, PNG ou WEBP. Maximum 5 MB.</p>
+</div>
+<button id="publishProductButton" onclick="publishProduct()">
+Publier mon produit
+</button>
+</div>
 <div id="editProductSection" class="card hidden">
 <h2>✏️ Modifier mon produit</h2>
-
 <input type="hidden" id="editProductId">
 
-<label>Nom du produit</label>
-<input id="editProductName" placeholder="Nom du produit">
+Nom du produit
+Description
 
-<label>Description</label>
 <textarea id="editProductDescription" placeholder="Description du produit"></textarea>
 
-<label>Prix en dollars ($)</label>
-<input id="editProductPrice" type="number" min="0.01" step="0.01">
-
-<label>Catégorie</label>
-<select id="editProductCategory">
+Prix en dollars ($)
+Catégorie
 <option value="">Choisir une catégorie</option>
 <option>Vêtements</option>
 <option>Chaussures</option>
@@ -578,104 +420,78 @@ header p {
 <option>Beauté</option>
 <option>Maison</option>
 <option>Alimentation</option>
+<option>Livres numériques</option>
+<option>Formations</option>
+<option>Documents PDF</option>
 <option>Autres</option>
 </select>
 
-<label>Quantité disponible</label>
-<input id="editProductStock" type="number" min="0">
-
-<label>Nouvelle photo (facultatif)</label>
-<input id="editProductImage" type="file" accept="image/jpeg,image/png,image/webp">
+Quantité disponible
+Nouvelle photo (facultatif)
 <p class="help">Laissez la photo vide pour conserver l'ancienne.</p>
 
-<button id="updateProductButton" onclick="updateProduct()">Enregistrer les modifications</button>
+Enregistrer les modifications
 
 <button onclick="cancelEditProduct()" style="background:#777;margin-top:10px;color:white;">
 Annuler
 </button>
 </div>
-
 <div id="myProductsSection" class="card hidden">
 <h2>Mes produits publiés</h2>
 <div id="myProducts"></div>
 </div>
-
 <div id="salesSection" class="card hidden">
 <h2>💰 Mes ventes et commissions</h2>
 <p>Déclarez ici les ventes réalisées grâce à Moonlight Digital.</p>
-
 <div class="stats">
 <p>Total de mes ventes : <strong id="totalSales">0 $</strong></p>
 <p>Commissions à payer : <strong id="totalCommission" class="commission">0 $</strong></p>
 <p>Commissions déjà payées : <strong id="paidCommission">0 $</strong></p>
 </div>
-
 <h3>Déclarer une vente</h3>
 
-<label>Nom du produit vendu</label>
-<input id="saleProductName" placeholder="Exemple : Téléphone Samsung">
-
-<label>Quantité vendue</label>
-<input id="saleQuantity" type="number" min="1" value="1">
-
-<label>Montant total encaissé ($)</label>
-<input id="saleAmount" type="number" min="0.01" step="0.01" placeholder="Exemple : 100">
-
-<button id="reportSaleButton" onclick="reportSale()">Déclarer ma vente</button>
+Nom du produit vendu
+Quantité vendue
+Montant total encaissé ($)
+Déclarer ma vente
 
 <hr>
-
 <h3>Historique de mes ventes</h3>
 <div id="salesHistory">Chargement...</div>
 </div>
-
 </div>
 </div>
-
 <footer>
 © 2026 Moonlight Digital – Tous droits réservés.
 <br>
 Votre commerce, notre plateforme.
 </footer>
-
 <script>
 const SUPABASE_URL = "https://lmyefbevtukmtoijjlja.supabase.co";
 const SUPABASE_KEY = "sb_publishable_6t-IlMpQAslqtctUJEmwKQ_0Wf5pBJ1";
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
 let currentUser = null;
 let currentLogoUrl = "";
-
 function showMessage(message) {
     document.getElementById("message").innerText = message;
 }
-
 function validSocialUrl(value, platform) {
     if (!value) return true;
-
     try {
         const url = new URL(value);
-
-        if (url.protocol !== "https:" && url.protocol !== "http:") {
-            return false;
-        }
-
+        if (url.protocol !== "https:" && url.protocol !== "http:") return false;
         const host = url.hostname.toLowerCase();
-
         const domains = {
             facebook: ["facebook.com", "www.facebook.com", "m.facebook.com"],
             instagram: ["instagram.com", "www.instagram.com"],
             tiktok: ["tiktok.com", "www.tiktok.com", "vm.tiktok.com"],
             youtube: ["youtube.com", "www.youtube.com", "youtu.be"]
         };
-
         return domains[platform].includes(host);
-
     } catch {
         return false;
     }
 }
-
 // INSCRIPTION
 async function signup() {
     const name = document.getElementById("signupName").value.trim();
@@ -683,35 +499,24 @@ async function signup() {
     const whatsapp = document.getElementById("signupWhatsapp").value.trim();
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value;
-
     if (!name || !shop || !whatsapp || !email || !password) {
         showMessage("Veuillez remplir tous les champs.");
         return;
     }
-
     if (password.length < 6) {
         showMessage("Le mot de passe doit contenir au moins 6 caractères.");
         return;
     }
-
     const { data, error } = await db.auth.signUp({ email, password });
-
     if (error) {
         showMessage(error.message);
         return;
     }
-
-    const pendingProfile = {
-        full_name: name,
-        shop_name: shop,
-        whatsapp: whatsapp
-    };
-
-    localStorage.setItem(
-        "moonlight_pending_profile",
-        JSON.stringify(pendingProfile)
-    );
-
+    localStorage.setItem("moonlight_pending_profile", JSON.stringify({
+        full_name:name,
+        shop_name:shop,
+        whatsapp:whatsapp
+    }));
     if (data.session && data.user) {
         currentUser = data.user;
         await saveProfile(name, shop, whatsapp);
@@ -719,126 +524,89 @@ async function signup() {
         showMessage("Compte créé ! Vérifiez votre email, puis connectez-vous pour terminer votre inscription.");
     }
 }
-
-// ENREGISTRER LE PROFIL
 async function saveProfile(name, shop, whatsapp) {
     if (!currentUser || !currentUser.email) {
         showMessage("Veuillez vous connecter pour enregistrer votre profil.");
         return false;
     }
-
-    const { error } = await db
-        .from("seller_profiles")
-        .upsert({
-            id: currentUser.id,
-            full_name: name,
-            shop_name: shop,
-            whatsapp: whatsapp,
-            email: currentUser.email
-        }, { onConflict: "id" });
-
+    const { error } = await db.from("seller_profiles").upsert({
+        id:currentUser.id,
+        full_name:name,
+        shop_name:shop,
+        whatsapp:whatsapp,
+        email:currentUser.email
+    }, { onConflict:"id" });
     if (error) {
         showMessage("Erreur profil : " + error.message);
         return false;
     }
-
     localStorage.removeItem("moonlight_pending_profile");
-
     showMessage("Votre profil vendeur a été enregistré !");
-
     await openDashboard();
-
     return true;
 }
-
 // CONNEXION
 async function login() {
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value;
-
     if (!email || !password) {
         showMessage("Veuillez saisir votre email et votre mot de passe.");
         return;
     }
-
-    const { data, error } = await db.auth.signInWithPassword({
-        email,
-        password
-    });
-
+    const { data, error } = await db.auth.signInWithPassword({ email,password });
     if (error) {
         showMessage(error.message);
         return;
     }
-
     currentUser = data.user;
-
     const pending = localStorage.getItem("moonlight_pending_profile");
-
     if (pending) {
         try {
             const profile = JSON.parse(pending);
-
             const saved = await saveProfile(
                 profile.full_name,
                 profile.shop_name,
                 profile.whatsapp
             );
-
             if (saved) return;
-
         } catch (error) {
             console.error(error);
         }
     }
-
     await openDashboard();
 }
-
 // TABLEAU DE BORD
 async function openDashboard() {
     if (!currentUser) return;
-
     document.getElementById("authSection").classList.add("hidden");
     document.getElementById("dashboard").classList.remove("hidden");
-
-    const { data: profile, error } = await db
+    const { data:profile,error } = await db
         .from("seller_profiles")
         .select("*")
-        .eq("id", currentUser.id)
+        .eq("id",currentUser.id)
         .maybeSingle();
-
     if (error) {
         document.getElementById("sellerInfo").innerText =
             "Impossible de charger votre profil : " + error.message;
         return;
     }
-
     if (!profile) {
         document.getElementById("sellerInfo").innerText =
             "Finalisez votre profil pour commencer à vendre.";
-
+        ["profileSection","shopSettings","productSection",
+         "editProductSection","myProductsSection","salesSection"]
+        .forEach(id => {
+            document.getElementById(id).classList.add("hidden");
+        });
         document.getElementById("profileSection").classList.remove("hidden");
-        document.getElementById("shopSettings").classList.add("hidden");
-        document.getElementById("productSection").classList.add("hidden");
-        document.getElementById("editProductSection").classList.add("hidden");
-        document.getElementById("myProductsSection").classList.add("hidden");
-        document.getElementById("salesSection").classList.add("hidden");
-
         observeMotionElements(document.getElementById("dashboard"));
-
         return;
     }
-
     document.getElementById("profileSection").classList.add("hidden");
-    document.getElementById("shopSettings").classList.remove("hidden");
-    document.getElementById("productSection").classList.remove("hidden");
-    document.getElementById("myProductsSection").classList.remove("hidden");
-    document.getElementById("salesSection").classList.remove("hidden");
-
+    ["shopSettings","productSection","myProductsSection","salesSection"]
+    .forEach(id => document.getElementById(id).classList.remove("hidden"));
     document.getElementById("sellerInfo").innerText =
         "Boutique : " + profile.shop_name;
-
     document.getElementById("editShopName").value = profile.shop_name || "";
     document.getElementById("shopDescription").value = profile.shop_description || "";
     document.getElementById("physicalAddress").value = profile.physical_address || "";
@@ -847,42 +615,31 @@ async function openDashboard() {
     document.getElementById("instagramUrl").value = profile.instagram_url || "";
     document.getElementById("tiktokUrl").value = profile.tiktok_url || "";
     document.getElementById("youtubeUrl").value = profile.youtube_url || "";
-
     currentLogoUrl = profile.shop_logo_url || "";
-
     const preview = document.getElementById("logoPreview");
-
     if (currentLogoUrl) {
         preview.src = currentLogoUrl;
         preview.classList.remove("hidden");
     } else {
         preview.classList.add("hidden");
     }
-
     observeMotionElements(document.getElementById("dashboard"));
-
     await loadProducts();
     await loadSales();
 }
-
-// COMPLÉTER LE PROFIL
 async function completeProfile() {
     const name = document.getElementById("profileName").value.trim();
     const shop = document.getElementById("profileShop").value.trim();
     const whatsapp = document.getElementById("profileWhatsapp").value.trim();
-
     if (!name || !shop || !whatsapp) {
         alert("Veuillez remplir tous les champs.");
         return;
     }
-
-    await saveProfile(name, shop, whatsapp);
+    await saveProfile(name,shop,whatsapp);
 }
-
-// ENREGISTRER LES INFORMATIONS DE LA BOUTIQUE
+// BOUTIQUE
 async function saveShopSettings() {
     if (!currentUser) return;
-
     const shop = document.getElementById("editShopName").value.trim();
     const description = document.getElementById("shopDescription").value.trim();
     const address = document.getElementById("physicalAddress").value.trim();
@@ -891,174 +648,179 @@ async function saveShopSettings() {
     const instagram = document.getElementById("instagramUrl").value.trim();
     const tiktok = document.getElementById("tiktokUrl").value.trim();
     const youtube = document.getElementById("youtubeUrl").value.trim();
-
     if (!shop || !whatsapp) {
         alert("Le nom de la boutique et le numéro WhatsApp sont obligatoires.");
         return;
     }
-
     if (
-        !validSocialUrl(facebook, "facebook") ||
-        !validSocialUrl(instagram, "instagram") ||
-        !validSocialUrl(tiktok, "tiktok") ||
-        !validSocialUrl(youtube, "youtube")
+        !validSocialUrl(facebook,"facebook") ||
+        !validSocialUrl(instagram,"instagram") ||
+        !validSocialUrl(tiktok,"tiktok") ||
+        !validSocialUrl(youtube,"youtube")
     ) {
-        alert("Vérifiez les liens de vos réseaux sociaux. Utilisez les adresses officielles des plateformes.");
+        alert("Vérifiez les liens de vos réseaux sociaux.");
         return;
     }
-
     let logoUrl = currentLogoUrl;
-
     const file = document.getElementById("shopLogo").files[0];
-
     if (file) {
-        const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-
-        if (!allowedTypes.includes(file.type)) {
-            alert("Format du logo accepté : JPG, PNG ou WEBP.");
+        const allowedTypes = ["image/jpeg","image/png","image/webp"];
+        if (!allowedTypes.includes(file.type) || file.size > 5*1024*1024) {
+            alert("Logo JPG, PNG ou WEBP, maximum 5 MB.");
             return;
         }
-
-        if (file.size > 5 * 1024 * 1024) {
-            alert("Le logo ne doit pas dépasser 5 MB.");
-            return;
-        }
-
         const extension = file.name.split(".").pop().toLowerCase();
-
-        const path =
-            currentUser.id + "/logo-" + crypto.randomUUID() + "." + extension;
-
-        const { error: uploadError } = await db.storage
+        const path = currentUser.id + "/logo-" + crypto.randomUUID() + "." + extension;
+        const { error:uploadError } = await db.storage
             .from("products-images")
-            .upload(path, file);
-
+            .upload(path,file);
         if (uploadError) {
             alert("Erreur lors de l'envoi du logo : " + uploadError.message);
             return;
         }
-
-        const { data: imageData } = db.storage
+        const { data:imageData } = db.storage
             .from("products-images")
             .getPublicUrl(path);
-
         logoUrl = imageData.publicUrl;
     }
-
-    const { error } = await db
-        .from("seller_profiles")
-        .update({
-            shop_name: shop,
-            shop_description: description,
-            physical_address: address,
-            whatsapp: whatsapp,
-            shop_logo_url: logoUrl,
-            facebook_url: facebook,
-            instagram_url: instagram,
-            tiktok_url: tiktok,
-            youtube_url: youtube
-        })
-        .eq("id", currentUser.id);
-
+    const { error } = await db.from("seller_profiles").update({
+        shop_name:shop,
+        shop_description:description,
+        physical_address:address,
+        whatsapp,
+        shop_logo_url:logoUrl,
+        facebook_url:facebook,
+        instagram_url:instagram,
+        tiktok_url:tiktok,
+        youtube_url:youtube
+    }).eq("id",currentUser.id);
     if (error) {
         alert("Erreur lors de l'enregistrement : " + error.message);
         return;
     }
-
     currentLogoUrl = logoUrl;
-
     document.getElementById("shopLogo").value = "";
-
     alert("Les informations de votre boutique ont été enregistrées ! 🎉");
-
     await openDashboard();
 }
-
-// PUBLICATION PRODUIT
+// AFFICHAGE DU FORMULAIRE
+function toggleDigitalFields() {
+    const type = document.getElementById("productType").value;
+    document.getElementById("physicalFields")
+        .classList.toggle("hidden",type !== "physical");
+    document.getElementById("digitalFields")
+        .classList.toggle("hidden",type !== "digital");
+}
+// PUBLICATION DES PRODUITS
 async function publishProduct() {
     if (!currentUser) return;
-
+    const button = document.getElementById("publishProductButton");
+    const type = document.getElementById("productType").value;
     const name = document.getElementById("productName").value.trim();
     const description = document.getElementById("productDescription").value.trim();
     const price = Number(document.getElementById("productPrice").value);
     const category = document.getElementById("productCategory").value;
-    const stock = Number(document.getElementById("productStock").value);
-    const file = document.getElementById("productImage").files[0];
-
-    if (
-        !name ||
-        !category ||
-        !file ||
-        !Number.isFinite(price) ||
-        price <= 0 ||
-        !Number.isInteger(stock) ||
-        stock < 1
-    ) {
-        alert("Veuillez remplir correctement tous les champs et choisir une photo.");
+    if (!name || !category || !Number.isFinite(price) || price <= 0) {
+        alert("Veuillez remplir correctement les informations du produit.");
         return;
     }
-
-    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-
-    if (!allowedTypes.includes(file.type)) {
-        alert("Format accepté : JPG, PNG ou WEBP.");
+    let imageFile;
+    let stock = 1;
+    let pdfFile = null;
+    if (type === "physical") {
+        imageFile = document.getElementById("productImage").files[0];
+        stock = Number(document.getElementById("productStock").value);
+        if (!imageFile || !Number.isInteger(stock) || stock < 1) {
+            alert("Ajoutez une photo et indiquez une quantité valide.");
+            return;
+        }
+    } else {
+        pdfFile = document.getElementById("digitalProductFile").files[0];
+        imageFile = document.getElementById("digitalProductImage").files[0];
+        if (!pdfFile || !imageFile) {
+            alert("Veuillez sélectionner le PDF et sa photo de couverture.");
+            return;
+        }
+        if (
+            pdfFile.type !== "application/pdf" ||
+            !pdfFile.name.toLowerCase().endsWith(".pdf")
+        ) {
+            alert("Seuls les fichiers PDF sont acceptés.");
+            return;
+        }
+        if (pdfFile.size > 20*1024*1024) {
+            alert("Le PDF ne doit pas dépasser 20 MB.");
+            return;
+        }
+    }
+    const allowedTypes = ["image/jpeg","image/png","image/webp"];
+    if (!allowedTypes.includes(imageFile.type) || imageFile.size > 5*1024*1024) {
+        alert("Photo JPG, PNG ou WEBP uniquement, maximum 5 MB.");
         return;
     }
-
-    if (file.size > 5 * 1024 * 1024) {
-        alert("La photo ne doit pas dépasser 5 MB.");
-        return;
-    }
-
-    const extension = file.name.split(".").pop().toLowerCase();
-
-    const path = currentUser.id + "/" + crypto.randomUUID() + "." + extension;
-
-    const { error: uploadError } = await db.storage
-        .from("products-images")
-        .upload(path, file);
-
-    if (uploadError) {
-        alert("Erreur photo : " + uploadError.message);
-        return;
-    }
-
-    const { data: imageData } = db.storage
-        .from("products-images")
-        .getPublicUrl(path);
-
-    const { error } = await db
-        .from("products")
-        .insert({
-            seller_id: currentUser.id,
+    button.disabled = true;
+    button.textContent = "Publication en cours...";
+    let imagePath = null;
+    let pdfPath = null;
+    try {
+        const imageExtension = imageFile.name.split(".").pop().toLowerCase();
+        imagePath = currentUser.id + "/" + crypto.randomUUID() + "." + imageExtension;
+        const { error:imageError } = await db.storage
+            .from("products-images")
+            .upload(imagePath,imageFile);
+        if (imageError) throw imageError;
+        const { data:imageData } = db.storage
+            .from("products-images")
+            .getPublicUrl(imagePath);
+        if (type === "digital") {
+            pdfPath = currentUser.id + "/" + crypto.randomUUID() + ".pdf";
+            const { error:pdfError } = await db.storage
+                .from("digital-products")
+                .upload(pdfPath,pdfFile,{
+                    contentType:"application/pdf",
+                    upsert:false
+                });
+            if (pdfError) throw pdfError;
+        }
+        const { error } = await db.from("products").insert({
+            seller_id:currentUser.id,
             name,
             description,
             price,
             category,
-            image_url: imageData.publicUrl,
+            image_url:imageData.publicUrl,
             stock,
-            status: "active"
+            status:"active",
+            product_type:type,
+            digital_file_path:pdfPath
         });
-
-    if (error) {
-        await db.storage.from("products-images").remove([path]);
-        alert("Erreur : " + error.message);
-        return;
+        if (error) throw error;
+        alert("Produit publié avec succès ! 🎉");
+        document.getElementById("productName").value = "";
+        document.getElementById("productDescription").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productCategory").value = "";
+        document.getElementById("productStock").value = "1";
+        document.getElementById("productImage").value = "";
+        document.getElementById("digitalProductFile").value = "";
+        document.getElementById("digitalProductImage").value = "";
+        document.getElementById("productType").value = "physical";
+        toggleDigitalFields();
+        await loadProducts();
+    } catch (error) {
+        if (pdfPath) {
+            await db.storage.from("digital-products").remove([pdfPath]);
+        }
+        if (imagePath) {
+            await db.storage.from("products-images").remove([imagePath]);
+        }
+        alert("Erreur lors de la publication : " + error.message);
+    } finally {
+        button.disabled = false;
+        button.textContent = "Publier mon produit";
     }
-
-    alert("Produit publié avec succès ! 🎉");
-
-    document.getElementById("productName").value = "";
-    document.getElementById("productDescription").value = "";
-    document.getElementById("productPrice").value = "";
-    document.getElementById("productCategory").value = "";
-    document.getElementById("productStock").value = "1";
-    document.getElementById("productImage").value = "";
-
-    await loadProducts();
 }
-
-// OUVRIR LE FORMULAIRE DE MODIFICATION
+// MODIFICATION PRODUIT
 function editProduct(product) {
     document.getElementById("editProductId").value = product.id;
     document.getElementById("editProductName").value = product.name || "";
@@ -1067,29 +829,20 @@ function editProduct(product) {
     document.getElementById("editProductCategory").value = product.category || "";
     document.getElementById("editProductStock").value = product.stock;
     document.getElementById("editProductImage").value = "";
-
     document.getElementById("editProductSection").classList.remove("hidden");
-
     observeMotionElements(document.getElementById("editProductSection"));
-
     document.getElementById("editProductSection").scrollIntoView({
         behavior:"smooth"
     });
 }
-
-// ANNULER LA MODIFICATION
 function cancelEditProduct() {
     document.getElementById("editProductSection").classList.add("hidden");
     document.getElementById("editProductId").value = "";
     document.getElementById("editProductImage").value = "";
 }
-
-// ENREGISTRER LES MODIFICATIONS
 async function updateProduct() {
     if (!currentUser) return;
-
     const button = document.getElementById("updateProductButton");
-
     const id = document.getElementById("editProductId").value;
     const name = document.getElementById("editProductName").value.trim();
     const description = document.getElementById("editProductDescription").value.trim();
@@ -1097,289 +850,185 @@ async function updateProduct() {
     const category = document.getElementById("editProductCategory").value;
     const stock = Number(document.getElementById("editProductStock").value);
     const file = document.getElementById("editProductImage").files[0];
-
-    if (
-        !id ||
-        !name ||
-        !category ||
-        !Number.isFinite(price) ||
-        price <= 0 ||
-        !Number.isInteger(stock) ||
-        stock < 0
-    ) {
+    if (!id || !name || !category || !Number.isFinite(price) ||
+        price <= 0 || !Number.isInteger(stock) || stock < 0) {
         alert("Veuillez vérifier les informations du produit.");
         return;
     }
-
     button.disabled = true;
     button.textContent = "Enregistrement...";
-
     let uploadedPath = null;
-
     try {
-        const changes = {
-            name,
-            description,
-            price,
-            category,
-            stock
-        };
-
+        const changes = { name,description,price,category,stock };
         if (file) {
-            const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-
-            if (!allowedTypes.includes(file.type)) {
-                alert("Format accepté : JPG, PNG ou WEBP.");
+            const allowedTypes = ["image/jpeg","image/png","image/webp"];
+            if (!allowedTypes.includes(file.type) || file.size > 5*1024*1024) {
+                alert("Photo JPG, PNG ou WEBP uniquement, maximum 5 MB.");
                 return;
             }
-
-            if (file.size > 5 * 1024 * 1024) {
-                alert("La photo ne doit pas dépasser 5 MB.");
-                return;
-            }
-
             const extension = file.name.split(".").pop().toLowerCase();
-
-            uploadedPath =
-                currentUser.id + "/" + crypto.randomUUID() + "." + extension;
-
-            const { error: uploadError } = await db.storage
+            uploadedPath = currentUser.id + "/" + crypto.randomUUID() + "." + extension;
+            const { error:uploadError } = await db.storage
                 .from("products-images")
-                .upload(uploadedPath, file);
-
+                .upload(uploadedPath,file);
             if (uploadError) {
                 alert("Erreur photo : " + uploadError.message);
                 return;
             }
-
-            const { data: imageData } = db.storage
+            const { data:imageData } = db.storage
                 .from("products-images")
                 .getPublicUrl(uploadedPath);
-
             changes.image_url = imageData.publicUrl;
         }
-
-        const { data, error } = await db
-            .from("products")
+        const { data,error } = await db.from("products")
             .update(changes)
-            .eq("id", id)
-            .eq("seller_id", currentUser.id)
+            .eq("id",id)
+            .eq("seller_id",currentUser.id)
             .select("id");
-
         if (error) {
-            if (uploadedPath) {
-                await db.storage.from("products-images").remove([uploadedPath]);
-            }
-
+            if (uploadedPath) await db.storage.from("products-images").remove([uploadedPath]);
             alert("Erreur : " + error.message);
             return;
         }
-
         if (!data || data.length === 0) {
-            if (uploadedPath) {
-                await db.storage.from("products-images").remove([uploadedPath]);
-            }
-
-            alert("Aucun produit modifié. Vérifiez que vous êtes bien propriétaire de ce produit.");
+            if (uploadedPath) await db.storage.from("products-images").remove([uploadedPath]);
+            alert("Aucun produit modifié. Vérifiez que vous êtes bien propriétaire.");
             return;
         }
-
         alert("Produit modifié avec succès ! 🎉");
-
         cancelEditProduct();
-
         await loadProducts();
-
     } catch (error) {
-        if (uploadedPath) {
-            await db.storage.from("products-images").remove([uploadedPath]);
-        }
-
+        if (uploadedPath) await db.storage.from("products-images").remove([uploadedPath]);
         alert("Une erreur est survenue : " + error.message);
-
     } finally {
         button.disabled = false;
         button.textContent = "Enregistrer les modifications";
     }
 }
-
-// AFFICHER LES PRODUITS
+// CHARGER LES PRODUITS
 async function loadProducts() {
     if (!currentUser) return;
-
-    const { data, error } = await db
-        .from("products")
+    const { data,error } = await db.from("products")
         .select("*")
-        .eq("seller_id", currentUser.id)
-        .order("created_at", { ascending:false });
-
+        .eq("seller_id",currentUser.id)
+        .order("created_at",{ ascending:false });
     const container = document.getElementById("myProducts");
-
     if (error) {
         container.innerText = error.message;
         return;
     }
-
     container.innerHTML = "";
-
     if (!data || data.length === 0) {
         container.innerHTML = "<p>Vous n'avez pas encore publié de produit.</p>";
         return;
     }
-
     data.forEach(product => {
         const div = document.createElement("div");
         div.className = "product";
-
         const img = document.createElement("img");
         img.src = product.image_url;
         img.alt = product.name;
-
         const title = document.createElement("h3");
         title.textContent = product.name;
-
         const price = document.createElement("p");
         price.textContent = product.price + " $";
-
         const category = document.createElement("p");
         category.textContent = "Catégorie : " + product.category;
-
+        const type = document.createElement("p");
+        type.textContent = product.product_type === "digital"
+            ? "Type : Produit numérique (PDF)"
+            : "Type : Produit physique";
         const stock = document.createElement("p");
-        stock.textContent = "Stock : " + product.stock;
-
+        stock.textContent = product.product_type === "digital"
+            ? "Fichier numérique enregistré"
+            : "Stock : " + product.stock;
         const edit = document.createElement("button");
         edit.textContent = "✏️ Modifier";
         edit.className = "edit-button";
         edit.onclick = () => editProduct(product);
-
         const remove = document.createElement("button");
         remove.textContent = "Supprimer";
         remove.className = "delete-button";
         remove.onclick = () => deleteProduct(product.id);
-
-        div.append(img, title, price, category, stock, edit, remove);
-
+        div.append(img,title,price,category,type,stock,edit,remove);
         container.appendChild(div);
     });
-
     observeMotionElements(container);
 }
-
-// DÉCLARER UNE VENTE
+// VENTES
 async function reportSale() {
     if (!currentUser) return;
-
     const button = document.getElementById("reportSaleButton");
-
     const productName = document.getElementById("saleProductName").value.trim();
     const quantity = Number(document.getElementById("saleQuantity").value);
     const amount = Number(document.getElementById("saleAmount").value);
-
-    if (
-        !productName ||
-        !Number.isInteger(quantity) ||
-        quantity < 1 ||
-        !Number.isFinite(amount) ||
-        amount <= 0
-    ) {
+    if (!productName || !Number.isInteger(quantity) || quantity < 1 ||
+        !Number.isFinite(amount) || amount <= 0) {
         alert("Veuillez remplir correctement toutes les informations.");
         return;
     }
-
     button.disabled = true;
     button.textContent = "Enregistrement...";
-
     try {
-        const { error } = await db
-            .from("seller_sales")
-            .insert({
-                seller_id: currentUser.id,
-                product_name: productName,
-                quantity:quantity,
-                sale_amount:amount
-            });
-
+        const { error } = await db.from("seller_sales").insert({
+            seller_id:currentUser.id,
+            product_name:productName,
+            quantity,
+            sale_amount:amount
+        });
         if (error) {
             alert("Erreur : " + error.message);
             return;
         }
-
         alert("Vente déclarée avec succès ! 🎉");
-
         document.getElementById("saleProductName").value = "";
         document.getElementById("saleQuantity").value = "1";
         document.getElementById("saleAmount").value = "";
-
         await loadSales();
-
     } catch (error) {
         alert("Une erreur est survenue : " + error.message);
-
     } finally {
         button.disabled = false;
         button.textContent = "Déclarer ma vente";
     }
 }
-
-// CHARGER LES VENTES DU VENDEUR
 async function loadSales() {
     if (!currentUser) return;
-
     const history = document.getElementById("salesHistory");
-
-    const { data, error } = await db
-        .from("seller_sales")
+    const { data,error } = await db.from("seller_sales")
         .select("*")
-        .eq("seller_id", currentUser.id)
-        .order("created_at", { ascending:false });
-
+        .eq("seller_id",currentUser.id)
+        .order("created_at",{ ascending:false });
     if (error) {
         history.textContent = "Erreur de chargement : " + error.message;
         return;
     }
-
     history.innerHTML = "";
-
     let total = 0;
     let unpaid = 0;
     let paid = 0;
-
     if (!data || data.length === 0) {
         history.innerHTML = "<p>Aucune vente déclarée pour le moment.</p>";
     } else {
         data.forEach(sale => {
             const saleAmount = Number(sale.sale_amount);
             const commission = Number(sale.commission);
-
             total += saleAmount;
-
-            if (sale.payment_status === "paid") {
-                paid += commission;
-            } else {
-                unpaid += commission;
-            }
-
+            if (sale.payment_status === "paid") paid += commission;
+            else unpaid += commission;
             const card = document.createElement("div");
             card.className = "product";
-
             const title = document.createElement("h3");
             title.textContent = sale.product_name;
-
             const quantity = document.createElement("p");
             quantity.textContent = "Quantité vendue : " + sale.quantity;
-
             const amount = document.createElement("p");
-            amount.textContent =
-                "Montant de la vente : " + saleAmount.toFixed(2) + " $";
-
+            amount.textContent = "Montant de la vente : " + saleAmount.toFixed(2) + " $";
             const commissionText = document.createElement("p");
-            commissionText.textContent =
-                "Commission Moonlight Digital : " + commission.toFixed(2) + " $";
-
+            commissionText.textContent = "Commission Moonlight Digital : " + commission.toFixed(2) + " $";
             commissionText.className = "commission";
-
             const status = document.createElement("span");
-
             if (sale.payment_status === "paid") {
                 status.textContent = "Commission payée";
                 status.className = "sale-status";
@@ -1389,144 +1038,92 @@ async function loadSales() {
                 status.textContent = "Commission à payer";
                 status.className = "sale-status";
             }
-
             const date = document.createElement("p");
             date.style.color = "#aaa";
             date.style.fontSize = "13px";
-            date.textContent =
-                "Date : " + new Date(sale.created_at).toLocaleDateString("fr-FR");
-
-            card.append(
-                title,
-                quantity,
-                amount,
-                commissionText,
-                status,
-                date
-            );
-
+            date.textContent = "Date : " + new Date(sale.created_at).toLocaleDateString("fr-FR");
+            card.append(title,quantity,amount,commissionText,status,date);
             history.appendChild(card);
         });
     }
-
-    document.getElementById("totalSales").textContent =
-        total.toFixed(2) + " $";
-
-    document.getElementById("totalCommission").textContent =
-        unpaid.toFixed(2) + " $";
-
-    document.getElementById("paidCommission").textContent =
-        paid.toFixed(2) + " $";
-
+    document.getElementById("totalSales").textContent = total.toFixed(2) + " $";
+    document.getElementById("totalCommission").textContent = unpaid.toFixed(2) + " $";
+    document.getElementById("paidCommission").textContent = paid.toFixed(2) + " $";
     observeMotionElements(history);
 }
-
 // SUPPRIMER UN PRODUIT
 async function deleteProduct(id) {
     if (!confirm("Voulez-vous supprimer ce produit ?")) return;
-
-    const { error } = await db
-        .from("products")
+    const { error } = await db.from("products")
         .delete()
-        .eq("id", id)
-        .eq("seller_id", currentUser.id);
-
+        .eq("id",id)
+        .eq("seller_id",currentUser.id);
     if (error) {
         alert(error.message);
         return;
     }
-
     alert("Produit supprimé avec succès.");
-
     await loadProducts();
 }
-
 // DÉCONNEXION
 async function logout() {
     await db.auth.signOut();
-
     currentUser = null;
-
     document.getElementById("dashboard").classList.add("hidden");
     document.getElementById("authSection").classList.remove("hidden");
     document.getElementById("editProductSection").classList.add("hidden");
-
     showMessage("Vous êtes déconnecté.");
-
     observeMotionElements(document.getElementById("authSection"));
 }
-
 // RESTAURER LA SESSION
 async function checkSession() {
-    const { data, error } = await db.auth.getSession();
-
+    const { data,error } = await db.auth.getSession();
     if (error) {
         console.error(error);
         return;
     }
-
     if (data.session) {
         currentUser = data.session.user;
         await openDashboard();
     }
 }
-
-// ANIMATIONS AU DÉFILEMENT
+// ANIMATIONS
 let motionObserver = null;
-
 function observeMotionElements(root = document) {
     if (!motionObserver) return;
-
     const elements = [];
-
     if (root.matches && root.matches(".card, .product, footer")) {
         elements.push(root);
     }
-
     if (root.querySelectorAll) {
-        elements.push(
-            ...root.querySelectorAll(".card, .product, footer")
-        );
+        elements.push(...root.querySelectorAll(".card, .product, footer"));
     }
-
     elements.forEach(element => {
         if (element.classList.contains("motion-ready")) return;
-
-        element.classList.add("motion-ready", "reveal-on-scroll");
+        element.classList.add("motion-ready","reveal-on-scroll");
         motionObserver.observe(element);
     });
 }
-
 function initializeMotion() {
     if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
         !("IntersectionObserver" in window)
-    ) {
-        return;
-    }
-
+    ) return;
     document.documentElement.classList.add("js-motion");
-
-    motionObserver = new IntersectionObserver((entries) => {
+    motionObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-            } else {
-                entry.target.classList.remove("is-visible");
-            }
+            if (entry.isIntersecting) entry.target.classList.add("is-visible");
+            else entry.target.classList.remove("is-visible");
         });
     }, {
         threshold:0.08,
         rootMargin:"0px 0px -35px 0px"
     });
-
     observeMotionElements(document);
 }
-
 initializeMotion();
-
+toggleDigitalFields();
 checkSession();
 </script>
-
 </body>
 </html>
